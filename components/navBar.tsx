@@ -31,10 +31,19 @@ const Navbar = () => {
   `;
 
   return (
-    <div className='bg-red-500'>
+    <div className=''>
       <nav className="flex justify-between items-center py-5 container mx-auto ">
-        <Link href="/" className="text-4xl font-bold">
-          <h6>SK<span className='text-fontSecondary'>.</span></h6>
+        <Link href="/">
+            <div className=" inset-0 z-10 transition-opacity duration-300">
+        <Image
+          unoptimized
+          src="/home/hero.svg"
+          alt="hero"
+          className="h-12 w-auto rounded-full "
+          width={40}
+          height={40}
+        />
+      </div>
         </Link>
         <div className="hidden md:flex space-x-16 items-center">
           {navLinks.map((link) => (

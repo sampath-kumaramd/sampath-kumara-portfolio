@@ -142,6 +142,7 @@ const TechnologyCard = ({
 
 export function MarqueeIcons() {
   const [showBanner, setShowBanner] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   // Show banner every 30 seconds
   useEffect(() => {
@@ -155,9 +156,10 @@ export function MarqueeIcons() {
   }, []);
 
   return (
-    <div>
+  <div className="relative">
      
 
+      
       <div className="relative flex h-[500px] w-full flex-row items-center justify-center overflow-hidden rounded-lg bg-background gap-2 ">
         <Marquee reverse vertical className="[--duration:20s]">
           {firstRow.map((technology) => (
@@ -190,10 +192,10 @@ export function MarqueeIcons() {
             className="w-full h-auto absolute top-0 left-0"
           />
           <Marquee className="text-sm absolute top-0 left-4 [--duration:2s] h-28 " vertical reverse >
-              <p  className="relative  bg-transparent">
+              <p  className="relative   bg-red-500 w-4 h-4 rounded-full border border-red-500 shadow-md">
                 &nbsp;
             </p>
-            <p className="relative bg-red-500 w-4 h-4 rounded-full border border-red-500 shadow-md">
+            <p className="relative bg-transparent">
               &nbsp;
             </p>
             <p className="relative bg-transparent">
@@ -201,7 +203,7 @@ export function MarqueeIcons() {
             </p>
           </Marquee>
 
-           <Marquee className="text-sm absolute top-0 left-1/2 [--duration:2s] h-28 " vertical reverse >
+           <Marquee className="text-sm absolute top-0 left-1/2 [--duration:1s] h-28 " vertical reverse >
               <p  className="relative  bg-transparent">
                 &nbsp;
             </p>
@@ -213,14 +215,14 @@ export function MarqueeIcons() {
             </p>
           </Marquee>
 
-           <Marquee className="text-sm absolute top-0 right-4 [--duration:2s] h-28 " vertical reverse >
+           <Marquee className="text-sm absolute top-0 right-4 [--duration:1s] h-28 " vertical reverse >
               <p  className="relative  bg-transparent">
                 &nbsp;
             </p>
-            <p className="relative bg-green-500 w-4 h-4 rounded-full border border-green-500 shadow-md">
+            <p className="relative bg-transparent">
               &nbsp;
             </p>
-            <p className="relative bg-transparent">
+            <p className="relative bg-green-500 w-4 h-4 rounded-full border border-green-500 shadow-md">
               &nbsp;
             </p>
           </Marquee>
@@ -241,3 +243,4 @@ export function MarqueeIcons() {
     </div>
   );
 }
+
