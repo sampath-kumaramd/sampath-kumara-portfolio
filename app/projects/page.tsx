@@ -1,6 +1,6 @@
-import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
-import React from "react";
+import { Separator } from '@/components/ui/separator';
+import Image from 'next/image';
+import React from 'react';
 
 interface ProjectProps {
   name: string;
@@ -21,7 +21,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
   github_link,
   hosted_link,
 }) => (
-  <div className="grid grid-cols-2 my-16 ">
+  <div className="my-16 grid grid-cols-2">
     <div className="col-span-1 space-y-3">
       <p className="text-3xl font-bold">{name}</p>
       <p className="text-md text-fontGray">{description}</p>
@@ -29,7 +29,7 @@ const ProjectCard: React.FC<ProjectProps> = ({
         {skills.map((skill, index) => (
           <div
             key={index}
-            className="bg-fontSecondary text-white p-2 text-xs rounded-full"
+            className="rounded-full bg-fontSecondary p-2 text-xs text-white"
           >
             {skill.name}
           </div>
@@ -40,28 +40,28 @@ const ProjectCard: React.FC<ProjectProps> = ({
           <a
             href={github_link}
             target="_blank"
-            className="bg-fontSecondary text-white p-2 rounded-md"
+            className="rounded-md bg-fontSecondary p-2 text-white"
           >
-           View code
+            View code
           </a>
         )}
         {hosted_link && (
           <a
             href={hosted_link}
             target="_blank"
-            className="border border-fontSecondary text-white p-2 rounded-md"
+            className="rounded-md border border-fontSecondary p-2 text-white"
           >
             Live demo
           </a>
         )}
       </div>
     </div>
-    <div className="col-span-1 ms-12 ">
+    <div className="col-span-1 ms-12">
       <Image
         unoptimized
-        src={image || "/icons/facebook.svg"}
+        src={image || '/icons/facebook.svg'}
         alt={name}
-        className="h-72 w-auto rounded-xl "
+        className="h-72 w-auto rounded-xl"
         width={200}
         height={100}
       />
@@ -71,38 +71,38 @@ const ProjectCard: React.FC<ProjectProps> = ({
 
 const projects: ProjectProps[] = [
   {
-    name: "Project 1",
+    name: 'Project 1',
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: "/projects/dohm.png",
-    skills: [{ name: "React" }, { name: "Next.js" }, { name: "TailwindCSS" }],
-    github_link: "https://github.com",
-    hosted_link: "https://github.com",
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    image: '/projects/dohm.png',
+    skills: [{ name: 'React' }, { name: 'Next.js' }, { name: 'TailwindCSS' }],
+    github_link: 'https://github.com',
+    hosted_link: 'https://github.com',
   },
   {
-    name: "Project 2",
+    name: 'Project 2',
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: "/projects/dohm.png",
-    skills: [{ name: "React" }, { name: "Next.js" }, { name: "TailwindCSS" }],
-    github_link: "https://github.com",
-    hosted_link: "https://github.com",
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    image: '/projects/dohm.png',
+    skills: [{ name: 'React' }, { name: 'Next.js' }, { name: 'TailwindCSS' }],
+    github_link: 'https://github.com',
+    hosted_link: 'https://github.com',
   },
   {
-    name: "Project 3",
+    name: 'Project 3',
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: "/projects/dohm.png",
-    skills: [{ name: "React" }, { name: "Next.js" }, { name: "TailwindCSS" }],
-    github_link: "https://github.com",
-    hosted_link: "https://github.com",
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    image: '/projects/dohm.png',
+    skills: [{ name: 'React' }, { name: 'Next.js' }, { name: 'TailwindCSS' }],
+    github_link: 'https://github.com',
+    hosted_link: 'https://github.com',
   },
 ];
 
 function page() {
   return (
     <div className="container mx-auto py-16">
-      <p className="text-4xl font-bold text-fontSecondary mb-12">
+      <p className="mb-12 text-4xl font-bold text-fontSecondary">
         Projects I have done
       </p>
       <div>

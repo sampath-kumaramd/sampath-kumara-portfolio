@@ -1,20 +1,20 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
     if (!process.env.GITHUB_ACCESS_TOKEN) {
-      console.error("GITHUB_ACCESS_TOKEN is not defined");
+      console.error('GITHUB_ACCESS_TOKEN is not defined');
       return NextResponse.json(
-        { error: "GitHub token not configured" },
+        { error: 'GitHub token not configured' },
         { status: 500 }
       );
     }
 
-    const response = await fetch("https://api.github.com/graphql", {
-      method: "POST",
+    const response = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
       headers: {
         Authorization: `bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         query: `
@@ -38,9 +38,9 @@ export async function GET() {
     });
 
     if (!response.ok) {
-      console.error("GitHub GraphQL API error:", await response.text());
+      console.error('GitHub GraphQL API error:', await response.text());
       return NextResponse.json(
-        { error: "GitHub API request failed" },
+        { error: 'GitHub API request failed' },
         { status: response.status }
       );
     }
@@ -56,16 +56,16 @@ export async function GET() {
       data.data.viewer.contributionsCollection.restrictedContributionsCount;
 
     // Get repositories
-    const reposResponse = await fetch("https://api.github.com/user/repos", {
+    const reposResponse = await fetch('https://api.github.com/user/repos', {
       headers: {
         Authorization: `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
       },
     });
 
     if (!reposResponse.ok) {
-      console.error("GitHub Repos API error:", await reposResponse.text());
+      console.error('GitHub Repos API error:', await reposResponse.text());
       return NextResponse.json(
-        { error: "GitHub Repos API request failed" },
+        { error: 'GitHub Repos API request failed' },
         { status: reposResponse.status }
       );
     }
@@ -99,9 +99,9 @@ export async function GET() {
       totalProjects,
     });
   } catch (error) {
-    console.error("Error fetching GitHub stats:", error);
+    console.error('Error fetching GitHub stats:', error);
     return NextResponse.json(
-      { error: "Failed to fetch GitHub stats" },
+      { error: 'Failed to fetch GitHub stats' },
       { status: 500 }
     );
   }

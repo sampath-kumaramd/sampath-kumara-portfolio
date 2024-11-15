@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, Variants } from "framer-motion";
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, Variants } from 'framer-motion';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 interface HyperTextProps {
   text: string;
@@ -13,7 +13,7 @@ interface HyperTextProps {
   animateOnLoad?: boolean;
 }
 
-const alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+const alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 const getRandomInt = (max: number) => Math.floor(Math.random() * max);
 
@@ -28,7 +28,7 @@ export default function HyperText({
   className,
   animateOnLoad = true,
 }: HyperTextProps) {
-  const [displayText, setDisplayText] = useState(text.split(""));
+  const [displayText, setDisplayText] = useState(text.split(''));
   const [trigger, setTrigger] = useState(false);
   const interations = useRef(0);
   const isFirstRender = useRef(true);
@@ -49,12 +49,12 @@ export default function HyperText({
         if (interations.current < text.length) {
           setDisplayText((t) =>
             t.map((l, i) =>
-              l === " "
+              l === ' '
                 ? l
                 : i <= interations.current
                   ? text[i]
-                  : alphabets[getRandomInt(26)],
-            ),
+                  : alphabets[getRandomInt(26)]
+            )
           );
           interations.current = interations.current + 0.1;
         } else {
@@ -62,7 +62,7 @@ export default function HyperText({
           clearInterval(interval);
         }
       },
-      duration / (text.length * 10),
+      duration / (text.length * 10)
     );
     // Clean up interval on unmount
     return () => clearInterval(interval);
@@ -70,17 +70,17 @@ export default function HyperText({
 
   return (
     <div
-      className="overflow-hidden py-2 flex cursor-default scale-100"
+      className="flex scale-100 cursor-default overflow-hidden py-2"
       onMouseEnter={triggerAnimation}
     >
       <AnimatePresence>
         <motion.div
           key={displayText.join('')}
-          className={cn("font-mono flex", className)}
+          className={cn('font-mono flex', className)}
           {...framerProps}
         >
           {displayText.map((letter, i) => (
-            <span key={i} className={letter === " " ? "w-3" : ""}>
+            <span key={i} className={letter === ' ' ? 'w-3' : ''}>
               {letter.toUpperCase()}
             </span>
           ))}

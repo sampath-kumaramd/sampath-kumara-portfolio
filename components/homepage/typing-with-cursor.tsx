@@ -1,9 +1,9 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion } from 'framer-motion';
 
-const TypingWithCursor = ({text}:{text:string}) => {
+const TypingWithCursor = ({ text }: { text: string }) => {
   const sentence = text;
-  
+
   const typingEffect = {
     hidden: { opacity: 1 },
     visible: {
@@ -23,19 +23,19 @@ const TypingWithCursor = ({text}:{text:string}) => {
   return (
     <div
       style={{
-        display: "flex",
-        alignItems: "center",
-        fontFamily: "monospace",
-        fontSize: "1.5rem",
+        display: 'flex',
+        alignItems: 'center',
+        fontFamily: 'monospace',
+        fontSize: '1.5rem',
       }}
     >
       <motion.div
         initial="hidden"
         animate="visible"
         variants={typingEffect}
-        style={{ whiteSpace: "pre-wrap" }}
+        style={{ whiteSpace: 'pre-wrap' }}
       >
-        {sentence.split("").map((char, index) => (
+        {sentence.split('').map((char, index) => (
           <motion.span key={index} variants={letterEffect}>
             {char}
           </motion.span>
@@ -47,9 +47,9 @@ const TypingWithCursor = ({text}:{text:string}) => {
         transition={{
           repeat: Infinity,
           duration: 0.5,
-          delay: 0.5 + (sentence.length * 0.05),
+          delay: 0.5 + sentence.length * 0.05,
         }}
-        style={{ fontSize: "1.5rem", marginLeft: "5px" }}
+        style={{ fontSize: '1.5rem', marginLeft: '5px' }}
       >
         |
       </motion.div>

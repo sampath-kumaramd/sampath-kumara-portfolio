@@ -1,17 +1,17 @@
-import React from "react";
-import Link from "next/link";
-import { CalendarIcon, HomeIcon, MailIcon, PencilIcon } from "lucide-react";
+import React from 'react';
+import Link from 'next/link';
+import { CalendarIcon, HomeIcon, MailIcon, PencilIcon } from 'lucide-react';
 
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Dock, DockIcon } from "@/components/ui/dock";
+} from '@/components/ui/tooltip';
+import { Dock, DockIcon } from '@/components/ui/dock';
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -61,29 +61,29 @@ const Icons = {
 
 const DATA = {
   navbar: [
-    { href: "#", icon: HomeIcon, label: "Home" },
-    { href: "#", icon: PencilIcon, label: "Blog" },
+    { href: '#', icon: HomeIcon, label: 'Home' },
+    { href: '#', icon: PencilIcon, label: 'Blog' },
   ],
   contact: {
     social: {
       GitHub: {
-        name: "GitHub",
-        url: "#",
+        name: 'GitHub',
+        url: '#',
         icon: Icons.github,
       },
       LinkedIn: {
-        name: "LinkedIn",
-        url: "#",
+        name: 'LinkedIn',
+        url: '#',
         icon: Icons.linkedin,
       },
       X: {
-        name: "X",
-        url: "#",
+        name: 'X',
+        url: '#',
         icon: Icons.x,
       },
       email: {
-        name: "Send Email",
-        url: "#",
+        name: 'Send Email',
+        url: '#',
         icon: Icons.email,
       },
     },
@@ -92,29 +92,28 @@ const DATA = {
 
 export function IconDock() {
   return (
-    <div >
-     
+    <div>
       <TooltipProvider>
         <Dock direction="middle">
-            <DockIcon  className=" !min-w-40" >
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Link
-                    href={"#"}
-                    aria-label={"Download CV"}
-                    className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon" }),
-                      " w-40  rounded-full hover:bg-[#4ebcc2] ",
-                    )}
-                  >
-                   Download Resume
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Download CV</p>
-                </TooltipContent>
-              </Tooltip>
-            </DockIcon>
+          <DockIcon className="!min-w-40">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  href={'#'}
+                  aria-label={'Download CV'}
+                  className={cn(
+                    buttonVariants({ variant: 'ghost', size: 'icon' }),
+                    'w-40 rounded-full hover:bg-[#4ebcc2]'
+                  )}
+                >
+                  Download Resume
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Download CV</p>
+              </TooltipContent>
+            </Tooltip>
+          </DockIcon>
           <Separator orientation="vertical" className="h-full" />
           {Object.entries(DATA.contact.social).map(([name, social]) => (
             <DockIcon key={name}>
@@ -124,8 +123,8 @@ export function IconDock() {
                     href={social.url}
                     aria-label={social.name}
                     className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-12 rounded-full hover:bg-[#4ebcc2]",
+                      buttonVariants({ variant: 'ghost', size: 'icon' }),
+                      'size-12 rounded-full hover:bg-[#4ebcc2]'
                     )}
                   >
                     <social.icon className="size-4" />
@@ -137,7 +136,6 @@ export function IconDock() {
               </Tooltip>
             </DockIcon>
           ))}
-         
         </Dock>
       </TooltipProvider>
     </div>

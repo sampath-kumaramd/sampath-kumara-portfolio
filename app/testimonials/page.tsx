@@ -1,23 +1,23 @@
-"use client";
-import React, { useEffect, useState } from "react";
+'use client';
+import React, { useEffect, useState } from 'react';
 
-import { QuoteIcon } from "lucide-react";
-import Image from "next/image";
+import { QuoteIcon } from 'lucide-react';
+import Image from 'next/image';
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from '@/components/ui/card';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   type CarouselApi,
-} from "@/components/ui/carousel";
+} from '@/components/ui/carousel';
 
 interface TestimonialProps {
   content: string;
   author: string;
   role: string;
   avatar: string;
-  date:string;
+  date: string;
 }
 
 const TestimonialCard: React.FC<TestimonialProps> = ({
@@ -25,34 +25,36 @@ const TestimonialCard: React.FC<TestimonialProps> = ({
   author,
   role,
   avatar,
-  date
+  date,
 }) => (
   <div>
-    <Card className="min-h-96 hover:bg-fontGray hover:text-bgPrimary hover:border-bgPrimary rounded-lg">
-      <QuoteIcon className="text-fontSecondary font-bold absolute top-0 left-16 w-12 h-12 rotate-180" />
-      <div className="text-fontSecondary font-bold absolute top-0 left-16 w-12 h-12 rotate-180"></div>
-      <CardContent className="grid grid-rows-3 h-96 py-12 gap-8">
-      <p className=" row-span-2 text-fontGray text-center hover:text-bgPrimary">{content}</p>
-       <div className="row-span-1 mt-6">
-       <div className="gap-3">
-          <div className="flex gap-3">
-            <div>
-              <Image
-                src={avatar}
-                alt={author}
-                width={48}
-                height={48}
-                className="rounded-full"
-              />
+    <Card className="min-h-96 rounded-lg hover:border-bgPrimary hover:bg-fontGray hover:text-bgPrimary">
+      <QuoteIcon className="absolute left-16 top-0 h-12 w-12 rotate-180 font-bold text-fontSecondary" />
+      <div className="absolute left-16 top-0 h-12 w-12 rotate-180 font-bold text-fontSecondary"></div>
+      <CardContent className="grid h-96 grid-rows-3 gap-8 py-12">
+        <p className="row-span-2 text-center text-fontGray hover:text-bgPrimary">
+          {content}
+        </p>
+        <div className="row-span-1 mt-6">
+          <div className="gap-3">
+            <div className="flex gap-3">
+              <div>
+                <Image
+                  src={avatar}
+                  alt={author}
+                  width={48}
+                  height={48}
+                  className="rounded-full"
+                />
+              </div>
+              <div>
+                <h3 className="text-md font-semibold">{author}</h3>
+                <p className="text-sm text-gray-400">{role}</p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-md font-semibold">{author}</h3>
-              <p className="text-gray-400 text-sm">{role}</p>
-            </div>
+            <div className="mt-4 text-xs text-fontSecondary">{date}</div>
           </div>
-          <div className="mt-4 text-xs text-fontSecondary">{date}</div>
         </div>
-       </div>
       </CardContent>
     </Card>
   </div>
@@ -66,51 +68,51 @@ const ClientTestimonialsCarousel: React.FC = () => {
   const testimonials = [
     {
       content:
-        "Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.",
-      author: "Jane Doe",
-      role: "fievrr client",
-      avatar: "/avatars/1.png",
-      date:"2021-08-20"
+        'Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.',
+      author: 'Jane Doe',
+      role: 'fievrr client',
+      avatar: '/avatars/1.png',
+      date: '2021-08-20',
     },
     {
       content:
-        "Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus. Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.",
-      author: "John Smith",
-      role: "fievrr client",
-      avatar: "/avatars/1.png",
-      date:"2021-08-20"
+        'Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus. Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.',
+      author: 'John Smith',
+      role: 'fievrr client',
+      avatar: '/avatars/1.png',
+      date: '2021-08-20',
     },
     {
       content:
-        "Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.",
-      author: "Emily Johnson",
-      role: "fievrr client",
-      avatar: "/avatars/1.png",
-      date:"2021-08-20"
+        'Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.',
+      author: 'Emily Johnson',
+      role: 'fievrr client',
+      avatar: '/avatars/1.png',
+      date: '2021-08-20',
     },
     {
       content:
-        "Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.",
-      author: "Jane Doe",
-      role: "fievrr client",
-      avatar: "/avatars/1.png",
-      date:"2021-08-20"
+        'Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.',
+      author: 'Jane Doe',
+      role: 'fievrr client',
+      avatar: '/avatars/1.png',
+      date: '2021-08-20',
     },
     {
       content:
-        "Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.",
-      author: "John Smith",
-      role: "fievrr client",
-      avatar: "/avatars/1.png",
-      date:"2021-08-20"
+        'Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.',
+      author: 'John Smith',
+      role: 'fievrr client',
+      avatar: '/avatars/1.png',
+      date: '2021-08-20',
     },
     {
       content:
-        "Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.",
-      author: "Emily Johnson",
-      role: "fievrr client",
-      avatar: "/avatars/1.png",
-      date:"2021-08-20"
+        'Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.',
+      author: 'Emily Johnson',
+      role: 'fievrr client',
+      avatar: '/avatars/1.png',
+      date: '2021-08-20',
     },
   ];
 
@@ -122,7 +124,7 @@ const ClientTestimonialsCarousel: React.FC = () => {
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap());
 
-    api.on("select", () => {
+    api.on('select', () => {
       setCurrent(api.selectedScrollSnap());
     });
   }, [api]);
@@ -136,16 +138,16 @@ const ClientTestimonialsCarousel: React.FC = () => {
   }, [api]);
 
   return (
-    <section className="sm:py-16 py-12 mt-8 sm:0 bg-white">
+    <section className="sm:0 mt-8 bg-white py-12 sm:py-16">
       <div className="container mx-auto px-4">
-        <h2 className="sm:text-5xl text-3xl font-bold text-fontSecondary mb-16">
+        <h2 className="mb-16 text-3xl font-bold text-fontSecondary sm:text-5xl">
           What clients say ...
         </h2>
         <Carousel
           setApi={setApi}
-          className="w-full px-4 sm:px-0 mx-auto"
+          className="mx-auto w-full px-4 sm:px-0"
           opts={{
-            align: "start",
+            align: 'start',
             loop: true,
           }}
         >
@@ -153,21 +155,21 @@ const ClientTestimonialsCarousel: React.FC = () => {
             {testimonials.map((testimonial, index) => (
               <CarouselItem
                 key={index}
-                className="md:basis-1/2 lg:basis-1/3 p-8"
+                className="p-8 md:basis-1/2 lg:basis-1/3"
               >
                 <TestimonialCard {...testimonial} />
               </CarouselItem>
             ))}
           </CarouselContent>
         </Carousel>
-        <div className="flex justify-center mt-8 items-center">
+        <div className="mt-8 flex items-center justify-center">
           {[...Array(count)].map((_, i) => (
             <button
               key={i}
-              className={` rounded-full mx-1 ${
+              className={`mx-1 rounded-full ${
                 i === current
-                  ? "bg-fontSecondary w-4 h-4 "
-                  : "w-3 h-3 bg-gradient-to-br from-[#f7e5cf] to-[#fcf1dc]"
+                  ? 'h-4 w-4 bg-fontSecondary'
+                  : 'h-3 w-3 bg-gradient-to-br from-[#f7e5cf] to-[#fcf1dc]'
               }`}
               onClick={() => api?.scrollTo(i)}
             />
