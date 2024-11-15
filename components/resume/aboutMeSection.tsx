@@ -1,0 +1,52 @@
+import React from 'react';
+
+type Education = {
+  duration: string;
+  institute: string;
+  subject: string;
+  result: string;
+};
+
+function AboutMeSection() {
+  const Education: Education[] = [
+    {
+      duration: 'Expected in 2025',
+      institute: 'University of Moratuwa',
+      subject: 'BSc (Hons.) in Information Technology',
+      result: 'CGPA - 3.18',
+    },
+    {
+      duration: '2019',
+      institute: 'G.C.E. Advance Level',
+      subject: 'Physical Science Stream',
+      result: "1 A , 2 B's",
+    },
+  ];
+  return (
+    <div>
+      <div className="text-fontGray">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </div>
+      <div className="mx-4 max-w-xl py-12">
+        <div className="relative border-l-4 border-white py-4 pl-8">
+          <div className="mb-0 space-y-12">
+            {Education.map((item, index) => (
+              <div key={index} className="flex flex-col">
+                <div className="absolute -left-3 mt-1.5">
+                  <div className="h-5 w-5 rounded-full bg-fontSecondary"></div>
+                </div>
+                <p className="mb-2 text-fontSecondary">{item.duration}</p>
+                <h3 className="text-2xl font-semibold">{item.subject}</h3>
+                <p className="mb-3 text-lg">{item.institute}</p>
+                <p className="text-lg text-fontGray">{item.result}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default AboutMeSection;
