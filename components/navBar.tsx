@@ -7,7 +7,6 @@ import { usePathname } from 'next/navigation';
 import ShimmerButton from './ui/shimmer-button';
 
 const navLinks = [
-  { href: '/', name: 'Home' },
   { href: '/resume', name: 'Resume' },
   { href: '/projects', name: 'Projects' },
   { href: '/testimonials', name: 'Testimonials' },
@@ -35,20 +34,19 @@ const Navbar = () => {
 
   return (
     <div className="">
-      <nav className="container mx-auto flex items-center justify-between py-5">
+      <nav className="container mx-auto flex items-center justify-between py-4">
         <Link href="/">
-          <div className="inset-0 z-10 transition-opacity duration-300">
+          <div className="transition-opacity duration-300">
             <Image
-              unoptimized
-              src="/home/hero.svg"
+              src="/logo.png"
               alt="hero"
-              className="h-12 w-auto rounded-full"
-              width={40}
-              height={40}
+              className="h-16 w-auto"
+              width={100}
+              height={100}
             />
           </div>
         </Link>
-        <div className="hidden items-center space-x-16 md:flex">
+        <div className="hidden items-center space-x-8 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -71,20 +69,16 @@ const Navbar = () => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="md:hidden"
         >
-          {isMenuOpen ? (
-            <X size={24} />
-          ) : (
-            <Image src="/icons/menu.svg" alt="menu" width={40} height={40} />
-          )}
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
       {isMenuOpen && (
-        <div className="bg-cream-dark fixed inset-0 z-50 flex flex-col items-center justify-center space-y-4 md:hidden">
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-4 bg-white md:hidden">
           <button
             onClick={() => setIsMenuOpen(false)}
             className="absolute right-6 top-4"
           >
-            <Image src="/icons/close.svg" alt="close" width={40} height={40} />
+            <X size={24} />
           </button>
           {navLinks.map((link) => (
             <Link

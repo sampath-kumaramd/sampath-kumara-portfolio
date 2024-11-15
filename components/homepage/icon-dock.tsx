@@ -1,6 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { CalendarIcon, HomeIcon, MailIcon, PencilIcon } from 'lucide-react';
+import {
+  CalendarIcon,
+  DownloadIcon,
+  HomeIcon,
+  MailIcon,
+  PencilIcon,
+} from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
@@ -103,10 +109,10 @@ export function IconDock() {
                   aria-label={'Download CV'}
                   className={cn(
                     buttonVariants({ variant: 'ghost', size: 'icon' }),
-                    'w-40 rounded-full hover:bg-[#4ebcc2]'
+                    'w-40 rounded-full hover:w-44 hover:bg-[#4ebcc2] hover:px-2 hover:text-sm'
                   )}
                 >
-                  Download Resume
+                  Download Resume <DownloadIcon className="ms-2 size-4" />
                 </Link>
               </TooltipTrigger>
               <TooltipContent>
