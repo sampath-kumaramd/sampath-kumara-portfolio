@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaDotCircle } from 'react-icons/fa';
 
 type Education = {
   duration: string;
@@ -25,17 +26,19 @@ function EducationSection() {
   return (
     <div>
       <div className="text-fontGray">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        My academic journey, spanning over 4 years, has been a journey of
+        growth, learning, and innovation.
       </div>
       <div className="mx-4 max-w-xl py-12">
         <div className="relative border-l-4 border-white py-4 pl-8">
           <div className="mb-0 space-y-12">
             {Education.map((item, index) => (
               <div key={index} className="flex flex-col">
-                <div className="absolute -left-3 mt-1.5">
-                  <div className="h-5 w-5 rounded-full bg-fontSecondary"></div>
+                <div className="absolute -left-3">
+                  {/* <div className="h-5 w-5 rounded-full bg-fontSecondary"></div> */}
+                  <FaDotCircle className="mt-2 text-fontSecondary" />
                 </div>
+
                 <p className="mb-2 text-fontSecondary">{item.duration}</p>
                 <h3 className="text-2xl font-semibold">{item.subject}</h3>
                 <p className="mb-3 text-lg">{item.institute}</p>

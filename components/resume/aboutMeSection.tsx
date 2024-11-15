@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 type Education = {
@@ -24,26 +25,30 @@ function AboutMeSection() {
   ];
   return (
     <div>
-      <div className="text-fontGray">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </div>
-      <div className="mx-4 max-w-xl py-12">
-        <div className="relative border-l-4 border-white py-4 pl-8">
-          <div className="mb-0 space-y-12">
-            {Education.map((item, index) => (
-              <div key={index} className="flex flex-col">
-                <div className="absolute -left-3 mt-1.5">
-                  <div className="h-5 w-5 rounded-full bg-fontSecondary"></div>
-                </div>
-                <p className="mb-2 text-fontSecondary">{item.duration}</p>
-                <h3 className="text-2xl font-semibold">{item.subject}</h3>
-                <p className="mb-3 text-lg">{item.institute}</p>
-                <p className="text-lg text-fontGray">{item.result}</p>
-              </div>
-            ))}
+      <div className="grid grid-cols-12">
+        <div className="col-span-12 md:col-span-6">
+          <div className="inset-0 z-10 transition-opacity duration-300">
+            <Image
+              src="/home/hero.svg"
+              alt="hero"
+              className="h-96 w-auto rounded-full"
+              width={200}
+              height={200}
+            />
           </div>
         </div>
+        <div className="col-span-12 flex items-center justify-center text-4xl md:col-span-6">
+          Hey there! It&apos;s me, Sampath.
+        </div>
+      </div>
+      <div className="mt-10 text-fontGray">
+        I am a passionate and dedicated software engineer with a strong
+        foundation in computer science and a passion for building innovative
+        solutions. I thrive on challenges and constantly seek opportunities to
+        expand my knowledge and skills.
+      </div>
+      <div className="mx-4 max-w-xl py-12">
+        <div className="relative border-l-4 border-white py-4 pl-8"></div>
       </div>
     </div>
   );

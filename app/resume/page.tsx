@@ -7,11 +7,13 @@ import SkillsSection from '../../components/resume/skillsSection';
 import VolunteeringSection from '../../components/resume/volunteeringSection';
 import AboutMeSection from '@/components/resume/aboutMeSection';
 import { MagicCard } from '@/components/ui/magic-card';
+import { User, Briefcase, GraduationCap, Code, Heart } from 'lucide-react';
 
 type ResumeSubSection = {
   name: string;
   url: string;
   component: React.ComponentType;
+  icon: React.ElementType;
 };
 
 const HeroSection: React.FC = () => {
@@ -20,14 +22,30 @@ const HeroSection: React.FC = () => {
   );
 
   const ResumeSubSection: ResumeSubSection[] = [
-    { name: 'About me', url: '/', component: AboutMeSection },
-    { name: 'Experience', url: '/experience', component: ExperienceSection },
-    { name: 'Education', url: '/education', component: EducationSection },
-    { name: 'Skills', url: '/skills', component: SkillsSection },
+    { name: 'About me', url: '/', component: AboutMeSection, icon: User },
+    {
+      name: 'Experience',
+      url: '/experience',
+      component: ExperienceSection,
+      icon: Briefcase,
+    },
+    {
+      name: 'Education',
+      url: '/education',
+      component: EducationSection,
+      icon: GraduationCap,
+    },
+    {
+      name: 'Tech Stack',
+      url: '/tech-stack',
+      component: SkillsSection,
+      icon: Code,
+    },
     {
       name: 'Volunteering',
       url: '/volunteering',
       component: VolunteeringSection,
+      icon: Heart,
     },
   ];
 
@@ -54,8 +72,12 @@ const HeroSection: React.FC = () => {
                 }
               >
                 <div
-                  className={`text-lg md:text-xl ${selectedSection === item.name ? 'text-white' : 'text-black'}`}
+                  className={`text-lg md:text-xl ${selectedSection === item.name ? 'text-white' : 'text-black'} flex items-center`}
                 >
+                  {React.createElement(item.icon, {
+                    className: 'mr-2',
+                    size: 20,
+                  })}
                   {item.name}
                 </div>
               </MagicCard>
@@ -64,9 +86,11 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
       <div className="col-span-1 md:col-span-2">
-        <h2 className="mb-4 text-xl font-bold md:text-2xl">
-          {selectedSection}
-        </h2>
+        {selectedSection !== 'About me' && (
+          <h2 className="mb-4 text-xl font-bold md:text-2xl">
+            {selectedSection}
+          </h2>
+        )}
         {React.createElement(
           ResumeSubSection.find((item) => item.name === selectedSection)
             ?.component || ExperienceSection

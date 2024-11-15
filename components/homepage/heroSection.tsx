@@ -130,9 +130,8 @@ const HeroSection = () => {
             </div>
             <div className="text-sm text-fontGray sm:text-base">
               I&apos;m excel at creating elegant websites.{' '}
-              <br className="hidden sm:block" />
-              I am proficient in varioud programing languages and{' '}
-              <br className="hidden sm:block" />
+              <br className="hidden sm:block" />I am proficient in varioud
+              programing languages and <br className="hidden sm:block" />
               technologies.
             </div>
 
@@ -171,15 +170,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-
-{
-  /* <div className=" inset-0 z-10 transition-opacity duration-300">
-        <Image
-          src="/home/hero.svg"
-          alt="hero"
-          className="h-40 w-auto rounded-full border-2 border-fontSecondary border-dashed"
-          width={200}
-          height={200}
-        />
-      </div> */
-}

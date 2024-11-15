@@ -10,9 +10,9 @@ type Volunteer = {
 function VolunteeringSection() {
   const Volunteer: Volunteer[] = [
     {
-      position: 'Secretary',
-      time: 'Jul 2022 - Jul 2023',
-      society: "Students' Union, Faculty of IT, University of Moratuwa",
+      position: 'Main Coordinator',
+      time: 'Sep 2024 - Nov 2024',
+      society: 'FIT Sixes 2K24 , ITFSU',
     },
     {
       position: 'Batch Coordinator',
@@ -20,11 +20,16 @@ function VolunteeringSection() {
       society: 'EXMO - University of Moratuwa',
     },
     {
-      position: 'Committee Member',
-      time: 'Jul 2022 - Present',
-      society:
-        'FIT Moments, IT Faculty Official Media Unit, University of Moratuwa',
+      position: 'Secretary',
+      time: 'Jul 2022 - Jul 2023',
+      society: "Students' Union, Faculty of IT, University of Moratuwa",
     },
+    // {
+    //   position: 'Committee Member',
+    //   time: 'Jul 2022 - Present',
+    //   society:
+    //     'FIT Moments, IT Faculty Official Media Unit, University of Moratuwa',
+    // },
     {
       position: 'Company Coordinator | FIT Future Careers 2022',
       time: 'Mar 2023',
