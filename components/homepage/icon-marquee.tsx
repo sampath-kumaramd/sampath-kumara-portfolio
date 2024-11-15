@@ -135,6 +135,7 @@ const TechnologyCard = ({ img, name }: { img: string; name: string }) => {
           className="rounded-full"
           width="80"
           height="40"
+          sizes="(max-width: 768px) 40px, 80px"
           alt=""
           src={img}
         />
@@ -180,7 +181,7 @@ export function MarqueeIcons() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white dark:from-background"></div>
         <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white dark:from-background"></div>
       </div>
-      <div className="text-center text-sm text-muted-foreground">
+      <div className="mx-2 text-center text-sm text-muted-foreground md:mx-4 xl:mx-8">
         <Separator className="rounded-md border border-r-2 border-bgSecondery/10 bg-white py-1 dark:bg-background" />
         <div className="relative flex w-full items-center justify-center">
           <Image
@@ -188,8 +189,8 @@ export function MarqueeIcons() {
             src="/box-grid.png"
             width={0}
             height={0}
-            sizes="100vw"
-            className="absolute left-0 top-0 h-auto w-full"
+            sizes="100vw "
+            className="absolute left-0 top-0 h-28 w-full"
           />
           <Marquee
             className="absolute left-4 top-0 h-28 text-sm [--duration:2s]"
@@ -229,17 +230,6 @@ export function MarqueeIcons() {
         </div>
         <Separator className="mt-28 rounded-md border border-r-2 border-bgSecondery/10 bg-white py-1 dark:bg-background" />
       </div>
-
-      <motion.div
-        initial={{ y: -100 }}
-        animate={{ y: showBanner ? 0 : -100 }}
-        transition={{ duration: 0.5, ease: 'easeInOut' }}
-        className="fixed left-0 right-0 top-0 z-50 bg-gradient-to-r from-blue-500 to-purple-500 p-4 text-center text-white shadow-lg"
-      >
-        <p className="font-medium">
-          🎉 Welcome to my portfolio! Check out my latest projects!
-        </p>
-      </motion.div>
     </div>
   );
 }

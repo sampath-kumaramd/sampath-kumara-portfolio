@@ -116,7 +116,7 @@ export function IconDock() {
                 </Link>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Download CV</p>
+                <p> Download Resume</p>
               </TooltipContent>
             </Tooltip>
           </DockIcon>

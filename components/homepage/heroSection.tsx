@@ -9,6 +9,7 @@ import { MarqueeIcons } from './icon-marquee';
 import { IconDock } from './icon-dock';
 import TypingWithCursor from './typing-with-cursor';
 import TypingAnimation from '../ui/typing-animation';
+import { motion } from 'framer-motion';
 
 type HeroSectionFooter = {
   count: number;
@@ -26,6 +27,7 @@ const HeroSection = () => {
   const [techCount, setTechCount] = useState(0);
   const [yearsOfExperience, setYearsOfExperience] = useState(0);
   const [projectCount, setProjectCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchGithubStats = async () => {
@@ -40,8 +42,10 @@ const HeroSection = () => {
         setTechCount(technologies);
         setYearsOfExperience(years);
         setProjectCount(projects);
+        setIsLoading(false);
       } catch (error) {
         console.error('Failed to fetch GitHub stats:', error);
+        setIsLoading(false);
       }
     };
 
@@ -73,13 +77,40 @@ const HeroSection = () => {
     },
   ];
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
   return (
-    <div className="container mx-auto flex h-[90vh] items-center justify-center">
+    <motion.div
+      className="container mx-auto flex min-h-[80vh] items-center justify-center px-4 py-8 md:px-6 lg:px-8"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       <div className="w-full">
-        <div className="row-span-3 grid grid-cols-1 gap-0 sm:grid-cols-5">
-          <div className="col-span-3 space-y-4">
+        <motion.div
+          className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 lg:grid-cols-5"
+          variants={itemVariants}
+        >
+          <div className="col-span-1 space-y-4 md:col-span-1 lg:col-span-3">
             <TypingAnimation
-              className="text-start text-2xl text-black dark:text-white"
+              className="text-start text-xl text-black dark:text-white sm:text-2xl"
               texts={[
                 'Web Developer',
                 'Innovator',
@@ -87,17 +118,21 @@ const HeroSection = () => {
                 'Leader',
               ]}
             />
-            <div className="space-y-3 text-4xl font-semibold sm:text-7xl">
-              <div className="text-[5rem] text-black">Hello I&apos;m</div>
+            <div className="space-y-3">
+              <div className="text-3xl font-semibold text-black sm:text-4xl md:text-5xl lg:text-[5rem]">
+                Hello I&apos;m
+              </div>
               <BoxReveal boxColor={'#029ba3'} duration={0.5}>
-                <div className="text-[5rem] text-fontSecondary">
+                <div className="text-3xl font-semibold uppercase text-fontSecondary sm:text-4xl md:text-5xl lg:text-[5rem]">
                   Sampath Kumara
                 </div>
               </BoxReveal>
             </div>
-            <div className="text-fontGray">
-              I&apos;m excel at creating elegant websites. <br /> I am
-              proficient in varioud programing languages and <br />
+            <div className="text-sm text-fontGray sm:text-base">
+              I&apos;m excel at creating elegant websites.{' '}
+              <br className="hidden sm:block" />
+              I am proficient in varioud programing languages and{' '}
+              <br className="hidden sm:block" />
               technologies.
             </div>
 
@@ -105,22 +140,33 @@ const HeroSection = () => {
               <IconDock />
             </div>
           </div>
-          <div className="col-span-2 grid items-center justify-end">
+          <div className="col-span-1 mt-8 md:col-span-1 md:mt-0 lg:col-span-2">
             <MarqueeIcons />
           </div>
-        </div>
-        <div className="row-span-1 mt-10 grid grid-cols-4 items-center gap-28">
+        </motion.div>
+
+        <motion.div
+          className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:gap-28"
+          variants={itemVariants}
+        >
           {HeroSectionFooter.map((items, index) => (
-            <div key={index} className="flex items-center gap-3">
-              <div className="col-span-1 text-6xl font-semibold">
+            <motion.div
+              key={index}
+              className="flex items-center gap-2 sm:gap-3"
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: index * 0.1 }}
+            >
+              <div className="text-2xl font-semibold sm:text-4xl md:text-5xl lg:text-6xl">
                 <NumberTicker value={items.count} decimalPlaces={0} />
               </div>
-              <div className="col-span-2">{items.title}</div>
-            </div>
+              <div className="text-sm sm:text-base">{items.title}</div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
