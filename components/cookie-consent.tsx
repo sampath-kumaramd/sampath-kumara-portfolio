@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useCookieConsent } from '@/lib/store/cookieConsent';
 import { Button } from './ui/button';
 import { enableAnalytics, event } from '@/lib/analytics';
+import { CookieIcon } from 'lucide-react';
 
 export function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false);
@@ -48,11 +49,17 @@ export function CookieConsent() {
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 100, opacity: 0 }}
-        className="fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm"
+        className="fixed bottom-4 left-4 z-50 max-w-sm rounded-lg border bg-background/95 p-4 shadow-lg backdrop-blur-sm"
       >
-        <div className="container mx-auto flex max-w-7xl items-center justify-between gap-4 p-4">
+        <div className="flex flex-col gap-4">
+          <div className="flex justify-between">
+            <div className="text-lg font-semibold dark:text-muted-foreground">
+              We use cookies
+            </div>
+            <CookieIcon className="h-6 w-6 dark:text-muted-foreground" />
+          </div>
           <div className="text-sm">
-            <p>
+            <p className="dark:text-muted-foreground">
               This website uses cookies to enhance your experience and analyze
               site traffic. By clicking &quot;Accept,&quot; you consent to our
               use of cookies.
@@ -63,7 +70,7 @@ export function CookieConsent() {
               variant="outline"
               size="sm"
               onClick={handleDecline}
-              className="whitespace-nowrap"
+              className="whitespace-nowrap dark:text-muted-foreground dark:hover:bg-muted"
             >
               Decline
             </Button>
