@@ -4,6 +4,9 @@ import './globals.css';
 import Navbar from '@/components/nav-bar';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
+import Script from 'next/script';
+import { GA_MEASUREMENT_ID } from '@/lib/analytics';
+import { CookieConsent } from '@/components/cookie-consent';
 
 const inter = JetBrains_Mono({
   subsets: ['latin'],
@@ -25,6 +28,23 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/logo.png" />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('consent', 'default', {
+              'analytics_storage': 'denied'
+            });
+            gtag('config', '${GA_MEASUREMENT_ID}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
       </head>
       <body className={inter.className}>
         <ThemeProvider
@@ -36,6 +56,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Toaster />
+          <CookieConsent />
         </ThemeProvider>
       </body>
     </html>

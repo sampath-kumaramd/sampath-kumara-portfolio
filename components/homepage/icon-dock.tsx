@@ -18,6 +18,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Dock, DockIcon } from '@/components/ui/dock';
+import { event } from '@/lib/analytics';
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -88,6 +89,14 @@ const DATA = {
 };
 
 export function IconDock() {
+  const handleResumeDownload = () => {
+    event({
+      action: 'download_resume',
+      category: 'engagement',
+      label: 'Resume Download',
+    });
+  };
+
   return (
     <div>
       <TooltipProvider>
@@ -103,6 +112,7 @@ export function IconDock() {
                     buttonVariants({ variant: 'ghost', size: 'icon' }),
                     'w-40 rounded-xl hover:w-44 hover:bg-[#4ebcc2] hover:px-2 hover:text-sm dark:text-white dark:hover:bg-Secondary dark:hover:text-gray-50'
                   )}
+                  onClick={handleResumeDownload}
                 >
                   Download Resume <DownloadIcon className="ms-2 size-4" />
                 </a>

@@ -19,6 +19,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { event } from '@/lib/analytics';
 
 const formSchema = z.object({
   firstName: z.string().min(2, {
@@ -77,6 +78,11 @@ export default function ContactForm() {
         title: 'Success!',
         description: 'Your message has been sent successfully.',
         variant: 'default',
+      });
+      event({
+        action: 'contact_form_submit',
+        category: 'engagement',
+        label: 'Contact Form Submission',
       });
     } catch (error) {
       setIsLoading(false);

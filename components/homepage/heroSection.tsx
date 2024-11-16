@@ -112,7 +112,8 @@ const HeroSection = () => {
                 'Web Developer',
                 'Innovator',
                 'Software Engineer',
-                'Leader',
+                'Problem Solver',
+                'Team Player',
               ]}
             />
             <div className="space-y-3">

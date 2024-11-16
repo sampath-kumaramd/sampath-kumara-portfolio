@@ -27,6 +27,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { useTheme } from 'next-themes';
+import { event } from '@/lib/analytics';
 
 interface ProjectProps {
   name: string;
@@ -53,12 +54,32 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
   const { theme } = useTheme();
 
+  const handleProjectClick = (projectName: string) => {
+    event({
+      action: 'view_project',
+      category: 'engagement',
+      label: projectName,
+    });
+  };
+
+  const handleProjectLinkClick = (
+    projectName: string,
+    linkType: 'github' | 'live'
+  ) => {
+    event({
+      action: 'project_link_click',
+      category: 'engagement',
+      label: `${projectName}_${linkType}`,
+    });
+  };
+
   return (
     <Sheet>
       <SheetTrigger>
         <MagicCard
           className="max-w-xs cursor-pointer p-4 dark:border-gray-50/[.10] dark:bg-background"
           gradientColor={theme === 'dark' ? '#262626' : '#D9D9D955'}
+          onClick={() => handleProjectClick(project.name)}
           // gradientColor="#def2f3 dark:bg-[#ffffff]"
         >
           <div className="mb-4 text-start text-xl font-semibold">
@@ -228,6 +249,9 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="rounded-md bg-black px-4 py-2 text-white hover:bg-gray-800 dark:bg-gray-500/50 dark:text-gray-200"
+                                onClick={() =>
+                                  handleProjectLinkClick(project.name, 'github')
+                                }
                               >
                                 <GithubIcon className="h-4 w-4" />
                               </a>
@@ -247,6 +271,9 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="rounded-md bg-Secondary px-4 py-2 text-white hover:bg-Secondary/80"
+                                onClick={() =>
+                                  handleProjectLinkClick(project.name, 'live')
+                                }
                               >
                                 <LinkIcon className="h-4 w-4" />
                               </a>
