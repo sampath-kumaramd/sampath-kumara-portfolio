@@ -72,3 +72,23 @@
 .dark [data-theme='dark'] button[data-state='closed'] {
   color: white;
 }
+
+/* Add these custom animations */
+@keyframes cursorTrail {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+/* Optional: Add hover effects for interactive elements */
+a:hover ~ .custom-cursor,
+button:hover ~ .custom-cursor {
+  transform: scale(1.5);
+  background-color: #029ba3; /* Your Secondary color */
+  mix-blend-mode: difference;
+}

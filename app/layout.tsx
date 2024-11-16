@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import Script from 'next/script';
 import { GA_MEASUREMENT_ID } from '@/lib/analytics';
 import { CookieConsent } from '@/components/cookie-consent';
+import { CustomCursor } from '@/components/ui/custom-cursor';
 
 const inter = JetBrains_Mono({
   subsets: ['latin'],
@@ -53,6 +54,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* <CustomCursor /> */}
           <Navbar />
           {children}
           <Toaster />
