@@ -46,7 +46,7 @@ function VolunteeringSection() {
         {Volunteer.map((item, index) => (
           <div key={index} className="flex gap-5 rounded-xl">
             <div>
-              <FaDotCircle className="mt-2 text-fontSecondary" />
+              <FaDotCircle className="mt-2 text-Secondary" />
             </div>
             <div>
               <div className="flex gap-2">

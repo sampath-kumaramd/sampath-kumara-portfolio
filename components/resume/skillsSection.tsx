@@ -38,7 +38,7 @@ interface TechIconProps {
 
 const TechIcon: React.FC<TechIconProps> = ({ Icon, name, link }) => (
   <a href={link} target="_blank" rel="noopener noreferrer">
-    <div className="flex h-24 w-24 flex-col items-center justify-center rounded-lg bg-bgSecondery transition-colors hover:bg-fontSecondary">
+    <div className="flex h-24 w-24 flex-col items-center justify-center rounded-lg bg-bgSecondery transition-colors hover:bg-Secondary">
       <Icon className="h-12 w-12 text-white" />
       <span className="mt-2 text-xs text-gray-300">{name}</span>
     </div>

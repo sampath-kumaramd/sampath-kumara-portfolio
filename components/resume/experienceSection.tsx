@@ -55,7 +55,7 @@ function ExperienceSection() {
             key={index}
             className="relative flex flex-col gap-1 rounded-xl border p-5"
           >
-            <div className="mb-1 text-base font-semibold text-fontSecondary">
+            <div className="mb-1 text-base font-semibold text-Secondary">
               {item.duration}
             </div>
             <div className="text-xl font-semibold">{item.position}</div>

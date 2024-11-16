@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Home() {
   return (
-    <div className="h-full">
+    <div className="flex h-screen flex-col justify-center dark:bg-background">
       <HeroSection />
     </div>
   );

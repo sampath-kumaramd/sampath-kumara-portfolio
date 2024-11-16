@@ -47,9 +47,6 @@ function AboutMeSection() {
         solutions. I thrive on challenges and constantly seek opportunities to
         expand my knowledge and skills.
       </div>
-      <div className="mx-4 max-w-xl py-12">
-        <div className="relative border-l-4 border-white py-4 pl-8"></div>
-      </div>
     </div>
   );
 }

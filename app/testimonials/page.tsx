@@ -28,10 +28,10 @@ const TestimonialCard: React.FC<TestimonialProps> = ({
   date,
 }) => (
   <div className="h-full">
-    <Card className="relative h-full transform rounded-xl border border-gray-100 bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-bgPrimary hover:shadow-lg">
-      <QuoteIcon className="absolute left-4 top-4 h-8 w-8 rotate-180 text-bgPrimary opacity-10" />
+    <Card className="relative h-full transform rounded-xl border border-gray-100 bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-bgPrimary hover:shadow-lg dark:border-gray-50/[.10] dark:bg-background">
+      <QuoteIcon className="absolute left-4 top-4 h-8 w-8 rotate-180 text-bgPrimary opacity-10 dark:text-gray-50 dark:opacity-10" />
       <CardContent className="flex h-full flex-col justify-between gap-6 p-8">
-        <p className="relative z-10 text-lg leading-relaxed text-gray-700">
+        <p className="relative z-10 text-lg leading-relaxed text-gray-700 dark:text-gray-200">
           {content}
         </p>
         <div className="border-t border-gray-100 pt-6">
@@ -44,9 +44,13 @@ const TestimonialCard: React.FC<TestimonialProps> = ({
               className="rounded-full border-2 border-gray-50 shadow-sm"
             />
             <div>
-              <h3 className="font-semibold text-gray-800">{author}</h3>
-              <p className="text-sm text-gray-600">{role}</p>
-              <p className="mt-1 text-xs text-gray-400">{date}</p>
+              <h3 className="font-semibold text-gray-800 dark:text-gray-200">
+                {author}
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-200">{role}</p>
+              <p className="mt-1 text-xs text-gray-400 dark:text-gray-200">
+                {date}
+              </p>
             </div>
           </div>
         </div>
@@ -133,13 +137,13 @@ const ClientTestimonialsCarousel: React.FC = () => {
   }, [api]);
 
   return (
-    <section className="relative bg-gradient-to-b from-white via-gray-50 to-white py-24">
+    <section className="relative flex min-h-screen flex-col justify-center dark:bg-background">
       <div className="container mx-auto px-4">
         <h2 className="mb-16 text-center">
-          <span className="bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
+          <span className="bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-4xl font-bold text-transparent dark:text-gray-200 sm:text-5xl">
             What Our Clients Say
           </span>
-          <span className="mt-6 block text-lg font-normal text-gray-500">
+          <span className="mt-6 block text-lg font-normal text-gray-500 dark:text-gray-200">
             Discover why people love working with us
           </span>
         </h2>
@@ -168,8 +172,8 @@ const ClientTestimonialsCarousel: React.FC = () => {
               key={i}
               className={`rounded-full transition-all duration-300 ${
                 i === current
-                  ? 'h-2.5 w-8 bg-fontSecondary'
-                  : 'h-2.5 w-2.5 bg-gray-200 hover:bg-gray-300'
+                  ? 'h-2.5 w-8 bg-Secondary'
+                  : 'h-2.5 w-2.5 bg-gray-200 hover:bg-gray-300 dark:bg-gray-500/50 dark:hover:bg-gray-500/70'
               }`}
               onClick={() => api?.scrollTo(i)}
             />

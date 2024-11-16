@@ -6,6 +6,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ShimmerButton from './ui/shimmer-button';
 import { motion, AnimatePresence } from 'framer-motion';
+import ShinyButton from './ui/shiny-button';
+import { ThemeToggle } from './theme-toggle';
+import { useTheme } from 'next-themes';
 
 const navLinks = [
   { href: '/resume', name: 'Resume' },
@@ -18,6 +21,8 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState('Home');
   const pathname = usePathname();
 
+  const theme = useTheme();
+
   useEffect(() => {
     const currentSection =
       navLinks.find((link) => link.href === pathname)?.name || 'Home';
@@ -28,13 +33,13 @@ const Navbar = () => {
     rounded-xl py-3 px-5 w-full text-center cursor-pointer transition-colors
     ${
       activeSection === linkName
-        ? 'text-fontSecondary underline underline-offset-8'
-        : 'bg-bgSecondary hover:text-fontSecondary hover:underline hover:underline-offset-8'
+        ? 'text-Secondary underline underline-offset-8'
+        : 'bg-bgSecondary hover:text-Secondary hover:underline hover:underline-offset-8'
     }
   `;
 
   return (
-    <div className="">
+    <div className="fixed left-0 right-0 top-0 z-50 dark:bg-background">
       <nav className="container mx-auto flex items-center justify-between py-4">
         <Link href="/">
           <motion.div
@@ -43,9 +48,9 @@ const Navbar = () => {
             className="transition-opacity duration-300"
           >
             <Image
-              src="/logo.png"
+              src={theme.theme === 'dark' ? '/logo-white.png' : '/logo.png'}
               alt="hero"
-              className="h-16 w-auto"
+              className="h-12 w-auto md:h-16"
               width={100}
               height={100}
             />
@@ -60,17 +65,14 @@ const Navbar = () => {
               transition={{ delay: index * 0.1 }}
             >
               <Link href={link.href} className={getLinkClassName(link.name)}>
-                <h6>{link.name}</h6>
+                <h6 className="dark:text-white">{link.name}</h6>
               </Link>
             </motion.div>
           ))}
+          <ThemeToggle />
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link href="/contact-us">
-              <ShimmerButton className="w-32 bg-fontSecondary shadow-2xl">
-                <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-                  Hire me
-                </span>
-              </ShimmerButton>
+              <ShinyButton>Contact me</ShinyButton>
             </Link>
           </motion.div>
         </div>
@@ -88,7 +90,7 @@ const Navbar = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-4 bg-white md:hidden"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-4 bg-white dark:bg-background md:hidden"
           >
             <button
               onClick={() => setIsMenuOpen(false)}
@@ -112,15 +114,14 @@ const Navbar = () => {
                 </Link>
               </motion.div>
             ))}
+            <ThemeToggle />
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: navLinks.length * 0.1 }}
             >
               <Link href="/contact-us" onClick={() => setIsMenuOpen(false)}>
-                <button className="w-96 rounded-full bg-fontSecondary px-4 py-2 text-white hover:bg-fontSecondary/80">
-                  Hire me
-                </button>
+                <ShinyButton>Contact me</ShinyButton>
               </Link>
             </motion.div>
           </motion.div>

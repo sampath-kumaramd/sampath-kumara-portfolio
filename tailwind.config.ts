@@ -35,7 +35,7 @@ const config: Config = {
         bgPrimary: '#ffffff',
         bgSecondery: '#4a4b4f',
         fontPrimary: '#1c1c22',
-        fontSecondary: '#029ba3',
+        Secondary: '#029ba3',
         fontGray: '#b1b4ba',
         accent: {
           DEFAULT: '#00ff99',

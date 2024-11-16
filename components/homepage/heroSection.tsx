@@ -2,12 +2,9 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import NumberTicker from '../ui/number-ticker';
-import HyperText from '../ui/hyper-text';
 import BoxReveal from '../ui/box-reveal';
-import { Button } from '../ui/button';
 import { MarqueeIcons } from './icon-marquee';
 import { IconDock } from './icon-dock';
-import TypingWithCursor from './typing-with-cursor';
 import TypingAnimation from '../ui/typing-animation';
 import { motion } from 'framer-motion';
 
@@ -98,7 +95,7 @@ const HeroSection = () => {
 
   return (
     <motion.div
-      className="container mx-auto flex min-h-[80vh] items-center justify-center px-4 py-8 md:px-6 lg:px-8"
+      className="container mx-auto flex min-h-[89.5vh] items-center justify-center px-4 py-8 md:px-6 lg:px-8"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -119,16 +116,16 @@ const HeroSection = () => {
               ]}
             />
             <div className="space-y-3">
-              <div className="text-3xl font-semibold text-black sm:text-4xl md:text-5xl lg:text-[5rem]">
+              <div className="text-3xl font-semibold text-black dark:text-white sm:text-4xl md:text-5xl lg:text-[5rem]">
                 Hello I&apos;m
               </div>
               <BoxReveal boxColor={'#029ba3'} duration={0.5}>
-                <div className="text-3xl font-semibold uppercase text-fontSecondary sm:text-4xl md:text-5xl lg:text-[5rem]">
+                <div className="text-3xl font-semibold uppercase text-Secondary sm:text-4xl md:text-5xl lg:text-[5rem]">
                   Sampath Kumara
                 </div>
               </BoxReveal>
             </div>
-            <div className="text-sm text-fontGray sm:text-base">
+            <div className="text-sm text-fontGray dark:text-gray-400 sm:text-base">
               I&apos;m excel at creating elegant websites.{' '}
               <br className="hidden sm:block" />I am proficient in varioud
               programing languages and <br className="hidden sm:block" />
@@ -157,10 +154,12 @@ const HeroSection = () => {
               animate="visible"
               transition={{ delay: index * 0.1 }}
             >
-              <div className="text-2xl font-semibold sm:text-4xl md:text-5xl lg:text-6xl">
+              <div className="text-2xl font-semibold text-black dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
                 <NumberTicker value={items.count} decimalPlaces={0} />
               </div>
-              <div className="text-sm sm:text-base">{items.title}</div>
+              <div className="text-sm text-fontGray dark:text-gray-400 sm:text-base">
+                {items.title}
+              </div>
             </motion.div>
           ))}
         </motion.div>

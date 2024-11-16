@@ -35,11 +35,11 @@ function EducationSection() {
             {Education.map((item, index) => (
               <div key={index} className="flex flex-col">
                 <div className="absolute -left-3">
-                  {/* <div className="h-5 w-5 rounded-full bg-fontSecondary"></div> */}
-                  <FaDotCircle className="mt-2 text-fontSecondary" />
+                  {/* <div className="h-5 w-5 rounded-full bg-Secondary"></div> */}
+                  <FaDotCircle className="mt-2 text-Secondary" />
                 </div>
 
-                <p className="mb-2 text-fontSecondary">{item.duration}</p>
+                <p className="mb-2 text-Secondary">{item.duration}</p>
                 <h3 className="text-2xl font-semibold">{item.subject}</h3>
                 <p className="mb-3 text-lg">{item.institute}</p>
                 <p className="text-lg text-fontGray">{item.result}</p>

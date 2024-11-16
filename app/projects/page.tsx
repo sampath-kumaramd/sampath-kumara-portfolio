@@ -26,6 +26,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { useTheme } from 'next-themes';
 
 interface ProjectProps {
   name: string;
@@ -50,13 +51,15 @@ interface ProjectProps {
 
 const ProjectCard: React.FC<ProjectProps> = (project) => {
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+  const { theme } = useTheme();
 
   return (
     <Sheet>
       <SheetTrigger>
         <MagicCard
-          className="max-w-xs cursor-pointer p-4"
-          gradientColor="#def2f3"
+          className="max-w-xs cursor-pointer p-4 dark:border-gray-50/[.10] dark:bg-background"
+          gradientColor={theme === 'dark' ? '#262626' : '#D9D9D955'}
+          // gradientColor="#def2f3 dark:bg-[#ffffff]"
         >
           <div className="mb-4 text-start text-xl font-semibold">
             {project.name} a
@@ -69,17 +72,17 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
             className="mb-3 rounded-xl border-2"
             objectFit="cover"
           />
-          <p className="line-clamp-2 text-start text-sm text-gray-600">
+          <p className="line-clamp-2 text-start text-sm text-gray-600 dark:text-gray-200">
             {project.description}
           </p>
-          <p className="mt-2 text-start text-sm text-gray-600">
+          <p className="mt-2 text-start text-sm text-gray-600 dark:text-gray-200">
             {project.client}
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
             {project.skills.slice(0, 3).map((skill, index) => (
               <span
                 key={index}
-                className="rounded-md bg-gray-200 px-2 py-1 text-xs"
+                className="rounded-md bg-gray-200 px-2 py-1 text-xs dark:bg-gray-500/50 dark:text-gray-200"
               >
                 {skill.name}
               </span>
@@ -88,11 +91,16 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
         </MagicCard>
       </SheetTrigger>
 
-      <SheetContent className="h-[85vh] overflow-y-auto" side="bottom">
+      <SheetContent
+        className="h-[85vh] overflow-y-auto data-[theme=dark]:bg-background"
+        side="bottom"
+      >
         <SheetHeader>
           <SheetTitle>
             <p className="text-xl font-bold">{project.name}</p>
-            <p className="text-sm text-gray-600">{project.client}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-200">
+              {project.client}
+            </p>
           </SheetTitle>
           <SheetDescription>
             <div className="container mx-auto py-8">
@@ -146,8 +154,12 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
                   </Dialog>
 
                   <div>
-                    <h3 className="text-lg font-semibold">Description</h3>
-                    <p className="text-gray-600">{project.description}</p>
+                    <h3 className="text-lg font-semibold dark:text-gray-200">
+                      Description
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-200">
+                      {project.description}
+                    </p>
                   </div>
                 </div>
 
@@ -159,7 +171,7 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
                           <AccordionTrigger className="font-medium">
                             {feature.title}
                           </AccordionTrigger>
-                          <AccordionContent className="text-gray-600">
+                          <AccordionContent className="text-gray-600 dark:text-gray-200">
                             {feature.description}
                           </AccordionContent>
                         </AccordionItem>
@@ -168,19 +180,25 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <h4 className="font-medium">Client</h4>
-                        <p className="text-gray-600">{project.client}</p>
+                        <p className="text-gray-600 dark:text-gray-200">
+                          {project.client}
+                        </p>
                       </div>
                       <div>
                         <h4 className="font-medium">Role</h4>
-                        <p className="text-gray-600">{project.role}</p>
+                        <p className="text-gray-600 dark:text-gray-200">
+                          {project.role}
+                        </p>
                       </div>
                       <div>
                         <h4 className="font-medium">Status</h4>
-                        <p className="text-gray-600">{project.status}</p>
+                        <p className="text-gray-600 dark:text-gray-200">
+                          {project.status}
+                        </p>
                       </div>
                       <div>
                         <h4 className="font-medium">Timeline</h4>
-                        <p className="text-gray-600">
+                        <p className="text-gray-600 dark:text-gray-200">
                           {project.startDate} - {project.endDate}
                         </p>
                       </div>
@@ -192,7 +210,7 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
                         {project.skills.map((skill, index) => (
                           <span
                             key={index}
-                            className="rounded bg-gray-100 px-3 py-1"
+                            className="rounded bg-gray-100 px-3 py-1 dark:bg-gray-500/50 dark:text-gray-200"
                           >
                             {skill.name}
                           </span>
@@ -209,7 +227,7 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
                                 href={project.github_link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="rounded-md bg-black px-4 py-2 text-white hover:bg-gray-800"
+                                className="rounded-md bg-black px-4 py-2 text-white hover:bg-gray-800 dark:bg-gray-500/50 dark:text-gray-200"
                               >
                                 <GithubIcon className="h-4 w-4" />
                               </a>
@@ -228,7 +246,7 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
                                 href={project.hosted_link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="rounded-md bg-fontSecondary px-4 py-2 text-white hover:bg-fontSecondary/80"
+                                className="rounded-md bg-Secondary px-4 py-2 text-white hover:bg-Secondary/80"
                               >
                                 <LinkIcon className="h-4 w-4" />
                               </a>
@@ -331,16 +349,18 @@ const projects: ProjectProps[] = [
 
 function page() {
   return (
-    <div className="container mx-auto py-16">
-      <p className="mb-12 text-4xl font-bold text-fontSecondary">
-        Projects I have done
-      </p>
-      <div className="flex flex-wrap gap-4">
-        {projects.map((project, index) => (
-          <div key={index} className="max-w-xs">
-            <ProjectCard {...project} />
-          </div>
-        ))}
+    <div className="flex min-h-screen flex-col justify-center dark:bg-background dark:text-white">
+      <div className="container mx-auto py-16">
+        <p className="mb-12 text-4xl font-bold text-Secondary">
+          Projects I have done
+        </p>
+        <div className="flex flex-wrap gap-4">
+          {projects.map((project, index) => (
+            <div key={index} className="max-w-xs">
+              <ProjectCard {...project} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

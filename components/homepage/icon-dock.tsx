@@ -66,30 +66,21 @@ const Icons = {
 };
 
 const DATA = {
-  navbar: [
-    { href: '#', icon: HomeIcon, label: 'Home' },
-    { href: '#', icon: PencilIcon, label: 'Blog' },
-  ],
   contact: {
     social: {
       GitHub: {
         name: 'GitHub',
-        url: '#',
+        url: 'https://github.com/sampath-kumaramd',
         icon: Icons.github,
       },
       LinkedIn: {
         name: 'LinkedIn',
-        url: '#',
+        url: 'https://www.linkedin.com/in/sampathkumaramd/',
         icon: Icons.linkedin,
-      },
-      X: {
-        name: 'X',
-        url: '#',
-        icon: Icons.x,
       },
       email: {
         name: 'Send Email',
-        url: '#',
+        url: 'mailto:mdskumara.info@gmail.com',
         icon: Icons.email,
       },
     },
@@ -104,16 +95,17 @@ export function IconDock() {
           <DockIcon className="!min-w-40">
             <Tooltip>
               <TooltipTrigger asChild>
-                <Link
-                  href={'#'}
+                <a
+                  href="/Sampath Kumara SE.pdf"
+                  download="Sampath Kumara SE.pdf"
                   aria-label={'Download CV'}
                   className={cn(
                     buttonVariants({ variant: 'ghost', size: 'icon' }),
-                    'w-40 rounded-full hover:w-44 hover:bg-[#4ebcc2] hover:px-2 hover:text-sm'
+                    'w-40 rounded-xl hover:w-44 hover:bg-[#4ebcc2] hover:px-2 hover:text-sm dark:text-white dark:hover:bg-Secondary dark:hover:text-gray-50'
                   )}
                 >
                   Download Resume <DownloadIcon className="ms-2 size-4" />
-                </Link>
+                </a>
               </TooltipTrigger>
               <TooltipContent>
                 <p> Download Resume</p>
@@ -127,10 +119,11 @@ export function IconDock() {
                 <TooltipTrigger asChild>
                   <Link
                     href={social.url}
+                    target="_blank"
                     aria-label={social.name}
                     className={cn(
                       buttonVariants({ variant: 'ghost', size: 'icon' }),
-                      'size-12 rounded-full hover:bg-[#4ebcc2]'
+                      'size-12 rounded-xl hover:bg-[#4ebcc2] dark:text-white dark:hover:bg-Secondary dark:hover:text-gray-50'
                     )}
                   >
                     <social.icon className="size-4" />

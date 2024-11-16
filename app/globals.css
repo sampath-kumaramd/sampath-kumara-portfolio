@@ -61,6 +61,14 @@
 
 @layer base {
   body {
-    @apply font-primary bg-bgPrimary text-fontPrimary;
+    @apply bg-bgPrimary font-primary text-fontPrimary;
   }
+}
+
+[data-theme='dark'] .close-button {
+  color: white;
+}
+
+.dark [data-theme='dark'] button[data-state='closed'] {
+  color: white;
 }
