@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
+import { ContributionGraph } from '../github/contribution-graph';
+import { motion } from 'framer-motion';
 
 type Education = {
   duration: string;
@@ -47,6 +49,18 @@ function AboutMeSection() {
         solutions. I thrive on challenges and constantly seek opportunities to
         expand my knowledge and skills.
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="relative mt-8 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900"
+      >
+        <h3 className="mb-4 text-sm font-medium text-gray-600 dark:text-gray-400">
+          GitHub Contributions
+        </h3>
+        <ContributionGraph className="w-full" />
+      </motion.div>
     </div>
   );
 }

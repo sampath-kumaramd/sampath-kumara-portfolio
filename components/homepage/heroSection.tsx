@@ -7,6 +7,7 @@ import { MarqueeIcons } from './icon-marquee';
 import { IconDock } from './icon-dock';
 import TypingAnimation from '../ui/typing-animation';
 import { motion } from 'framer-motion';
+import { ContributionGraph } from '@/components/github/contribution-graph';
 
 type HeroSectionFooter = {
   count: number;

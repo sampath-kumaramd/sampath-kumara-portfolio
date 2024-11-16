@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import ExperienceSection from '../../components/resume/experienceSection';
 import EducationSection from '../../components/resume/educationSection';
-import SkillsSection from '../../components/resume/skillsSection';
+import SkillsSection from '../../components/resume/skills-section';
 import VolunteeringSection from '../../components/resume/volunteeringSection';
 import AboutMeSection from '@/components/resume/aboutMeSection';
 import { MagicCard } from '@/components/ui/magic-card';
