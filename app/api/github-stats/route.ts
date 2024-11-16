@@ -27,7 +27,7 @@ export async function GET() {
                 totalPullRequestReviewContributions
                 restrictedContributionsCount
               }
-              repositories(first: 100, ownerAffiliations: [OWNER, COLLABORATOR, ORGANIZATION_MEMBER  ]) {
+               repositories(first: 100, ownerAffiliations: [OWNER, COLLABORATOR, ORGANIZATION_MEMBER], privacy: PUBLIC) {
                 totalCount
               }
               createdAt
