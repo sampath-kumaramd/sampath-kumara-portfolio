@@ -87,7 +87,7 @@ function ExperienceSection() {
     //     ))}
     //   </div>
     // </div>
-    <div className="h-40">
+    <div className="md:h-40">
       <TimeLineExperienceSection />
     </div>
   );

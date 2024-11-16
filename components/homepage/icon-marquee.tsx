@@ -181,7 +181,7 @@ export function MarqueeIcons() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white dark:from-background"></div>
         <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white dark:from-background"></div>
       </div>
-      <div className="hi mx-2 text-center text-sm text-muted-foreground md:mx-4 xl:mx-8">
+      <div className="mx-2 hidden text-center text-sm text-muted-foreground md:mx-4 md:block xl:mx-8">
         <Separator className="rounded-md border border-r-2 border-bgSecondery/10 bg-white py-1 dark:border-gray-50/[.10] dark:bg-background" />
         <div className="relative flex w-full items-center justify-center">
           <Image

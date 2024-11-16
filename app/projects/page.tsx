@@ -439,11 +439,11 @@ const projects: ProjectProps[] = [
 function page() {
   return (
     <div className="flex min-h-screen flex-col justify-center dark:bg-background dark:text-white">
-      <div className="container mx-auto py-16">
-        <p className="mb-12 text-4xl font-bold text-Secondary">
+      <div className="container mx-auto pb-16">
+        <p className="mb-12 pt-24 text-4xl font-bold text-Secondary lg:pt-0">
           Projects I have done
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap justify-center gap-10 md:gap-4 lg:justify-start">
           {projects.map((project, index) => (
             <div key={index} className="max-w-xs">
               <ProjectCard {...project} />

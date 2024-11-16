@@ -110,7 +110,7 @@ const Navbar = () => {
                   className={getLinkClassName(link.name)}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <h6>{link.name}</h6>
+                  <h6 className="dark:text-white">{link.name}</h6>
                 </Link>
               </motion.div>
             ))}

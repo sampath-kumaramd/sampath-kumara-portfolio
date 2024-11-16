@@ -96,7 +96,7 @@ const HeroSection = () => {
 
   return (
     <motion.div
-      className="container mx-auto flex min-h-[89.5vh] items-center justify-center px-4 py-8 md:px-6 lg:px-8"
+      className="container mx-auto mt-96 flex items-center justify-center px-4 py-8 dark:bg-background md:mt-0 md:min-h-[89.5vh] md:px-6 lg:px-8"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -144,7 +144,7 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.div
-          className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:gap-28"
+          className="mt-10 grid grid-cols-2 gap-6 pt-4 dark:bg-background dark:text-white sm:mt-0 sm:grid-cols-2 md:grid-cols-4 md:pt-10 lg:gap-28"
           variants={itemVariants}
         >
           {HeroSectionFooter.map((items, index) => (
