@@ -27,32 +27,27 @@ const TestimonialCard: React.FC<TestimonialProps> = ({
   avatar,
   date,
 }) => (
-  <div>
-    <Card className="min-h-96 rounded-lg hover:border-bgPrimary hover:bg-fontGray hover:text-bgPrimary">
-      <QuoteIcon className="absolute left-16 top-0 h-12 w-12 rotate-180 font-bold text-fontSecondary" />
-      <div className="absolute left-16 top-0 h-12 w-12 rotate-180 font-bold text-fontSecondary"></div>
-      <CardContent className="grid h-96 grid-rows-3 gap-8 py-12">
-        <p className="row-span-2 text-center text-fontGray hover:text-bgPrimary">
+  <div className="h-full">
+    <Card className="relative h-full transform rounded-xl border border-gray-100 bg-white/50 backdrop-blur-sm transition-all duration-300 hover:border-bgPrimary hover:shadow-lg">
+      <QuoteIcon className="absolute left-4 top-4 h-8 w-8 rotate-180 text-bgPrimary opacity-10" />
+      <CardContent className="flex h-full flex-col justify-between gap-6 p-8">
+        <p className="relative z-10 text-lg leading-relaxed text-gray-700">
           {content}
         </p>
-        <div className="row-span-1 mt-6">
-          <div className="gap-3">
-            <div className="flex gap-3">
-              <div>
-                <Image
-                  src={avatar}
-                  alt={author}
-                  width={48}
-                  height={48}
-                  className="rounded-full"
-                />
-              </div>
-              <div>
-                <h3 className="text-md font-semibold">{author}</h3>
-                <p className="text-sm text-gray-400">{role}</p>
-              </div>
+        <div className="border-t border-gray-100 pt-6">
+          <div className="flex items-center gap-4">
+            <Image
+              src={avatar}
+              alt={author}
+              width={56}
+              height={56}
+              className="rounded-full border-2 border-gray-50 shadow-sm"
+            />
+            <div>
+              <h3 className="font-semibold text-gray-800">{author}</h3>
+              <p className="text-sm text-gray-600">{role}</p>
+              <p className="mt-1 text-xs text-gray-400">{date}</p>
             </div>
-            <div className="mt-4 text-xs text-fontSecondary">{date}</div>
           </div>
         </div>
       </CardContent>
@@ -138,38 +133,43 @@ const ClientTestimonialsCarousel: React.FC = () => {
   }, [api]);
 
   return (
-    <section className="sm:0 mt-8 bg-white py-12 sm:py-16">
+    <section className="relative bg-gradient-to-b from-white via-gray-50 to-white py-24">
       <div className="container mx-auto px-4">
-        <h2 className="mb-16 text-3xl font-bold text-fontSecondary sm:text-5xl">
-          What clients say ...
+        <h2 className="mb-16 text-center">
+          <span className="bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
+            What Our Clients Say
+          </span>
+          <span className="mt-6 block text-lg font-normal text-gray-500">
+            Discover why people love working with us
+          </span>
         </h2>
         <Carousel
           setApi={setApi}
-          className="mx-auto w-full px-4 sm:px-0"
+          className="mx-auto w-full"
           opts={{
             align: 'start',
             loop: true,
           }}
         >
-          <CarouselContent>
+          <CarouselContent className="-ml-2 md:-ml-4">
             {testimonials.map((testimonial, index) => (
               <CarouselItem
                 key={index}
-                className="p-8 md:basis-1/2 lg:basis-1/3"
+                className="pl-2 md:basis-1/2 md:pl-4 lg:basis-1/3"
               >
                 <TestimonialCard {...testimonial} />
               </CarouselItem>
             ))}
           </CarouselContent>
         </Carousel>
-        <div className="mt-8 flex items-center justify-center">
+        <div className="mt-12 flex items-center justify-center gap-2">
           {[...Array(count)].map((_, i) => (
             <button
               key={i}
-              className={`mx-1 rounded-full ${
+              className={`rounded-full transition-all duration-300 ${
                 i === current
-                  ? 'h-4 w-4 bg-fontSecondary'
-                  : 'h-3 w-3 bg-gradient-to-br from-[#f7e5cf] to-[#fcf1dc]'
+                  ? 'h-2.5 w-8 bg-fontSecondary'
+                  : 'h-2.5 w-2.5 bg-gray-200 hover:bg-gray-300'
               }`}
               onClick={() => api?.scrollTo(i)}
             />

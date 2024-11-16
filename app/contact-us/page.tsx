@@ -1,13 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
 
 const formSchema = z.object({
   firstName: z.string().min(2, {
@@ -35,12 +36,13 @@ const formSchema = z.object({
   service: z.string({
     required_error: 'Please select a service.',
   }),
-  message: z.string().min(10, {
-    message: 'Message must be at least 30 characters.',
+  message: z.string().min(5, {
+    message: 'Message must be at least 5 characters.',
   }),
 });
 
 export default function ContactForm() {
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -53,9 +55,38 @@ export default function ContactForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    // Handle form submission
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+      setIsLoading(false);
+      form.reset();
+      toast({
+        title: 'Success!',
+        description: 'Your message has been sent successfully.',
+        variant: 'default',
+      });
+    } catch (error) {
+      setIsLoading(false);
+      console.error('Error:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to send message. Please try again.',
+        variant: 'destructive',
+      });
+    }
   }
 
   const contactInfo = [
@@ -82,9 +113,19 @@ export default function ContactForm() {
   ];
 
   return (
-    <div className="container mx-auto my-16 pt-8">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="container mx-auto my-16 pt-8"
+    >
       <div className="grid grid-cols-5 gap-16">
-        <div className="col-span-2 grid justify-start">
+        <motion.div
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="col-span-2 grid justify-start"
+        >
           <p className="text-6xl font-bold text-fontSecondary">
             Let&apos;s chat.
           </p>
@@ -104,8 +145,14 @@ export default function ContactForm() {
               <span>{info.text}</span>
             </a>
           ))}
-        </div>
-        <div className="col-span-3 ms-16">
+        </motion.div>
+
+        <motion.div
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="col-span-3 ms-16"
+        >
           <div className="col-span-2 grid">
             <h2 className="mb-16 text-3xl font-bold text-fontSecondary">
               Send me a message 🚀
@@ -113,9 +160,9 @@ export default function ContactForm() {
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-4"
+                className="space-y-6"
               >
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
                     name="firstName"
@@ -123,13 +170,13 @@ export default function ContactForm() {
                       <FormItem>
                         <FormControl>
                           <Input
-                            placeholder="Firstname"
+                            placeholder="First name"
                             {...field}
-                            className="opacity-70"
+                            className="rounded-lg border-gray-300 bg-white/5 text-fontPrimary placeholder:text-gray-400"
                             required
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-red-400" />
                       </FormItem>
                     )}
                   />
@@ -140,13 +187,13 @@ export default function ContactForm() {
                       <FormItem>
                         <FormControl>
                           <Input
-                            placeholder="Lastname"
+                            placeholder="Last name"
                             {...field}
-                            className="text-bgPrimary opacity-70"
+                            className="rounded-lg border-gray-300 bg-white/5 text-fontPrimary placeholder:text-gray-400"
                             required
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-red-400" />
                       </FormItem>
                     )}
                   />
@@ -160,11 +207,11 @@ export default function ContactForm() {
                         <Input
                           placeholder="Email address"
                           {...field}
-                          className="text-bgPrimary opacity-70"
+                          className="rounded-lg border-gray-300 bg-white/5 text-fontPrimary placeholder:text-gray-400"
                           required
                         />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-red-400" />
                     </FormItem>
                   )}
                 />
@@ -177,10 +224,10 @@ export default function ContactForm() {
                         <Input
                           placeholder="Phone number"
                           {...field}
-                          className="text-bgPrimary opacity-70"
+                          className="rounded-lg border-gray-300 bg-white/5 text-fontPrimary placeholder:text-gray-400"
                         />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-red-400" />
                     </FormItem>
                   )}
                 />
@@ -193,25 +240,27 @@ export default function ContactForm() {
                         <Textarea
                           placeholder="Type your message here."
                           {...field}
-                          className="text-bgPrimary opacity-70"
+                          className="min-h-[120px] rounded-lg border-gray-300 bg-white/5 text-fontPrimary placeholder:text-gray-400 hover:right-0 focus:ring-0"
                           required
                         />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-red-400" />
                     </FormItem>
                   )}
                 />
-                <Button
+                <motion.button
                   type="submit"
-                  className="rounded-full bg-fontSecondary hover:bg-green-600"
+                  className="rounded-full bg-fontSecondary px-8 py-3 text-white transition-all hover:bg-fontSecondary/80 hover:shadow-lg"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Send message
-                </Button>
+                  {isLoading ? 'Sending...' : 'Send message'}
+                </motion.button>
               </form>
             </Form>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }

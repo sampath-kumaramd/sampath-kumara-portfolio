@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/navBar';
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = JetBrains_Mono({
   subsets: ['latin'],
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navbar />
         {children}
+        <Toaster />
       </body>
     </html>
   );
