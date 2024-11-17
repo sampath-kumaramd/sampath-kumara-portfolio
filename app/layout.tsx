@@ -96,6 +96,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* Uncomment this to enable custom cursor */}
           {/* <CustomCursor /> */}
           <Navbar />
           {children}
