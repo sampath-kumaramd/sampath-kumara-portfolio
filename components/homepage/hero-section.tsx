@@ -70,7 +70,7 @@ const HeroSection = () => {
 
   return (
     <motion.div
-      className="container mx-auto mt-96 flex items-center justify-center px-4 py-8 dark:bg-background md:mt-0 md:min-h-[89.5vh] md:px-6 lg:px-8"
+      className="container mx-auto mb-10 mt-96 flex items-center justify-center px-4 py-8 dark:bg-background md:mt-0 md:min-h-[89.5vh] md:px-6 lg:px-8"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

@@ -35,7 +35,7 @@ const SkillsSection: React.FC = () => {
           </button>
         ))}
       </div>
-      <div className="w-full overflow-x-hidden px-4 md:h-[35rem] md:overflow-y-auto">
+      <div className="w-full overflow-x-hidden px-4 md:h-[32.5rem] md:overflow-y-auto">
         <motion.div
           layout
           className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"

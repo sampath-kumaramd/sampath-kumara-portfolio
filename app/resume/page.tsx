@@ -1,11 +1,11 @@
 'use client';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import ExperienceSection from '../../components/resume/experienceSection';
-import EducationSection from '../../components/resume/educationSection';
+import ExperienceSection from '../../components/resume/experience-section';
+import EducationSection from '../../components/resume/education-section';
 import SkillsSection from '../../components/resume/skills-section';
-import VolunteeringSection from '../../components/resume/volunteeringSection';
-import AboutMeSection from '@/components/resume/aboutMeSection';
+import VolunteeringSection from '../../components/resume/volunteering-section';
+import AboutMeSection from '@/components/resume/about-me-section';
 import { MagicCard } from '@/components/ui/magic-card';
 import { User, Briefcase, GraduationCap, Code, Heart } from 'lucide-react';
 import TypingAnimation from '@/components/ui/typing-animation';

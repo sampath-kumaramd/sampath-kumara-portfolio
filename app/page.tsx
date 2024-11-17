@@ -1,4 +1,4 @@
-import HeroSection from '@/components/homepage/heroSection';
+import HeroSection from '@/components/homepage/hero-section';
 import JsonLd from '@/components/json-ld';
 import { Footer } from '@/components/footer';
 
