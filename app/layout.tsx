@@ -9,6 +9,7 @@ import { GA_MEASUREMENT_ID } from '@/lib/analytics';
 import { CookieConsent } from '@/components/cookie-consent';
 import { CustomCursor } from '@/components/ui/custom-cursor';
 import { siteConfig } from './metadata.config';
+import { Footer } from '@/components/footer';
 
 const inter = JetBrains_Mono({
   subsets: ['latin'],

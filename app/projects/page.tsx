@@ -33,6 +33,7 @@ import { Project } from '@/types/project';
 import { projects } from '@/lib/data/projects';
 import Iphone15Pro from '@/components/ui/iphone-15-pro';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Footer } from '@/components/footer';
 
 const ProjectCard: React.FC<Project> = (project) => {
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
@@ -440,6 +441,7 @@ function page() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

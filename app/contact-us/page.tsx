@@ -27,6 +27,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { event } from '@/lib/analytics';
+import { Footer } from '@/components/footer';
 
 const formSchema = z.object({
   firstName: z.string().min(2, {
@@ -296,6 +297,7 @@ export default function ContactForm() {
           </motion.div>
         </div>
       </motion.div>
+      <Footer />
     </div>
   );
 }

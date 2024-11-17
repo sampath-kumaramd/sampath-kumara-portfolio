@@ -112,11 +112,13 @@ const HeroSection = () => {
             <TypingAnimation
               className="text-start text-xl text-black dark:text-white sm:text-2xl"
               texts={[
-                'Web Developer',
-                'Innovator',
+                'Full Stack Developer',
                 'Software Engineer',
                 'Problem Solver',
+                'Leader',
                 'Team Player',
+                'Volounteer',
+                'Open Source Contributor',
               ]}
             />
             <div className="space-y-3">
@@ -130,10 +132,15 @@ const HeroSection = () => {
               </BoxReveal>
             </div>
             <div className="text-sm text-gray-500 dark:text-gray-400 sm:text-base">
-              I&apos;m excel at creating elegant websites.{' '}
+              {/* I&apos;m excel at creating elegant websites.{' '}
               <br className="hidden sm:block" />I am proficient in varioud
               programing languages and <br className="hidden sm:block" />
-              technologies.
+              technologies. */}
+              Dedicated to creating impactful digital experiences{' '}
+              <br className="hidden sm:block" /> through clean code and
+              thoughtful design.
+              <br className="hidden sm:block" /> Every project is an opportunity
+              to innovate and excel.
             </div>
 
             <div className="flex gap-4">

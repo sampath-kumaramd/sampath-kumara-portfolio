@@ -9,6 +9,7 @@ import AboutMeSection from '@/components/resume/aboutMeSection';
 import { MagicCard } from '@/components/ui/magic-card';
 import { User, Briefcase, GraduationCap, Code, Heart } from 'lucide-react';
 import TypingAnimation from '@/components/ui/typing-animation';
+import { Footer } from '@/components/footer';
 
 type ResumeSubSection = {
   name: string;
@@ -104,6 +105,7 @@ const HeroSection: React.FC = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

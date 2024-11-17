@@ -71,16 +71,19 @@ const DATA = {
     social: {
       GitHub: {
         name: 'GitHub',
+        tooltip: 'Git Hub Profile',
         url: 'https://github.com/sampath-kumaramd',
         icon: Icons.github,
       },
       LinkedIn: {
         name: 'LinkedIn',
+        tooltip: 'LinkedIn Profile',
         url: 'https://www.linkedin.com/in/sampathkumaramd/',
         icon: Icons.linkedin,
       },
       email: {
         name: 'Send Email',
+        tooltip: 'Send Email',
         url: 'mailto:mdskumara.info@gmail.com',
         icon: Icons.email,
       },
@@ -102,25 +105,18 @@ export function IconDock() {
       <TooltipProvider>
         <Dock direction="middle">
           <DockIcon className="!min-w-40">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <a
-                  href="/sampath-cv.pdf"
-                  download="sampath-cv.pdf"
-                  aria-label={'Download CV'}
-                  className={cn(
-                    buttonVariants({ variant: 'ghost', size: 'icon' }),
-                    'w-40 rounded-xl hover:w-44 hover:bg-[#4ebcc2] hover:px-2 hover:text-sm dark:text-white dark:hover:bg-Secondary dark:hover:text-gray-50'
-                  )}
-                  onClick={handleResumeDownload}
-                >
-                  Download Resume <DownloadIcon className="ms-2 size-4" />
-                </a>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p> Download Resume</p>
-              </TooltipContent>
-            </Tooltip>
+            <a
+              href="/sampath-cv.pdf"
+              download="sampath-cv.pdf"
+              aria-label={'Download CV'}
+              className={cn(
+                buttonVariants({ variant: 'ghost', size: 'icon' }),
+                'w-40 rounded-xl hover:w-44 hover:bg-[#4ebcc2] hover:px-2 hover:text-sm dark:text-white dark:hover:bg-Secondary dark:hover:text-gray-50'
+              )}
+              onClick={handleResumeDownload}
+            >
+              Download Resume <DownloadIcon className="ms-2 size-4" />
+            </a>
           </DockIcon>
           <Separator orientation="vertical" className="h-full" />
           {Object.entries(DATA.contact.social).map(([name, social]) => (
@@ -140,7 +136,7 @@ export function IconDock() {
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>{name}</p>
+                  <p>{social.tooltip}</p>
                 </TooltipContent>
               </Tooltip>
             </DockIcon>

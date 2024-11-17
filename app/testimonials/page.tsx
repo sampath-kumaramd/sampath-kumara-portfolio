@@ -14,6 +14,7 @@ import {
 import { Testimonial } from '@/types/testimonial';
 import { testimonials } from '@/lib/data/testimonial';
 import Meteors from '@/components/ui/meteors';
+import { Footer } from '@/components/footer';
 
 const TestimonialCard: React.FC<Testimonial> = ({
   content,
@@ -217,6 +218,7 @@ const ClientTestimonialsCarousel: React.FC = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </section>
   );
 };
