@@ -2,18 +2,9 @@
 
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { Timeline } from '@/types/time-line';
 
-interface TimelineProps {
-  experiences: {
-    duration: string;
-    position: string;
-    company: string;
-    companyLink?: string;
-    skills: { name: string }[];
-  }[];
-}
-
-export function InteractiveTimeline({ experiences }: TimelineProps) {
+export function InteractiveTimeline({ experiences }: Timeline) {
   return (
     <div className="relative">
       {/* Timeline line */}
@@ -33,7 +24,7 @@ function TimelineCard({
   experience,
   index,
 }: {
-  experience: TimelineProps['experiences'][0];
+  experience: Timeline['experiences'][0];
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);

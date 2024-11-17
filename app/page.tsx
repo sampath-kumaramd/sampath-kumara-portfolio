@@ -1,5 +1,4 @@
 import HeroSection from '@/components/homepage/heroSection';
-import Image from 'next/image';
 import JsonLd from '@/components/json-ld';
 import { Footer } from '@/components/footer';
 

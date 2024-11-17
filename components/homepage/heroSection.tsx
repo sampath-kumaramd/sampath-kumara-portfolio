@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import NumberTicker from '../ui/number-ticker';
 import BoxReveal from '../ui/box-reveal';
@@ -7,18 +6,11 @@ import { MarqueeIcons } from './icon-marquee';
 import { IconDock } from './icon-dock';
 import TypingAnimation from '../ui/typing-animation';
 import { motion } from 'framer-motion';
-import { ContributionGraph } from '@/components/github/contribution-graph';
 import { FaSpinner } from 'react-icons/fa';
 
-type HeroSectionFooter = {
+type Contributions = {
   count: number;
   title: string;
-};
-
-type SocialMediaSection = {
-  name: string;
-  href: string;
-  icon: string;
 };
 
 const HeroSection = () => {
@@ -44,7 +36,6 @@ const HeroSection = () => {
         setProjectCount(projects);
         setIsLoading(false);
       } catch (error) {
-        console.error('Failed to fetch GitHub stats:', error);
         setIsLoading(false);
       }
     };
@@ -52,32 +43,13 @@ const HeroSection = () => {
     fetchGithubStats();
   }, []);
 
-  const HeroSectionFooter: HeroSectionFooter[] = [
+  const contributions: Contributions[] = [
     { count: yearsOfExperience, title: 'Years of experience' },
     { count: projectCount, title: 'Projects contributed' },
     { count: techCount, title: 'Technologies used' },
     { count: commitCount, title: 'Total Contributions' },
   ];
 
-  const SocialMediaSection: SocialMediaSection[] = [
-    {
-      name: 'Email',
-      href: 'https://gmail.com',
-      icon: '/icons/mail.svg',
-    },
-    {
-      name: 'Github',
-      href: 'https://github.com',
-      icon: '/icons/github.svg',
-    },
-    {
-      name: 'LinkedIn',
-      href: 'https://linkedin.com',
-      icon: '/icons/linkedin.svg',
-    },
-  ];
-
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -132,10 +104,6 @@ const HeroSection = () => {
               </BoxReveal>
             </div>
             <div className="text-sm text-gray-500 dark:text-gray-400 sm:text-base">
-              {/* I&apos;m excel at creating elegant websites.{' '}
-              <br className="hidden sm:block" />I am proficient in varioud
-              programing languages and <br className="hidden sm:block" />
-              technologies. */}
               Dedicated to creating impactful digital experiences{' '}
               <br className="hidden sm:block" /> through clean code and
               thoughtful design.
@@ -157,7 +125,7 @@ const HeroSection = () => {
           variants={itemVariants}
         >
           <div className="grid w-full grid-cols-2 gap-6 md:grid-cols-4">
-            {HeroSectionFooter.map((items, index) => (
+            {contributions.map((items, index) => (
               <motion.div
                 key={index}
                 className="flex items-center gap-2 sm:gap-3"
