@@ -145,7 +145,7 @@ const ProjectCard: React.FC<Project> = (project) => {
                           <Image
                             src={project.images[currentImageIndex]}
                             alt="project image"
-                            className="h-96 w-full rounded-lg shadow-xl"
+                            className="h-48 w-full rounded-lg shadow-xl md:h-96"
                             objectFit="cover"
                             width={1200}
                             height={700}

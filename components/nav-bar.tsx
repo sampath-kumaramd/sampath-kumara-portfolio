@@ -44,7 +44,7 @@ const Navbar = () => {
   `;
 
   return (
-    <div className="fixed left-0 right-0 top-0 z-50 dark:bg-background">
+    <div className="fixed left-0 right-0 top-0 z-50 bg-white dark:bg-background">
       <nav className="container mx-auto flex items-center justify-between py-4">
         <Link href="/">
           <motion.div

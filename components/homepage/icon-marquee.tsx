@@ -234,7 +234,7 @@ export function MarqueeIcons() {
             </p>
           </Marquee>
         </div>
-        <Separator className="mt-28 rounded-md border border-r-2 border-bgSecondery/10 bg-white py-1 dark:border-gray-50/[.10] dark:bg-background" />
+        <Separator className="mt-28 rounded-md border border-r-2 border-bgSecondery/10 bg-background bg-white py-1 dark:border-gray-50/[.10]" />
       </div>
     </div>
   );
@@ -243,12 +243,12 @@ export function MarqueeIcons() {
 function MarqueeIconsMobile() {
   return (
     <div className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background md:shadow-xl">
-      <Marquee pauseOnHover className="[--duration:20s]">
+      <Marquee className="[--duration:20s]">
         {mobileFirstRow.map((technology) => (
           <TechnologyCard key={technology.name} {...technology} />
         ))}
       </Marquee>
-      <Marquee reverse pauseOnHover className="[--duration:20s]">
+      <Marquee reverse className="[--duration:20s]">
         {mobileSecondRow.map((technology) => (
           <TechnologyCard key={technology.name} {...technology} />
         ))}

@@ -61,7 +61,6 @@ const HeroSection: React.FC = () => {
             texts={[
               'a fast learner',
               'a good communicator',
-              'user friendly',
               'a problem solver',
               'a team player',
             ]}

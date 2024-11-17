@@ -24,12 +24,6 @@ function VolunteeringSection() {
       time: 'Jul 2022 - Jul 2023',
       society: "Students' Union, Faculty of IT, University of Moratuwa",
     },
-    // {
-    //   position: 'Committee Member',
-    //   time: 'Jul 2022 - Present',
-    //   society:
-    //     'FIT Moments, IT Faculty Official Media Unit, University of Moratuwa',
-    // },
     {
       position: 'Company Coordinator | FIT Future Careers 2022',
       time: 'Mar 2023',
@@ -39,8 +33,10 @@ function VolunteeringSection() {
   return (
     <div>
       <div className="text-fontGray">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        The volunteering experiences that I have gained over the years have
+        taught me the importance of teamwork, communication, and adaptability.
+        These experiences have not only enhanced my skills but also shaped my
+        approach to problem-solving and decision-making.
       </div>
       <div className="grid grid-rows-4 gap-6 pt-12">
         {Volunteer.map((item, index) => (
