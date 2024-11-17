@@ -70,7 +70,7 @@ export function CookieConsent() {
               variant="outline"
               size="sm"
               onClick={handleDecline}
-              className="whitespace-nowrap dark:text-muted-foreground dark:hover:bg-muted"
+              className="whitespace-nowrap hover:bg-muted/90 dark:text-muted-foreground dark:hover:bg-muted"
             >
               Decline
             </Button>
