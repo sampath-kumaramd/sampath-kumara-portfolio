@@ -11,7 +11,7 @@ const config: Config = {
   prefix: '',
   theme: {
     container: {
-      center: true,
+      center: 'true',
       padding: '2rem',
       screens: {
         '2xl': '1400px',
@@ -120,6 +120,19 @@ const config: Config = {
             'background-position': '0% 0%',
           },
         },
+        meteor: {
+          '0%': {
+            transform: 'rotate(215deg) translateX(0)',
+            opacity: '1',
+          },
+          '70%': {
+            opacity: '1',
+          },
+          '100%': {
+            transform: 'rotate(215deg) translateX(-500px)',
+            opacity: '0',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -128,6 +141,7 @@ const config: Config = {
         'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
         'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
         shine: 'shine var(--duration) infinite linear',
+        meteor: 'meteor 5s linear infinite',
       },
     },
     screens: {

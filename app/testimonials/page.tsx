@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/carousel';
 import { Testimonial } from '@/types/testimonial';
 import { testimonials } from '@/lib/data/testimonial';
+import Meteors from '@/components/ui/meteors';
 
 const TestimonialCard: React.FC<Testimonial> = ({
   content,
@@ -31,6 +32,7 @@ const TestimonialCard: React.FC<Testimonial> = ({
       <div className="absolute -bottom-12 -left-12 h-32 w-32 rotate-45 bg-gradient-to-tr from-Secondary/20 to-transparent blur-2xl" />
 
       <CardContent className="relative flex h-full flex-col justify-between gap-6 p-8">
+        <Meteors number={15} />
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute left-4 top-4">
             <Code2 className="h-4 w-4" />

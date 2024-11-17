@@ -129,7 +129,7 @@ const HeroSection = () => {
                 </div>
               </BoxReveal>
             </div>
-            <div className="text-sm text-fontGray dark:text-gray-400 sm:text-base">
+            <div className="text-sm text-gray-500 dark:text-gray-400 sm:text-base">
               I&apos;m excel at creating elegant websites.{' '}
               <br className="hidden sm:block" />I am proficient in varioud
               programing languages and <br className="hidden sm:block" />
@@ -166,7 +166,7 @@ const HeroSection = () => {
                     <NumberTicker value={items.count} decimalPlaces={0} />
                   )}
                 </div>
-                <div className="text-sm text-fontGray dark:text-gray-400 sm:text-base">
+                <div className="text-sm text-gray-500 dark:text-gray-400 sm:text-base">
                   {items.title}
                 </div>
               </motion.div>

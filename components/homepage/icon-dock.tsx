@@ -105,8 +105,8 @@ export function IconDock() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <a
-                  href="/Sampath Kumara SE.pdf"
-                  download="Sampath Kumara SE.pdf"
+                  href="/sampath-cv.pdf"
+                  download="sampath-cv.pdf"
                   aria-label={'Download CV'}
                   className={cn(
                     buttonVariants({ variant: 'ghost', size: 'icon' }),
