@@ -165,7 +165,7 @@ export default function ContactForm() {
                   href={info.href}
                   target="_blank"
                   whileHover={{ x: 10 }}
-                  className="flex items-center space-x-4 rounded-lg border border-transparent bg-white/5 p-3 text-sm text-fontPrimary transition-all duration-300 hover:border-Secondary/20 hover:bg-Secondary/5 hover:text-Secondary dark:bg-gray-900/30 md:p-4 md:text-base"
+                  className="flex items-center space-x-4 rounded-lg border border-gray-400 border-transparent bg-white/5 p-3 text-sm text-fontPrimary transition-all duration-300 hover:border-Secondary/20 hover:bg-Secondary/5 hover:text-Secondary dark:bg-gray-900/30 md:p-4 md:text-base"
                 >
                   <info.icon className="h-5 w-5 text-Secondary dark:text-white md:h-6 md:w-6" />
                   <span className="font-medium dark:text-white">

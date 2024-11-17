@@ -2,6 +2,7 @@
 
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -135,6 +136,7 @@ const ProjectCard: React.FC<Project> = (project) => {
                 {project.client}
               </p>
             </SheetTitle>
+            <SheetClose />
             <SheetDescription>
               <div className="container mx-auto py-8">
                 <div className="grid gap-8 md:grid-cols-2">
