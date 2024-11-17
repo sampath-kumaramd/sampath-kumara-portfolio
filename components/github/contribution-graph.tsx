@@ -93,7 +93,7 @@ export function ContributionGraph({ className }: ContributionGraphProps) {
         </div>
 
         {/* Contribution grid */}
-        <div className="flex gap-[2px]">
+        <div className="scrollbar-hide-if-not-needed flex w-full gap-[2px] overflow-x-auto pb-2">
           {contributions.map((week, weekIndex) => (
             <div key={weekIndex} className="flex flex-col gap-[2px]">
               {week.days.map((day, dayIndex) => (

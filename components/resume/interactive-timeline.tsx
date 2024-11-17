@@ -52,7 +52,7 @@ function TimelineCard({
     >
       {/* Timeline dot */}
       <motion.div
-        className="absolute -left-9 h-3 w-3 rounded-full bg-Secondary"
+        className="absolute -left-7 h-3 w-3 rounded-full bg-Secondary"
         initial={{ scale: 0 }}
         animate={inView ? { scale: 1 } : {}}
         transition={{ duration: 0.2, delay: index * 0.2 }}

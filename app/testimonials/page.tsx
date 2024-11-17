@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 
-import { QuoteIcon, Code2, GitBranch, Globe, Terminal } from 'lucide-react';
+import { Code2, GitBranch, Globe, Terminal } from 'lucide-react';
 import Image from 'next/image';
 
 import { Card, CardContent } from '@/components/ui/card';
@@ -11,20 +11,10 @@ import {
   CarouselItem,
   type CarouselApi,
 } from '@/components/ui/carousel';
+import { Testimonial } from '@/types/testimonial';
+import { testimonials } from '@/lib/data/testimonial';
 
-interface TestimonialProps {
-  content: string;
-  author: string;
-  role: string;
-  avatar: string;
-  date: string;
-  rating: number;
-  platform: string;
-  verificationStatus: 'verified' | 'pending' | 'unverified';
-  projectType: string;
-}
-
-const TestimonialCard: React.FC<TestimonialProps> = ({
+const TestimonialCard: React.FC<Testimonial> = ({
   content,
   author,
   role,
@@ -145,81 +135,6 @@ const ClientTestimonialsCarousel: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
 
-  const testimonials = [
-    {
-      content:
-        'Implemented a complex authentication system with remarkable efficiency. The attention to security details and clean code implementation exceeded our expectations.',
-      author: 'Jane Doe',
-      role: 'Technical Lead',
-      avatar: '/avatars/1.png',
-      date: '2024-03-15',
-      rating: 5,
-      platform: 'Enterprise',
-      verificationStatus: 'verified',
-      projectType: 'Authentication System',
-    },
-    {
-      content:
-        'Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus. Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.',
-      author: 'John Smith',
-      role: 'fievrr client',
-      avatar: '/avatars/1.png',
-      date: '2021-08-20',
-      rating: 4,
-      platform: 'Enterprise',
-      verificationStatus: 'pending',
-      projectType: 'Authentication System',
-    },
-    {
-      content:
-        'Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.',
-      author: 'Emily Johnson',
-      role: 'fievrr client',
-      avatar: '/avatars/1.png',
-      date: '2021-08-20',
-      rating: 3,
-      platform: 'Enterprise',
-      verificationStatus: 'unverified',
-      projectType: 'Authentication System',
-    },
-    {
-      content:
-        'Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.',
-      author: 'Jane Doe',
-      role: 'fievrr client',
-      avatar: '/avatars/1.png',
-      date: '2021-08-20',
-      rating: 5,
-      platform: 'Enterprise',
-      verificationStatus: 'verified',
-      projectType: 'Authentication System',
-    },
-    {
-      content:
-        'Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.',
-      author: 'John Smith',
-      role: 'fievrr client',
-      avatar: '/avatars/1.png',
-      date: '2021-08-20',
-      rating: 4,
-      platform: 'Enterprise',
-      verificationStatus: 'pending',
-      projectType: 'Authentication System',
-    },
-    {
-      content:
-        'Lorem ipsum dolor sit amet consectetur. Orci egestas enim nisi molestie cursus sagittis. enim nisi molestie cursus.',
-      author: 'Emily Johnson',
-      role: 'fievrr client',
-      avatar: '/avatars/1.png',
-      date: '2021-08-20',
-      rating: 3,
-      platform: 'Enterprise',
-      verificationStatus: 'unverified',
-      projectType: 'Authentication System',
-    },
-  ];
-
   useEffect(() => {
     if (!api) {
       return;
@@ -242,14 +157,14 @@ const ClientTestimonialsCarousel: React.FC = () => {
   }, [api]);
 
   return (
-    <section className="relative flex min-h-screen flex-col justify-center dark:bg-background">
+    <section className="relative flex min-h-screen flex-col justify-center pt-40 dark:bg-background md:pt-0">
       <div className="container mx-auto px-4">
         <h2 className="mb-16 text-center">
           <span className="bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-4xl font-bold text-transparent dark:text-gray-200 sm:text-5xl">
-            What Our Clients Say
+            What people say about me
           </span>
           <span className="mt-6 block text-lg font-normal text-gray-500 dark:text-gray-200">
-            Discover why people love working with us
+            Discover why people love working with me
           </span>
         </h2>
         <Carousel

@@ -8,6 +8,7 @@ import { IconDock } from './icon-dock';
 import TypingAnimation from '../ui/typing-animation';
 import { motion } from 'framer-motion';
 import { ContributionGraph } from '@/components/github/contribution-graph';
+import { FaSpinner } from 'react-icons/fa';
 
 type HeroSectionFooter = {
   count: number;
@@ -30,6 +31,7 @@ const HeroSection = () => {
   useEffect(() => {
     const fetchGithubStats = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch('/api/github-stats');
         const data = await response.json();
         const commits = data.totalContributions;
@@ -144,26 +146,32 @@ const HeroSection = () => {
         </motion.div>
 
         <motion.div
-          className="mt-10 grid grid-cols-2 gap-6 pt-4 dark:bg-background dark:text-white sm:mt-0 sm:grid-cols-2 md:grid-cols-4 md:pt-10 lg:gap-28"
+          className="mt-10 w-full pt-4 dark:bg-background dark:text-white sm:mt-0 md:pt-10"
           variants={itemVariants}
         >
-          {HeroSectionFooter.map((items, index) => (
-            <motion.div
-              key={index}
-              className="flex items-center gap-2 sm:gap-3"
-              variants={itemVariants}
-              initial="hidden"
-              animate="visible"
-              transition={{ delay: index * 0.1 }}
-            >
-              <div className="text-2xl font-semibold text-black dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
-                <NumberTicker value={items.count} decimalPlaces={0} />
-              </div>
-              <div className="text-sm text-fontGray dark:text-gray-400 sm:text-base">
-                {items.title}
-              </div>
-            </motion.div>
-          ))}
+          <div className="grid w-full grid-cols-2 gap-6 md:grid-cols-4">
+            {HeroSectionFooter.map((items, index) => (
+              <motion.div
+                key={index}
+                className="flex items-center gap-2 sm:gap-3"
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                transition={{ delay: index * 0.1 }}
+              >
+                <div className="text-2xl font-semibold text-black dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
+                  {isLoading ? (
+                    <FaSpinner className="h-10 w-10 animate-spin" />
+                  ) : (
+                    <NumberTicker value={items.count} decimalPlaces={0} />
+                  )}
+                </div>
+                <div className="text-sm text-fontGray dark:text-gray-400 sm:text-base">
+                  {items.title}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </motion.div>

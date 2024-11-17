@@ -8,6 +8,7 @@ import VolunteeringSection from '../../components/resume/volunteeringSection';
 import AboutMeSection from '@/components/resume/aboutMeSection';
 import { MagicCard } from '@/components/ui/magic-card';
 import { User, Briefcase, GraduationCap, Code, Heart } from 'lucide-react';
+import TypingAnimation from '@/components/ui/typing-animation';
 
 type ResumeSubSection = {
   name: string;
@@ -52,14 +53,19 @@ const HeroSection: React.FC = () => {
   return (
     <div className="flex min-h-screen flex-col justify-center pt-40 dark:bg-background dark:text-white md:pt-0">
       <div className="container mx-auto grid grid-cols-1 gap-8 px-4 md:grid-cols-3 md:gap-24 md:px-8 md:pt-8">
-        <div className="col-span-1 space-y-8 md:space-y-12">
-          <div className="text-4xl font-bold md:text-5xl">Why hire me?</div>
-          <div className="text-fontGray">
-            Fast learning. <br /> Good communication.
-            <br />
-            User friendly.
-          </div>
-          <div className="flex w-full flex-col gap-4 md:gap-8">
+        <div className="col-span-1">
+          <div className="text-4xl font-bold md:text-5xl">I am </div>
+          <TypingAnimation
+            className="mt-2 text-start text-xl text-black dark:text-white sm:text-2xl"
+            texts={[
+              'Fast learner',
+              'Good communicator',
+              'User friendly',
+              'Problem solver',
+              'Team player',
+            ]}
+          />
+          <div className="mt-20 flex w-full flex-col gap-4 md:gap-8">
             {ResumeSubSection.map((item, index) => (
               <button key={index} onClick={() => setSelectedSection(item.name)}>
                 <MagicCard

@@ -11,7 +11,6 @@ import {
 import { MagicCard } from '@/components/ui/magic-card';
 import Image from 'next/image';
 import React from 'react';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import Safari from '@/components/ui/safari';
 import {
   Accordion,
@@ -19,7 +18,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { GithubIcon, LinkIcon } from 'lucide-react';
+import { GithubIcon, LinkIcon, ExpandIcon } from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
@@ -30,32 +29,30 @@ import { useTheme } from 'next-themes';
 import { event } from '@/lib/analytics';
 import { useCallback, useState } from 'react';
 import Tilt from 'react-parallax-tilt';
-interface ProjectProps {
-  name: string;
-  description: string;
-  client: string;
-  role: string;
-  status: string;
-  startDate: string;
-  endDate: string;
-  heroImage: string;
-  images: string[];
-  skills: {
-    name: string;
-  }[];
-  features: {
-    title: string;
-    description: string;
-  }[];
-  github_link?: string;
-  hosted_link?: string;
-}
+import { Project } from '@/types/project';
+import { projects } from '@/lib/data/projects';
+import Iphone15Pro from '@/components/ui/iphone-15-pro';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
-const ProjectCard: React.FC<ProjectProps> = (project) => {
+const ProjectCard: React.FC<Project> = (project) => {
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const { theme } = useTheme();
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
+  React.useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isPlaying) {
+      interval = setInterval(() => {
+        setCurrentImageIndex((prev) =>
+          prev === project.images.length - 1 ? 0 : prev + 1
+        );
+      }, 5000);
+    }
+    return () => clearInterval(interval);
+  }, [isPlaying, project.images.length]);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     setMousePosition({ x: e.clientX, y: e.clientY });
@@ -96,7 +93,7 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
               onClick={() => handleProjectClick(project.name)}
             >
               <div className="mb-4 text-start text-xl font-semibold">
-                {project.name} a
+                {project.name}
               </div>
               <Image
                 src={project.heroImage}
@@ -141,54 +138,108 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
               <div className="container mx-auto py-8">
                 <div className="grid gap-8 md:grid-cols-2">
                   <div className="space-y-4">
-                    <Dialog>
-                      <DialogTrigger onClick={() => setCurrentImageIndex(0)}>
-                        <Image
-                          src={project.images[0]}
-                          alt={`${project.name}`}
-                          width={500}
-                          height={400}
-                          className="cursor-pointer rounded-lg transition-opacity hover:opacity-80"
-                        />
-                      </DialogTrigger>
-                      <DialogContent className="max-w-4xl">
-                        <div className="relative w-full">
-                          <Safari
-                            url={project.hosted_link || ''}
-                            className="w-full"
+                    <div className="relative flex w-full justify-center">
+                      {currentImageIndex < 3 ? (
+                        <div className="relative">
+                          <Image
                             src={project.images[currentImageIndex]}
+                            alt="project image"
+                            className="h-96 w-full rounded-lg shadow-xl"
+                            objectFit="cover"
+                            width={1200}
+                            height={700}
                           />
-                          <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4">
-                            <button
-                              onClick={() =>
-                                setCurrentImageIndex((prev) =>
-                                  prev === 0
-                                    ? project.images.length - 1
-                                    : prev - 1
-                                )
-                              }
-                              className="rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
-                            >
-                              ←
-                            </button>
-                            <button
-                              onClick={() =>
-                                setCurrentImageIndex((prev) =>
-                                  prev === project.images.length - 1
-                                    ? 0
-                                    : prev + 1
-                                )
-                              }
-                              className="rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
-                            >
-                              →
-                            </button>
-                          </div>
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <button className="absolute right-4 top-4 z-40 hidden rounded-full bg-black/50 p-2 text-white hover:bg-black/70 md:block">
+                                <ExpandIcon className="h-4 w-4" />
+                              </button>
+                            </DialogTrigger>
+                            <DialogContent className="max-h-[95vh] w-auto max-w-[95vw] overflow-auto rounded-3xl p-2 pt-10">
+                              <Safari
+                                src={project.images[currentImageIndex]}
+                                width={1200}
+                                height={700}
+                              />
+                            </DialogContent>
+                          </Dialog>
                         </div>
-                      </DialogContent>
-                    </Dialog>
+                      ) : (
+                        <div className="relative">
+                          <Image
+                            src={project.images[currentImageIndex]}
+                            alt="project image"
+                            className="rounded-lg"
+                            width={206}
+                            height={458}
+                          />
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <button className="absolute right-4 top-4 z-40 hidden rounded-full bg-black/50 p-2 text-white hover:bg-black/70 md:block">
+                                <ExpandIcon className="h-4 w-4" />
+                              </button>
+                            </DialogTrigger>
+                            <DialogContent className="max-h-[95vh] w-auto max-w-[95vw] overflow-auto rounded-3xl p-2">
+                              <Iphone15Pro
+                                src={project.images[currentImageIndex]}
+                                width={430}
+                                height={880}
+                              />
+                            </DialogContent>
+                          </Dialog>
+                        </div>
+                      )}
+                      <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4">
+                        <button
+                          onClick={() => {
+                            setIsPlaying(false);
+                            setCurrentImageIndex((prev) =>
+                              prev === 0 ? project.images.length - 1 : prev - 1
+                            );
+                          }}
+                          className="rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
+                        >
+                          ←
+                        </button>
+                        <button
+                          onClick={() => {
+                            setIsPlaying(false);
+                            setCurrentImageIndex((prev) =>
+                              prev === project.images.length - 1 ? 0 : prev + 1
+                            );
+                          }}
+                          className="rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
+                        >
+                          →
+                        </button>
+                      </div>
 
-                    <div>
+                      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-lg bg-gray-500/50 p-2">
+                        {project.images.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => {
+                              setIsPlaying(false);
+                              setCurrentImageIndex(index);
+                            }}
+                            className={`h-2 w-2 rounded-full transition-all ${
+                              currentImageIndex === index
+                                ? 'w-4 bg-white'
+                                : 'bg-white/50'
+                            }`}
+                          />
+                        ))}
+                      </div>
+
+                      <button
+                        onClick={() => setIsPlaying(!isPlaying)}
+                        className="absolute bottom-4 right-8 h-10 w-10 rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
+                      >
+                        {isPlaying ? '⏸' : '▶️'}
+                      </button>
+                    </div>
+
+                    <div className="pt-10">
                       <h3 className="text-lg font-semibold dark:text-gray-200">
                         Description
                       </h3>
@@ -215,9 +266,25 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <h4 className="font-medium">Client</h4>
-                          <p className="text-gray-600 dark:text-gray-200">
-                            {project.client}
-                          </p>
+                          <div className="flex items-center gap-2">
+                            {project.client_logo && project.client_link && (
+                              <a
+                                href={project.client_link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <Image
+                                  src={project.client_logo}
+                                  alt={project.client}
+                                  width={20}
+                                  height={20}
+                                />
+                              </a>
+                            )}
+                            <p className="text-gray-600 dark:text-gray-200">
+                              {project.client}
+                            </p>
+                          </div>
                         </div>
                         <div>
                           <h4 className="font-medium">Role</h4>
@@ -357,84 +424,6 @@ const ProjectCard: React.FC<ProjectProps> = (project) => {
     </>
   );
 };
-
-const projects: ProjectProps[] = [
-  {
-    name: 'Project 1',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ',
-    heroImage: '/projects/dohm.png',
-    images: [
-      '/projects/AI Product selector.png',
-      '/projects/AI Product selector.png',
-      '/projects/dohm.png',
-      '/projects/dohm.png',
-      '/projects/dohm.png',
-    ],
-    skills: [{ name: 'React' }, { name: 'Next.js' }, { name: 'TailwindCSS' }],
-    github_link: 'https://github.com',
-    hosted_link: 'https://github.com',
-    client: 'Client 1',
-    role: 'Role 1',
-    status: 'Status 1',
-    startDate: '2021-01-01',
-    endDate: '2021-01-01',
-    features: [
-      { title: 'Feature 1', description: 'Description 1' },
-      { title: 'Feature 2', description: 'Description 2' },
-    ],
-  },
-  {
-    name: 'Project 2',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ',
-    heroImage: '/projects/dohm.png',
-    images: [
-      '/projects/dohm.png',
-      '/projects/dohm.png',
-      '/projects/dohm.png',
-      '/projects/dohm.png',
-      '/projects/dohm.png',
-    ],
-    skills: [{ name: 'React' }, { name: 'Next.js' }, { name: 'TailwindCSS' }],
-    github_link: 'https://github.com',
-    hosted_link: 'https://github.com',
-    client: 'Client 2',
-    role: 'Role 2',
-    status: 'Status 2',
-    startDate: '2021-01-01',
-    endDate: '2021-01-01',
-    features: [
-      { title: 'Feature 1', description: 'Description 1' },
-      { title: 'Feature 2', description: 'Description 2' },
-    ],
-  },
-  {
-    name: 'Project 3',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ',
-    heroImage: '/projects/dohm.png',
-    images: [
-      '/projects/dohm.png',
-      '/projects/dohm.png',
-      '/projects/dohm.png',
-      '/projects/dohm.png',
-      '/projects/dohm.png',
-    ],
-    skills: [{ name: 'React' }, { name: 'Next.js' }, { name: 'TailwindCSS' }],
-    github_link: 'https://github.com',
-    hosted_link: 'https://github.com',
-    client: 'Client 3',
-    role: 'Role 3',
-    status: 'Status 3',
-    startDate: '2021-01-01',
-    endDate: '2021-01-01',
-    features: [
-      { title: 'Feature 1', description: 'Description 1' },
-      { title: 'Feature 2', description: 'Description 2' },
-    ],
-  },
-];
 
 function page() {
   return (

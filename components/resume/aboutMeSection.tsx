@@ -28,18 +28,18 @@ function AboutMeSection() {
   return (
     <div>
       <div className="grid grid-cols-12">
-        <div className="col-span-12 md:col-span-6">
-          <div className="inset-0 z-10 transition-opacity duration-300">
+        <div className="col-span-12 md:col-span-4">
+          <div className="inset-0 z-10 flex justify-center transition-opacity duration-300">
             <Image
-              src="/home/hero.svg"
+              src="/sampath.png"
               alt="hero"
-              className="h-96 w-auto rounded-full"
-              width={200}
-              height={200}
+              className="h-60 w-auto rounded-full"
+              width={600}
+              height={600}
             />
           </div>
         </div>
-        <div className="col-span-12 flex items-center justify-center text-4xl md:col-span-6">
+        <div className="col-span-12 flex items-center justify-center pt-10 text-4xl md:col-span-8 md:pt-0">
           Hey there! It&apos;s me, Sampath.
         </div>
       </div>

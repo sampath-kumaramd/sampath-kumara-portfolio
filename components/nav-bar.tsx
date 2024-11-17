@@ -4,11 +4,12 @@ import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import ShimmerButton from './ui/shimmer-button';
 import { motion, AnimatePresence } from 'framer-motion';
 import ShinyButton from './ui/shiny-button';
 import { ThemeToggle } from './theme-toggle';
 import { useTheme } from 'next-themes';
+import darkLogo from '@/public/logo-white.png';
+import lightLogo from '@/public/logo.png';
 
 const navLinks = [
   { href: '/resume', name: 'Resume' },
@@ -20,14 +21,18 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('Home');
   const pathname = usePathname();
+  const [logoSrc, setLogoSrc] = useState(darkLogo);
 
-  const theme = useTheme();
+  const { theme, systemTheme } = useTheme();
+
+  const currentTheme = theme === 'system' ? systemTheme : theme;
 
   useEffect(() => {
     const currentSection =
       navLinks.find((link) => link.href === pathname)?.name || 'Home';
     setActiveSection(currentSection);
-  }, [pathname]);
+    setLogoSrc(currentTheme === 'dark' ? darkLogo : lightLogo);
+  }, [pathname, currentTheme, theme, systemTheme]);
 
   const getLinkClassName = (linkName: string) => `
     rounded-xl py-3 px-5 w-full text-center cursor-pointer transition-colors
@@ -48,7 +53,7 @@ const Navbar = () => {
             className="transition-opacity duration-300"
           >
             <Image
-              src={theme.theme === 'dark' ? '/logo-white.png' : '/logo.png'}
+              src={logoSrc}
               alt="hero"
               className="h-12 w-auto md:h-16"
               width={100}
@@ -80,7 +85,11 @@ const Navbar = () => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="md:hidden"
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? (
+            <X size={24} className="dark:text-white" />
+          ) : (
+            <Menu size={24} className="dark:text-white" />
+          )}
         </button>
       </nav>
       <AnimatePresence>
@@ -96,7 +105,7 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(false)}
               className="absolute right-6 top-4"
             >
-              <X size={24} />
+              <X size={24} className="dark:text-white" />
             </button>
             {navLinks.map((link, index) => (
               <motion.div
