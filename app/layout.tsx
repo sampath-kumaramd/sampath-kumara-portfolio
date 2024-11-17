@@ -9,7 +9,7 @@ import { GA_MEASUREMENT_ID } from '@/lib/analytics';
 import { CookieConsent } from '@/components/cookie-consent';
 import { CustomCursor } from '@/components/ui/custom-cursor';
 import { siteConfig } from './metadata.config';
-import { Footer } from '@/components/footer';
+import AnimatedCursor from 'react-animated-cursor';
 
 const inter = JetBrains_Mono({
   subsets: ['latin'],
@@ -99,6 +99,31 @@ export default function RootLayout({
         >
           {/* Uncomment this to enable custom cursor */}
           {/* <CustomCursor /> */}
+          <AnimatedCursor
+            innerSize={15}
+            outerSize={15}
+            // rgb(80, 186, 191)
+            color="80, 186, 191"
+            outerAlpha={0.2}
+            innerScale={0.7}
+            outerScale={5}
+            clickables={[
+              'a',
+              'input[type="text"]',
+              'input[type="email"]',
+              'input[type="number"]',
+              'input[type="submit"]',
+              'input[type="image"]',
+              'label[for]',
+              'select',
+              'textarea',
+              'button',
+              '.link',
+              {
+                target: '.custom',
+              },
+            ]}
+          />
           <Navbar />
           {children}
           <Toaster />
