@@ -4,8 +4,8 @@ export function Footer() {
       <p></p>
       <p>
         {' '}
-        © {new Date().getFullYear()} All rights reserved. | Designed &
-        Developed by Sampath Kumara.
+        © {new Date().getFullYear()} All rights reserved | Designed & Developed
+        by Sampath Kumara.
       </p>
     </div>
   );

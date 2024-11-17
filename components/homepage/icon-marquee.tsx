@@ -113,6 +113,9 @@ const secondRow = technologies.slice(
 );
 const thirdRow = technologies.slice((technologies.length / 3) * 2);
 
+const mobileFirstRow = technologies.slice(0, technologies.length / 2);
+const mobileSecondRow = technologies.slice(technologies.length / 2);
+
 const TechnologyCard = ({ img, name }: { img: string; name: string }) => {
   return (
     <motion.figure
@@ -161,13 +164,13 @@ export function MarqueeIcons() {
 
   return (
     <div className="relative">
-      <div className="relative flex h-[500px] w-full flex-row items-center justify-center gap-2 overflow-hidden rounded-lg bg-background">
-        <Marquee reverse vertical className="[--duration:20s]">
+      <div className="relative hidden h-[500px] w-full flex-row items-center justify-center gap-2 overflow-hidden rounded-lg bg-background md:flex">
+        <Marquee reverse vertical className="[--duration:19s]">
           {firstRow.map((technology) => (
             <TechnologyCard key={technology.name} {...technology} />
           ))}
         </Marquee>
-        <Marquee reverse vertical className="[--duration:20s]">
+        <Marquee reverse vertical className="[--duration:21s]">
           {secondRow.map((technology) => (
             <TechnologyCard key={technology.name} {...technology} />
           ))}
@@ -180,6 +183,9 @@ export function MarqueeIcons() {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white dark:from-background"></div>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white dark:from-background"></div>
         <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white dark:from-background"></div>
+      </div>
+      <div className="flex md:hidden">
+        <MarqueeIconsMobile />
       </div>
       <div className="mx-2 hidden text-center text-sm text-muted-foreground md:mx-4 md:block xl:mx-8">
         <Separator className="rounded-md border border-r-2 border-bgSecondery/10 bg-white py-1 dark:border-gray-50/[.10] dark:bg-background" />
@@ -230,6 +236,25 @@ export function MarqueeIcons() {
         </div>
         <Separator className="mt-28 rounded-md border border-r-2 border-bgSecondery/10 bg-white py-1 dark:border-gray-50/[.10] dark:bg-background" />
       </div>
+    </div>
+  );
+}
+
+function MarqueeIconsMobile() {
+  return (
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-background md:shadow-xl">
+      <Marquee pauseOnHover className="[--duration:20s]">
+        {mobileFirstRow.map((technology) => (
+          <TechnologyCard key={technology.name} {...technology} />
+        ))}
+      </Marquee>
+      <Marquee reverse pauseOnHover className="[--duration:20s]">
+        {mobileSecondRow.map((technology) => (
+          <TechnologyCard key={technology.name} {...technology} />
+        ))}
+      </Marquee>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
     </div>
   );
 }

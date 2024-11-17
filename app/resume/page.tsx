@@ -59,11 +59,11 @@ const HeroSection: React.FC = () => {
           <TypingAnimation
             className="mt-2 text-start text-xl text-black dark:text-white sm:text-2xl"
             texts={[
-              'Fast learner',
-              'Good communicator',
-              'User friendly',
-              'Problem solver',
-              'Team player',
+              'a fast learner',
+              'a good communicator',
+              'user friendly',
+              'a problem solver',
+              'a team player',
             ]}
           />
           <div className="mt-20 flex w-full flex-col gap-4 md:gap-8">
@@ -83,7 +83,7 @@ const HeroSection: React.FC = () => {
                     className={`text-lg md:text-xl ${selectedSection === item.name ? 'text-white dark:text-gray-50' : 'text-black dark:text-white'} flex items-center`}
                   >
                     {React.createElement(item.icon, {
-                      className: 'mr-2',
+                      className: 'mr-2 ',
                       size: 20,
                     })}
                     {item.name}
