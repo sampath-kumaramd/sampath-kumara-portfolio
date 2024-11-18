@@ -264,8 +264,8 @@ const ClientTestimonialsCarousel: React.FC = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className="hidden md:block" />
+          <CarouselNext className="hidden md:block" />
         </Carousel>
         <div className="mt-12 flex items-center justify-center gap-2">
           {[...Array(count)].map((_, i) => (
