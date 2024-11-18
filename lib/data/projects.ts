@@ -233,14 +233,14 @@ export const projects: Project[] = [
     name: 'Aizenit - Landing Page',
     description:
       'Aizenit is a company that provides AI solutions for businesses. It is a website that allows users to contact the company and view the services they offer.',
-    heroImage: '/projects/aizenit.png',
+    heroImage: '/projects/Aizenit.png',
     images: [
-      '/projects/aizenit-1.png',
-      '/projects/aizenit-2.png',
-      '/projects/aizenit-3.png',
-      '/projects/aizenit-mobile-1.png',
-      '/projects/aizenit-mobile-2.png',
-      '/projects/aizenit-mobile-3.png',
+      '/projects/Aizenit-1.png',
+      '/projects/Aizenit-2.png',
+      '/projects/Aizenit-3.png',
+      '/projects/Aizenit-mobile-1.png',
+      '/projects/Aizenit-mobile-2.png',
+      '/projects/Aizenit-mobile-3.png',
     ],
     skills: [
       { name: 'Angular' },
