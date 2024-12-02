@@ -33,9 +33,10 @@ function AboutMeSection() {
             <Image
               src="/sampath.png"
               alt="hero"
-              className="h-60 w-auto rounded-full"
-              width={600}
-              height={600}
+              className="h-60 w-60 rounded-full object-cover"
+              width={240}
+              height={240}
+              priority
             />
           </div>
         </div>

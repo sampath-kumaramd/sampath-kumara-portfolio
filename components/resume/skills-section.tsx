@@ -112,7 +112,8 @@ const SkillsSection: React.FC = () => {
                   />
                 </div>
                 <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                  {Math.round(avgProficiency)}% proficiency
+                  {Math.round(avgProficiency)}% proficiency <br /> In above{' '}
+                  {category} Technologies
                 </div>
               </div>
             );

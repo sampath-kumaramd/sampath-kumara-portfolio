@@ -52,7 +52,7 @@ function TimeLineExperienceSection() {
         learning, and innovation.
       </div>
 
-      <div className="w-full overflow-x-hidden px-4 pb-20 md:h-[35rem] md:overflow-y-auto md:pb-0">
+      <div className="w-full overflow-x-hidden px-4 pb-20 md:h-[30rem] md:overflow-y-auto md:pb-0">
         <InteractiveTimeline experiences={Experience} />
       </div>
     </div>

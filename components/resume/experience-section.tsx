@@ -45,7 +45,7 @@ function ExperienceSection() {
   ];
 
   return (
-    <div className="md:h-40">
+    <div className="md:h-36">
       <TimeLineExperienceSection />
     </div>
   );
