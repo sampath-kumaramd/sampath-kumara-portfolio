@@ -80,7 +80,7 @@ export function ContributionGraph({ className }: ContributionGraphProps) {
   return (
     <div className={className}>
       <div className="mb-2 text-sm text-gray-600 dark:text-gray-400">
-        {totalContributions} contributions in the last year
+        {totalContributions} contributions in this year
       </div>
       <div className="relative flex">
         {/* Weekday labels */}

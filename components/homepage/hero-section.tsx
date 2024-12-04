@@ -46,7 +46,7 @@ const HeroSection = () => {
   const contributions: Contributions[] = [
     { count: yearsOfExperience, title: 'Years of experience' },
     { count: projectCount, title: 'Projects contributed' },
-    { count: techCount, title: 'Technologies used' },
+    { count: techCount, title: 'Programming Language used' },
     { count: commitCount, title: 'Total Contributions' },
   ];
 
@@ -70,7 +70,7 @@ const HeroSection = () => {
 
   return (
     <motion.div
-      className="container mx-auto mb-10 mt-96 flex items-center justify-center px-4 py-8 dark:bg-background md:mt-0 md:min-h-[89.5vh] md:px-6 lg:px-8"
+      className="container mx-auto mb-2 mt-20 flex items-center justify-center px-4 py-8 dark:bg-background md:mt-0 md:min-h-[89.5vh] md:px-6 lg:px-8"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

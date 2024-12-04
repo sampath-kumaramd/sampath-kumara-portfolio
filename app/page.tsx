@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <div className="flex min-h-screen flex-col justify-center dark:bg-background">
+      <div className="flex flex-col justify-center dark:bg-background sm:min-h-screen">
         <HeroSection />
         <Footer />
       </div>
