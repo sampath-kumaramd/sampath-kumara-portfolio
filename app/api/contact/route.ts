@@ -11,10 +11,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Add this before trying to send the email
-console.log('Email User:', process.env.EMAIL_USER);
-console.log('Email Pass length:', process.env.EMAIL_PASS?.length);
-
 export async function POST(req: Request) {
   try {
     // Validate environment variables first
@@ -32,14 +28,6 @@ export async function POST(req: Request) {
 
     const body = await req.json();
     const { firstName, lastName, email, phoneNumber, message } = body;
-
-    // Add input validation
-    if (!firstName || !lastName || !email || !message) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
-    }
 
     const mailOptions = {
       from: process.env.EMAIL_USER,

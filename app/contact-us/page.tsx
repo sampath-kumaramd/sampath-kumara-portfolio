@@ -33,18 +33,10 @@ const formSchema = z.object({
   firstName: z.string().min(2, {
     message: 'First name must be at least 2 characters.',
   }),
-  lastName: z.string().min(2, {
-    message: 'Last name must be at least 2 characters.',
-  }),
-  email: z.string().email({
-    message: 'Please enter a valid email address.',
-  }),
-  phoneNumber: z.string().regex(/^\+?[0-9]\d{1,14}$/, {
-    message: 'Please enter a valid phone number.',
-  }),
-  service: z.string({
-    required_error: 'Please select a service.',
-  }),
+  lastName: z.string().optional(),
+  email: z.string().optional(),
+  phoneNumber: z.string().optional(),
+  service: z.string().optional(),
   message: z.string().min(5, {
     message: 'Message must be at least 5 characters.',
   }),
@@ -132,7 +124,7 @@ export default function ContactForm() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
-        className="container mx-auto my-8 px-4 md:my-16 md:px-8"
+        className="container mx-auto my-16 px-4 md:my-16 md:px-8 pt-20"
       >
         <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-16">
           <div className="absolute -left-4 top-0 h-32 w-32 rounded-full bg-Secondary/5 blur-3xl md:h-64 md:w-64"></div>
@@ -221,7 +213,6 @@ export default function ContactForm() {
                               placeholder="Last name"
                               {...field}
                               className="rounded-lg border-gray-300 bg-white/5 text-fontPrimary placeholder:text-gray-400 dark:bg-gray-500/5 dark:text-gray-200 dark:placeholder:text-gray-400"
-                              required
                             />
                           </FormControl>
                           <FormMessage className="text-red-400" />
@@ -239,7 +230,6 @@ export default function ContactForm() {
                             placeholder="Email address"
                             {...field}
                             className="rounded-lg border-gray-300 bg-white/5 text-fontPrimary placeholder:text-gray-400 dark:bg-gray-500/5 dark:text-gray-200 dark:placeholder:text-gray-400"
-                            required
                           />
                         </FormControl>
                         <FormMessage className="text-red-400" />
