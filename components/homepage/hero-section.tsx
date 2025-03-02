@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import NumberTicker from '../ui/number-ticker';
 import BoxReveal from '../ui/box-reveal';
-import { MarqueeIcons } from './icon-marquee';
-import { IconDock } from './icon-dock';
 import TypingAnimation from '../ui/typing-animation';
 import { motion } from 'framer-motion';
 import { FaSpinner } from 'react-icons/fa';
@@ -46,7 +44,7 @@ const HeroSection = () => {
   const contributions: Contributions[] = [
     { count: yearsOfExperience, title: 'Years of experience' },
     { count: projectCount, title: 'Projects contributed' },
-    { count: techCount, title: 'Programming Language used' },
+    { count: techCount, title: 'Programming Languages' },
     { count: commitCount, title: 'Total Contributions' },
   ];
 
@@ -70,7 +68,7 @@ const HeroSection = () => {
 
   return (
     <motion.div
-      className="container mx-auto mb-2 mt-20 flex items-center justify-center px-4 py-8 dark:bg-background md:mt-0 md:min-h-[89.5vh] md:px-6 lg:px-8"
+      className="mb-2 mt-20 flex items-center justify-center px-4 py-8 dark:bg-background md:mt-0 md:min-h-[89.5vh] md:px-6 lg:px-8"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -82,14 +80,14 @@ const HeroSection = () => {
         >
           <div className="col-span-1 space-y-4 md:col-span-1 lg:col-span-3">
             <TypingAnimation
-              className="text-start text-xl text-black dark:text-white sm:text-2xl"
+              className="text-start text-xl font-medium text-Secondary dark:text-Secondary sm:text-2xl"
               texts={[
                 'Full Stack Developer',
                 'Software Engineer',
                 'Problem Solver',
                 'Leader',
                 'Team Player',
-                'Volounteer',
+                'Volunteer',
                 'Open Source Contributor',
               ]}
             />
@@ -103,45 +101,126 @@ const HeroSection = () => {
                 </div>
               </BoxReveal>
             </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400 sm:text-base">
+            <div className="text-sm text-gray-600 dark:text-gray-300 sm:text-base">
               Dedicated to creating impactful digital experiences{' '}
               <br className="hidden sm:block" /> through clean code and
               thoughtful design.
               <br className="hidden sm:block" /> Every project is an opportunity
               to innovate and excel.
             </div>
-
-            <div className="flex gap-4">
-              <IconDock />
-            </div>
           </div>
-          <div className="col-span-1 mt-8 md:col-span-1 md:mt-0 lg:col-span-2">
-            <MarqueeIcons />
+
+          <div className="col-span-1 space-y-4 md:col-span-1 lg:col-span-2">
+            <motion.div
+              className="rounded-lg border border-gray-200 bg-white/5 p-6 shadow-lg backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/30"
+              variants={itemVariants}
+            >
+              <div className="mb-4 flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div className="h-3 w-3 rounded-full bg-red-500"></div>
+                  <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
+                  <div className="h-3 w-3 rounded-full bg-green-500"></div>
+                </div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">
+                  developer.tsx
+                </div>
+              </div>
+
+              <div className="font-mono text-sm">
+                <div className="flex">
+                  <span className="mr-4 text-gray-500">1</span>
+                  <span className="text-blue-500">const</span>
+                  <span className="text-white"> Developer = () </span>
+                  <span className="text-blue-500">{'=> {'}</span>
+                </div>
+                <div className="flex">
+                  <span className="mr-4 text-gray-500">2</span>
+                  <span className="ml-4 text-blue-500">return</span>
+                  <span className="text-white"> (</span>
+                </div>
+                <div className="flex">
+                  <span className="mr-4 text-gray-500">3</span>
+                  <span className="ml-8 text-green-500">{'<Profile>'}</span>
+                </div>
+                <div className="flex">
+                  <span className="mr-4 text-gray-500">4</span>
+                  <span className="ml-12 text-green-500">{'<name>'}</span>
+                  <span className="text-yellow-300">Sampath Kumara</span>
+                  <span className="text-green-500">{'</name>'}</span>
+                </div>
+                <div className="flex">
+                  <span className="mr-4 text-gray-500">5</span>
+                  <span className="ml-12 text-green-500">{'<skills>'}</span>
+                  <span className="text-white">Full Stack, React, Node.js</span>
+                  <span className="text-green-500">{'</skills>'}</span>
+                </div>
+                <div className="flex">
+                  <span className="mr-4 text-gray-500">6</span>
+                  <span className="ml-12 text-green-500">{'<passion>'}</span>
+                  <span className="text-white">
+                    Building amazing experiences
+                  </span>
+                  <span className="text-green-500">{'</passion>'}</span>
+                </div>
+                <div className="flex">
+                  <span className="mr-4 text-gray-500">7</span>
+                  <span className="ml-8 text-green-500">{'</Profile>'}</span>
+                </div>
+                <div className="flex">
+                  <span className="mr-4 text-gray-500">8</span>
+                  <span className="text-white">);</span>
+                </div>
+                <div className="flex">
+                  <span className="mr-4 text-gray-500">9</span>
+                  <span className="text-blue-500">{'}'}</span>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="rounded-lg border border-gray-200 bg-black/90 p-4 shadow-lg backdrop-blur-sm dark:border-gray-800"
+              variants={itemVariants}
+            >
+              <div className="mb-2 flex items-center space-x-2">
+                <div className="text-xs text-gray-400">TERMINAL</div>
+              </div>
+              <div className="font-mono text-sm text-green-400">
+                <div>$ npm run build</div>
+                <div className="mt-1">
+                  Creating optimized production build...
+                </div>
+                <div className="mt-1">✓ Compiled successfully</div>
+                <div className="mt-1 flex items-center">
+                  <span className="mr-1">$</span>
+                  <span className="h-4 w-2 animate-pulse bg-green-400"></span>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
 
         <motion.div
-          className="mt-10 w-full pt-4 dark:bg-background dark:text-white sm:mt-0 md:pt-10"
+          className="mt-10 w-full rounded-xl bg-white/5 p-6 shadow-lg backdrop-blur-sm dark:bg-gray-900/30 dark:text-white sm:mt-12 md:pt-6"
           variants={itemVariants}
         >
           <div className="grid w-full grid-cols-2 gap-6 md:grid-cols-4">
             {contributions.map((items, index) => (
               <motion.div
                 key={index}
-                className="flex items-center gap-2 sm:gap-3"
+                className="flex flex-col items-center justify-center gap-2 text-center sm:gap-3"
                 variants={itemVariants}
                 initial="hidden"
                 animate="visible"
                 transition={{ delay: index * 0.1 }}
               >
-                <div className="text-2xl font-semibold text-black dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
+                <div className="text-2xl font-semibold text-Secondary dark:text-Secondary sm:text-4xl md:text-5xl lg:text-6xl">
                   {isLoading ? (
                     <FaSpinner className="h-10 w-10 animate-spin" />
                   ) : (
                     <NumberTicker value={items.count} decimalPlaces={0} />
                   )}
                 </div>
-                <div className="text-sm text-gray-500 dark:text-gray-400 sm:text-base">
+                <div className="text-sm font-medium text-gray-700 dark:text-gray-300 sm:text-base">
                   {items.title}
                 </div>
               </motion.div>

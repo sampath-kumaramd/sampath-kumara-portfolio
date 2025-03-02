@@ -1,6 +1,20 @@
-import HeroSection from '@/components/homepage/hero-section';
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import {
+  Code,
+  FileCode,
+  Github,
+  Mail,
+  ExternalLink,
+  BookOpen,
+  Star,
+} from 'lucide-react';
 import JsonLd from '@/components/json-ld';
-import { Footer } from '@/components/footer';
+import TypingAnimation from '@/components/ui/typing-animation';
+import HeroSection from '@/components/homepage/hero-section';
 
 export default function Home() {
   const jsonLd = {
@@ -18,10 +32,7 @@ export default function Home() {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <div className="flex flex-col justify-center dark:bg-background sm:min-h-screen">
-        <HeroSection />
-        <Footer />
-      </div>
+      <HeroSection />
     </>
   );
 }

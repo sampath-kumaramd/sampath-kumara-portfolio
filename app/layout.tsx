@@ -1,15 +1,14 @@
 import type { Metadata } from 'next';
 import { JetBrains_Mono } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/nav-bar';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 import Script from 'next/script';
 import { GA_MEASUREMENT_ID } from '@/lib/analytics';
 import { CookieConsent } from '@/components/cookie-consent';
-import { CustomCursor } from '@/components/ui/custom-cursor';
-import { siteConfig } from './metadata.config';
 import AnimatedCursor from 'react-animated-cursor';
+import { siteConfig } from './metadata.config';
+import VSCodeLayout from '@/components/vscode/layout';
 
 const inter = JetBrains_Mono({
   subsets: ['latin'],
@@ -93,16 +92,13 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          {/* Uncomment this to enable custom cursor */}
-          {/* <CustomCursor /> */}
           <AnimatedCursor
             innerSize={15}
             outerSize={15}
-            // rgb(80, 186, 191)
             color="80, 186, 191"
             outerAlpha={0.2}
             innerScale={0.7}
@@ -124,8 +120,7 @@ export default function RootLayout({
               },
             ]}
           />
-          <Navbar />
-          {children}
+          <VSCodeLayout>{children}</VSCodeLayout>
           <Toaster />
           <CookieConsent />
         </ThemeProvider>
