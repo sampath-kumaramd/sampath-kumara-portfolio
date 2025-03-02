@@ -20,22 +20,24 @@ const SkillsSection: React.FC = () => {
   return (
     <div className="space-y-8">
       {/* Category filters */}
-      <div className="flex flex-wrap gap-4">
-        {skillCategories.map((category) => (
-          <button
-            key={category}
-            onClick={() => setSelectedCategory(category)}
-            className={`rounded-full px-4 py-2 transition-all ${
-              selectedCategory === category
-                ? 'bg-Secondary text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300'
-            }`}
-          >
-            {category}
-          </button>
-        ))}
+      <div className="border-b border-[#333333] bg-[#252526]">
+        <nav className="-mb-px flex flex-wrap">
+          {skillCategories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`${
+                selectedCategory === category
+                  ? 'border-t-2 border-t-[#007acc] bg-[#1e1e1e] text-white'
+                  : 'border-transparent bg-[#2d2d2d] text-[#858585] hover:bg-[#2a2a2a] hover:text-white'
+              } border-r border-[#333333] px-4 py-2 text-xs font-medium capitalize`}
+            >
+              {category}
+            </button>
+          ))}
+        </nav>
       </div>
-      <div className="w-full overflow-x-hidden px-4 md:h-[32.5rem] md:overflow-y-auto">
+      <div className="w-full overflow-x-hidden px-4 md:overflow-y-auto">
         <motion.div
           layout
           className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
@@ -54,14 +56,16 @@ const SkillsSection: React.FC = () => {
                 className="relative"
               >
                 <a
-                  href={skill.link}
-                  target="_blank"
+                  // href={skill.link}
+                  // target="_blank"
                   rel="noopener noreferrer"
-                  className="block rounded-lg bg-white p-4 shadow-lg transition-all dark:bg-gray-900"
+                  className="block rounded-md border border-gray-700 bg-gray-800 p-4 shadow-md transition-all dark:bg-gray-800"
                 >
                   <div className="flex flex-col items-center">
-                    <skill.Icon className="h-12 w-12 text-Secondary" />
-                    <span className="mt-2 text-sm">{skill.name}</span>
+                    <skill.Icon className="h-12 w-12 text-blue-500" />
+                    <span className="mt-2 text-sm text-gray-200">
+                      {skill.name}
+                    </span>
                   </div>
 
                   {/* Proficiency bar */}
@@ -69,13 +73,13 @@ const SkillsSection: React.FC = () => {
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="absolute bottom-0 left-0 right-0 h-1 overflow-hidden rounded-b-lg bg-gray-200"
+                      className="absolute bottom-0 left-0 right-0 h-1 overflow-hidden rounded-b-md bg-gray-700"
                     >
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${skill.proficiency}%` }}
                         transition={{ duration: 0.5 }}
-                        className="h-full bg-Secondary"
+                        className="h-full bg-blue-500"
                       />
                     </motion.div>
                   )}
@@ -100,18 +104,20 @@ const SkillsSection: React.FC = () => {
             return (
               <div
                 key={category}
-                className="rounded-lg bg-white p-4 shadow-lg dark:bg-gray-900"
+                className="rounded-md border border-gray-700 bg-gray-800 p-4 shadow-md dark:bg-gray-800"
               >
-                <h3 className="text-lg font-semibold">{category}</h3>
-                <div className="mt-2 h-2 rounded-full bg-gray-200">
+                <h3 className="text-lg font-semibold text-gray-200">
+                  {category}
+                </h3>
+                <div className="mt-2 h-2 rounded-full bg-gray-700">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${avgProficiency}%` }}
                     transition={{ duration: 1 }}
-                    className="h-full rounded-full bg-Secondary"
+                    className="h-full rounded-full bg-blue-500"
                   />
                 </div>
-                <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                <div className="mt-1 text-sm text-gray-400">
                   {Math.round(avgProficiency)}% proficiency <br /> In above{' '}
                   {category} Technologies
                 </div>

@@ -46,85 +46,121 @@ const TestimonialCard: React.FC<Testimonial> = ({
 
   return (
     <div className="perspective-1000 h-full">
-      <Card className="relative h-full transform overflow-hidden rounded-xl border border-gray-100/20 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(125,125,125,0.1)] dark:border-gray-50/[.05] dark:from-gray-900/50 dark:to-gray-900/30">
-        <div className="absolute -right-12 -top-12 h-32 w-32 rotate-45 bg-gradient-to-br from-bgPrimary/20 to-transparent blur-2xl" />
-        <div className="absolute -bottom-12 -left-12 h-32 w-32 rotate-45 bg-gradient-to-tr from-Secondary/20 to-transparent blur-2xl" />
+      <Card className="relative h-full transform overflow-hidden rounded-xl border border-gray-100/20 bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(125,125,125,0.1)] dark:border-gray-50/[.05] dark:from-gray-900/90 dark:to-gray-800/80">
+        <div className="flex h-8 items-center justify-between bg-gray-800 px-3 dark:bg-gray-900">
+          <div className="flex items-center gap-1.5">
+            <div className="h-3 w-3 rounded-full bg-red-500"></div>
+            <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
+            <div className="h-3 w-3 rounded-full bg-green-500"></div>
+          </div>
+          <div className="text-xs font-medium text-gray-400">
+            {platform} - {projectType}
+          </div>
+          <div className="flex gap-1">
+            {[...Array(5)].map((_, i) => (
+              <svg
+                key={i}
+                className={`h-3 w-3 ${
+                  i < rating ? 'text-Secondary' : 'text-gray-500'
+                }`}
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+        </div>
 
-        <CardContent className="relative flex h-full flex-col justify-between gap-6 p-8">
-          <Meteors number={15} />
-          <div className="absolute inset-0 opacity-[0.3]">
-            <div className="absolute left-4 top-4">
-              <Code2 className="h-4 w-4" />
-            </div>
-            <div className="absolute right-4 top-4">
-              <Terminal className="h-4 w-4" />
-            </div>
-            <div className="absolute bottom-4 left-4">
-              <GitBranch className="h-4 w-4" />
-            </div>
-            <div className="absolute bottom-4 right-4">
-              <Globe className="h-4 w-4" />
-            </div>
+        <CardContent className="relative flex h-full flex-col justify-between gap-4 p-6">
+          <div className="absolute left-0 top-8 flex h-[calc(100%-2rem)] flex-col items-end border-r border-gray-700/50 bg-gray-800/30 px-2 py-4 text-xs text-gray-500 dark:border-gray-700/50 dark:bg-gray-800/30">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <div key={i} className="mb-1.5">
+                {i + 1}
+              </div>
+            ))}
           </div>
 
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3 rounded-full bg-gray-100/50 px-4 py-1.5 dark:bg-gray-800/50">
+          <div className="space-y-4 pl-8">
+            <div className="flex items-center gap-2">
+              <span
+                className={`relative flex h-2.5 w-2.5 ${
+                  verificationStatus === 'verified'
+                    ? 'after:absolute after:inline-flex after:h-full after:w-full after:animate-ping after:rounded-full after:bg-green-400 after:opacity-75'
+                    : ''
+                }`}
+              >
                 <span
-                  className={`relative flex h-2.5 w-2.5 ${
+                  className={`inline-flex h-2.5 w-2.5 rounded-full ${
                     verificationStatus === 'verified'
-                      ? 'after:absolute after:inline-flex after:h-full after:w-full after:animate-ping after:rounded-full after:bg-green-400 after:opacity-75'
-                      : ''
+                      ? 'bg-green-400'
+                      : verificationStatus === 'pending'
+                        ? 'bg-yellow-400'
+                        : 'bg-gray-400'
                   }`}
-                >
-                  <span
-                    className={`inline-flex h-2.5 w-2.5 rounded-full ${
-                      verificationStatus === 'verified'
-                        ? 'bg-green-400'
-                        : verificationStatus === 'pending'
-                          ? 'bg-yellow-400'
-                          : 'bg-gray-400'
-                    }`}
-                  />
-                </span>
-                <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
-                  {verificationStatus.charAt(0).toUpperCase() +
-                    verificationStatus.slice(1)}
-                </span>
-              </div>
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    className={`h-4 w-4 ${
-                      i < rating ? 'text-Secondary' : 'text-gray-300'
-                    }`}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex gap-2">
-              <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-300">
-                {platform}
+                />
               </span>
-              <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-300">
-                {projectType}
+              <span className="text-xs font-medium text-gray-400">
+                {verificationStatus.charAt(0).toUpperCase() +
+                  verificationStatus.slice(1)}
               </span>
             </div>
 
             <div className="relative">
               <p
                 ref={contentRef}
-                className={`relative z-10 max-h-[15rem] text-lg leading-relaxed text-gray-700 transition-all duration-300 dark:text-gray-200 ${
+                className={`font-mono relative z-10 max-h-[17rem] text-base leading-relaxed text-gray-300 transition-all duration-300 dark:text-gray-300 ${
                   isExpanded ? 'overflow-y-auto' : 'overflow-hidden'
                 }`}
               >
-                {content}
+                {content.split('\n').map((line, i) => (
+                  <span key={i} className="block">
+                    {line.split(' ').map((word, j) => {
+                      let className = '';
+                      // Programming keywords
+                      if (
+                        word.match(
+                          /^(function|const|let|var|return|if|else|for|while)$/
+                        )
+                      ) {
+                        className = 'text-purple-400';
+                      }
+                      // Technical skills and frameworks
+                      else if (
+                        word.match(
+                          /\b(React|Next\.js|Angular|MERN|Node|JavaScript|TypeScript|UI|UX|MongoDB|Express|API|frontend|backend|full-stack|responsive|CSS|HTML|Figma)\b/i
+                        )
+                      ) {
+                        className = 'text-Secondary font-semibold';
+                      }
+                      // Class names
+                      else if (word.match(/^[A-Z][a-zA-Z]*$/)) {
+                        className = 'text-yellow-300';
+                      }
+                      // Strings
+                      else if (word.match(/^".*"$|^'.*'$/)) {
+                        className = 'text-green-400';
+                      }
+                      // Numbers
+                      else if (word.match(/^\d+$/)) {
+                        className = 'text-blue-400';
+                      }
+                      // Soft skills and positive attributes
+                      else if (
+                        word.match(
+                          /\b(professional|dedicated|skilled|expertise|proficiency|innovative|efficient|leadership|collaborative|organized|committed|reliable|responsive|quick|thorough)\b/i
+                        )
+                      ) {
+                        className = 'text-blue-300 font-medium';
+                      }
+                      return (
+                        <span key={j} className={className}>
+                          {word}{' '}
+                        </span>
+                      );
+                    })}
+                  </span>
+                ))}
               </p>
               {hasOverflow && (
                 <button
@@ -134,49 +170,36 @@ const TestimonialCard: React.FC<Testimonial> = ({
                       contentRef.current.scrollTop = 0;
                     }
                   }}
-                  className="mt-2 text-sm font-medium text-Secondary hover:text-Secondary/80"
+                  className="mt-2 text-sm font-medium text-blue-400 hover:text-blue-300"
                 >
-                  {isExpanded ? 'See Less' : 'See More'}
+                  {isExpanded ? '// Collapse' : '// Expand'}
                 </button>
               )}
             </div>
-            {/* {link && (
-              <Link
-                href={link}
-                className="text-blue-500"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View on {platform}
-              </Link>
-            )} */}
           </div>
 
-          <div className="border-t border-gray-100 pt-6 dark:border-gray-800">
+          <div className="mt-auto border-t border-gray-700 pb-4 ps-4 pt-4">
             <div className="flex items-center gap-4">
               {avatar && (
                 <Image
                   src={avatar}
                   alt={author}
-                  width={56}
-                  height={56}
-                  className="rounded-full border-2 border-gray-50 shadow-sm"
+                  width={48}
+                  height={48}
+                  className="rounded-full border-2 border-gray-700 shadow-sm"
                 />
               )}
               {!avatar && (
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100/50 text-xl font-semibold text-gray-600 dark:bg-gray-800/50 dark:text-gray-300">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-700 text-xl font-semibold text-gray-300">
                   {author.charAt(0)}
                 </div>
               )}
               <div>
-                <h3 className="font-semibold text-gray-800 dark:text-gray-200">
+                <h3 className="font-mono font-semibold text-gray-200">
                   {author} {country ? `(${country})` : ''}
                 </h3>
-
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  {role}
-                </p>
-                <p className="mt-1 text-xs text-gray-400">
+                <p className="text-sm text-gray-400">{role}</p>
+                <p className="mt-1 text-xs text-gray-500">
                   {new Date(date).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'short',
@@ -219,14 +242,14 @@ const ClientTestimonialsCarousel: React.FC = () => {
   }, [api]);
 
   return (
-    <section className="relative flex min-h-screen flex-col justify-center pt-40 dark:bg-background md:pt-0">
+    <section className="relative flex min-h-[90vh] flex-col justify-center bg-gray-950 dark:bg-gray-950 md:pt-0">
       <div className="container mx-auto px-4">
         <h2 className="mb-16 text-center">
-          <span className="bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-4xl font-bold text-transparent dark:text-gray-200 sm:text-5xl">
-            What people say about me
+          <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
+            {`// What people say about me`}
           </span>
-          <span className="mt-6 block text-lg font-normal text-gray-500 dark:text-gray-200">
-            Discover why people love working with me
+          <span className="font-mono mt-6 block text-lg font-normal text-gray-400">
+            {`// Discover why people love working with me`}
           </span>
         </h2>
         <Carousel
@@ -281,7 +304,6 @@ const ClientTestimonialsCarousel: React.FC = () => {
           ))}
         </div>
       </div>
-      <Footer />
     </section>
   );
 };

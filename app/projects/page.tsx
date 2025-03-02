@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/sheet';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { useTheme } from 'next-themes';
-import { GithubIcon, LinkIcon, ArrowRight } from 'lucide-react';
+import { GithubIcon, LinkIcon, ArrowRight, FileCode } from 'lucide-react';
 import Image from 'next/image';
 import { Project } from '@/types/project';
 import { projects } from '@/lib/data/projects';
@@ -24,12 +24,22 @@ const ProjectShowcase = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 px-4 pt-0 dark:from-background dark:to-background/90 md:pt-10">
-        <div className="mx-auto max-w-7xl py-20">
+      <div className="min-h-screen bg-[#1e1e1e] text-white">
+        {/* VS Code Tab Bar */}
+        <div className="flex border-b border-[#252526] bg-[#1e1e1e]">
+          <div className="flex items-center bg-[#1e1e1e] px-4 py-1 text-sm text-white">
+            <span className="mr-2">projects.tsx</span>
+            <span className="ml-2 cursor-pointer text-gray-400 hover:text-white">
+              ×
+            </span>
+          </div>
+        </div>
+
+        <div className="mx-auto max-w-7xl px-4 py-20">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl font-bold text-Secondary"
+            className="text-4xl font-bold text-[#007acc]"
           >
             Some of my work
           </motion.h1>
@@ -38,7 +48,7 @@ const ProjectShowcase = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-16 text-xl text-muted-foreground"
+            className="mb-16 text-xl text-[#bbbbbb]"
           >
             These are some of the projects I&apos;ve worked on.
           </motion.div>
@@ -57,7 +67,7 @@ const ProjectShowcase = () => {
                 >
                   {/* Project Image */}
                   <div className="relative w-full lg:w-7/12">
-                    <div className="relative aspect-[16/9] overflow-hidden rounded-xl">
+                    <div className="relative aspect-[16/9] overflow-hidden rounded-md border border-[#333333]">
                       <Image
                         src={project.heroImage}
                         alt={project.name}
@@ -71,7 +81,7 @@ const ProjectShowcase = () => {
 
                   {/* Project Info */}
                   <div className="w-full lg:w-5/12">
-                    <div className="space-y-4">
+                    <div className="space-y-4 rounded-md border border-[#333333] bg-[#252526] p-6">
                       <div className="flex items-center gap-4">
                         {project.client_logo && (
                           <Image
@@ -82,21 +92,19 @@ const ProjectShowcase = () => {
                             className="rounded-full"
                           />
                         )}
-                        <h3 className="text-xl font-semibold dark:text-white">
+                        <h3 className="text-xl font-semibold text-white">
                           {project.name}
                         </h3>
                       </div>
 
-                      <p className="text-gray-600 dark:text-gray-300">
-                        {project.description}
-                      </p>
+                      <p className="text-[#bbbbbb]">{project.description}</p>
 
                       {/* Tech Stack Pills */}
                       <div className="flex flex-wrap gap-2">
                         {project.skills.map((skill) => (
                           <span
                             key={skill.name}
-                            className="rounded-full bg-white px-4 py-1 text-sm font-medium shadow-lg dark:bg-gray-800 dark:text-white"
+                            className="rounded-sm bg-[#2a2d2e] px-3 py-1 text-xs font-medium text-[#bbbbbb]"
                           >
                             {skill.name}
                           </span>
@@ -109,7 +117,7 @@ const ProjectShowcase = () => {
                             onClick={() => setSelectedProject(project)}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="flex items-center gap-2 rounded-lg bg-Secondary px-6 py-2 text-white transition-colors hover:bg-Secondary/90"
+                            className="flex items-center gap-2 rounded-sm bg-[#007acc] px-4 py-2 text-white transition-colors hover:bg-[#007acc]/90"
                           >
                             View Details
                             <ArrowRight className="h-4 w-4" />
@@ -129,7 +137,7 @@ const ProjectShowcase = () => {
                             href={project.github_link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="rounded-full bg-black p-2 text-white transition-transform hover:scale-110 dark:bg-white dark:text-black"
+                            className="rounded-full bg-[#333333] p-2 text-white transition-transform hover:scale-110 hover:bg-[#444444]"
                           >
                             <GithubIcon className="h-5 w-5" />
                           </a>
@@ -140,7 +148,7 @@ const ProjectShowcase = () => {
                             href={project.hosted_link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="rounded-full bg-Secondary p-2 text-white transition-transform hover:scale-110"
+                            className="rounded-full bg-[#007acc] p-2 text-white transition-transform hover:scale-110 hover:bg-[#007acc]/90"
                           >
                             <LinkIcon className="h-5 w-5" />
                           </a>
@@ -152,10 +160,23 @@ const ProjectShowcase = () => {
 
                 {/* Timeline Indicator */}
                 {idx !== projects.length - 1 && (
-                  <div className="absolute left-1/2 mt-16 h-16 w-px -translate-x-1/2 bg-gradient-to-b from-Secondary to-transparent" />
+                  <div className="absolute left-1/2 mt-16 h-16 w-px -translate-x-1/2 bg-gradient-to-b from-[#007acc] to-transparent" />
                 )}
               </motion.div>
             ))}
+          </div>
+        </div>
+
+        {/* VS Code Status Bar */}
+        <div className="fixed bottom-0 left-0 flex w-full items-center justify-between bg-[#007acc] px-4 py-1 text-xs text-white">
+          <div className="flex items-center">
+            <span className="mr-4">main*</span>
+            <span>UTF-8</span>
+          </div>
+          <div className="flex items-center">
+            <span className="mr-4">TypeScript React</span>
+            <span className="mr-4">Ln 1, Col 1</span>
+            <span>Spaces: 2</span>
           </div>
         </div>
       </div>
