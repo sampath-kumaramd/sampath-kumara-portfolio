@@ -44,7 +44,7 @@ interface Repository {
 
 export default function RepositoryPage() {
   const params = useParams();
-  const slug = params.slug as string;
+  const slug = params?.slug as string;
   const [repository, setRepository] = useState<Repository | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -215,7 +215,7 @@ export default function RepositoryPage() {
         </div>
 
         {/* Repository Stats */}
-        <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+        {/* <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
           <div className="rounded border border-[#333333] bg-[#252526] p-4">
             <div className="mb-2 flex items-center text-[#bbbbbb]">
               <Star className="mr-2 h-4 w-4 text-yellow-500" />
@@ -255,24 +255,77 @@ export default function RepositoryPage() {
               {repository.open_issues_count}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Repository Details */}
-        <Tabs defaultValue="overview" className="mb-8">
+        <Tabs defaultValue="readme" className="mb-8">
           <TabsList className="mb-4 border-b border-[#333333] bg-transparent">
-            <TabsTrigger
-              value="overview"
-              className="data-[state=active]:border-b-2 data-[state=active]:border-[#007acc] data-[state=active]:bg-transparent"
-            >
-              Overview
-            </TabsTrigger>
             <TabsTrigger
               value="readme"
               className="data-[state=active]:border-b-2 data-[state=active]:border-[#007acc] data-[state=active]:bg-transparent"
             >
               README
             </TabsTrigger>
+            <TabsTrigger
+              value="overview"
+              className="data-[state=active]:border-b-2 data-[state=active]:border-[#007acc] data-[state=active]:bg-transparent"
+            >
+              Overview
+            </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="readme">
+            <div className="rounded border border-[#333333] bg-[#252526] p-6">
+              <div className="prose prose-invert max-w-none">
+                {repository.readme?.split('\n').map((line, index) => {
+                  if (line.startsWith('# ')) {
+                    return (
+                      <h1
+                        key={index}
+                        className="mb-4 text-2xl font-bold text-white"
+                      >
+                        {line.substring(2)}
+                      </h1>
+                    );
+                  } else if (line.startsWith('## ')) {
+                    return (
+                      <h2
+                        key={index}
+                        className="mb-3 text-xl font-semibold text-white"
+                      >
+                        {line.substring(3)}
+                      </h2>
+                    );
+                  } else if (line.startsWith('- ')) {
+                    return (
+                      <li key={index} className="ml-4 text-[#bbbbbb]">
+                        {line.substring(2)}
+                      </li>
+                    );
+                  } else if (line === '') {
+                    return <br key={index} />;
+                  } else if (line === '```bash') {
+                    return (
+                      <div
+                        key={index}
+                        className="font-mono mt-2 rounded bg-[#1e1e1e] p-4 text-sm text-[#bbbbbb]"
+                      >
+                        Code block:
+                      </div>
+                    );
+                  } else if (line === '```') {
+                    return <div key={index}></div>;
+                  } else {
+                    return (
+                      <p key={index} className="mb-2 text-[#bbbbbb]">
+                        {line}
+                      </p>
+                    );
+                  }
+                })}
+              </div>
+            </div>
+          </TabsContent>
 
           <TabsContent value="overview" className="space-y-6">
             <div className="rounded border border-[#333333] bg-[#252526] p-6">
@@ -330,59 +383,6 @@ export default function RepositoryPage() {
                 <span className="text-[#bbbbbb]">
                   This repository is actively maintained
                 </span>
-              </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="readme">
-            <div className="rounded border border-[#333333] bg-[#252526] p-6">
-              <div className="prose prose-invert max-w-none">
-                {repository.readme?.split('\n').map((line, index) => {
-                  if (line.startsWith('# ')) {
-                    return (
-                      <h1
-                        key={index}
-                        className="mb-4 text-2xl font-bold text-white"
-                      >
-                        {line.substring(2)}
-                      </h1>
-                    );
-                  } else if (line.startsWith('## ')) {
-                    return (
-                      <h2
-                        key={index}
-                        className="mb-3 text-xl font-semibold text-white"
-                      >
-                        {line.substring(3)}
-                      </h2>
-                    );
-                  } else if (line.startsWith('- ')) {
-                    return (
-                      <li key={index} className="ml-4 text-[#bbbbbb]">
-                        {line.substring(2)}
-                      </li>
-                    );
-                  } else if (line === '') {
-                    return <br key={index} />;
-                  } else if (line === '```bash') {
-                    return (
-                      <div
-                        key={index}
-                        className="font-mono mt-2 rounded bg-[#1e1e1e] p-4 text-sm text-[#bbbbbb]"
-                      >
-                        Code block:
-                      </div>
-                    );
-                  } else if (line === '```') {
-                    return <div key={index}></div>;
-                  } else {
-                    return (
-                      <p key={index} className="mb-2 text-[#bbbbbb]">
-                        {line}
-                      </p>
-                    );
-                  }
-                })}
               </div>
             </div>
           </TabsContent>

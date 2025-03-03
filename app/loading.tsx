@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Loading() {
   return (
-    <div className="flex h-screen w-full items-center justify-center dark:bg-background">
+    <div className="flex h-screen w-full items-center justify-center">
       <motion.div
         className="flex items-center text-4xl font-bold tracking-wider"
         initial={{ opacity: 0 }}

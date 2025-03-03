@@ -20,7 +20,7 @@ const SkillsSection: React.FC = () => {
   );
 
   useEffect(() => {
-    const category = searchParams.get('category');
+    const category = searchParams?.get('category');
     if (
       category &&
       (category === 'All' ||
@@ -35,7 +35,7 @@ const SkillsSection: React.FC = () => {
   }, [searchParams]);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 bg-[#1e1e1e] p-4">
       {/* Category filters */}
       <div className="border-b border-[#333333] bg-[#252526]">
         <nav className="-mb-px flex flex-wrap">

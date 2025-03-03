@@ -32,7 +32,9 @@ const formSchema = z.object({
     message: 'First name must be at least 2 characters.',
   }),
   lastName: z.string().optional(),
-  email: z.string().optional(),
+  email: z.string().email({
+    message: 'Please enter a valid email address.',
+  }),
   phoneNumber: z.string().optional(),
   service: z.string().optional(),
   message: z.string().min(5, {
@@ -144,15 +146,16 @@ export default function ContactForm() {
             <div className="mb-4 flex items-center space-x-2 md:mb-8">
               <Code2 className="h-6 w-6 text-[#007acc] md:h-8 md:w-8" />
               <p className="text-3xl font-bold text-[#007acc] md:text-4xl lg:text-6xl">
-                Let&apos;s chat.
+                Let&apos;s connect.
               </p>
             </div>
 
             <div className="text-2xl font-bold text-white md:text-3xl lg:text-4xl">
-              Tell me about your <br className="hidden md:block" /> project.
+              I&apos;d love to hear <br className="hidden md:block" /> from you!
             </div>
             <p className="py-3 text-lg text-gray-300 md:py-5 md:text-xl">
-              Let&apos;s create something together ✌️
+              Whether it&apos;s a project idea, question, or just to say hello -
+              I&apos;m always open to connecting with like-minded people ✌️
             </p>
 
             <div className="mt-4 space-y-3 md:mt-8 md:space-y-4">
@@ -180,7 +183,7 @@ export default function ContactForm() {
             <div className="relative col-span-2 grid rounded-lg border border-[#333333] bg-[#252526] p-4 backdrop-blur-sm md:p-8">
               <h2 className="mb-8 flex items-center space-x-3 text-2xl font-bold text-[#007acc] md:mb-16 md:text-3xl">
                 <SendHorizontal className="h-6 w-6 md:h-8 md:w-8" />
-                <span>Send me a message 🚀</span>
+                <span>Reach out anytime 🚀</span>
               </h2>
 
               <Form {...form}>
@@ -233,6 +236,7 @@ export default function ContactForm() {
                             placeholder="Email address"
                             {...field}
                             className="rounded border-[#3c3c3c] bg-[#3c3c3c] text-white placeholder:text-gray-400"
+                            required
                           />
                         </FormControl>
                         <FormMessage className="text-red-400" />
@@ -279,7 +283,9 @@ export default function ContactForm() {
                     whileTap={{ scale: 0.98 }}
                   >
                     <span className="relative z-10 flex items-center justify-center space-x-2">
-                      <span>{isLoading ? 'Sending...' : 'Send message'}</span>
+                      <span>
+                        {isLoading ? 'Sending...' : 'Connect with me'}
+                      </span>
                       <SendHorizontal className="h-4 w-4 transition-transform group-hover:translate-x-1 md:h-5 md:w-5" />
                     </span>
                   </motion.button>

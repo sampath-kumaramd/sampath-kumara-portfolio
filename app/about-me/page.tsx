@@ -37,7 +37,7 @@ const AboutMe: React.FC = () => {
   >('summary');
 
   useEffect(() => {
-    const tab = searchParams.get('tab');
+    const tab = searchParams?.get('tab');
     if (
       tab &&
       (tab === 'summary' ||
@@ -54,7 +54,7 @@ const AboutMe: React.FC = () => {
       duration: 'Expected in 2025',
       institute: 'University of Moratuwa',
       subject: 'B.Sc.(Hons.) in Information Technology',
-      result: 'CGPA - 3.1+',
+      result: 'CGPA : 3.1',
     },
   ];
 
@@ -126,7 +126,7 @@ const AboutMe: React.FC = () => {
                 transition={{ duration: 0.3 }}
                 className="text-[#bbbbbb]"
               >
-                <div className="grid grid-cols-12">
+                <div className="mt-8 grid grid-cols-12">
                   <div className="col-span-12 md:col-span-4">
                     <div className="inset-0 z-10 flex justify-center transition-opacity duration-300">
                       <Image
@@ -244,7 +244,13 @@ const AboutMe: React.FC = () => {
                           'React',
                           'Angular',
                           'TypeScript',
+                          'TailwindCSS',
+                          'Shadcn UI',
                           'Node.js',
+                          'React Query',
+                          'Framer Motion',
+                          'React Hook Form',
+                          'GraphQL',
                           'Spring Boot',
                           'Tailwind CSS',
                           'MongoDB',

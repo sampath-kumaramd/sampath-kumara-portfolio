@@ -114,41 +114,21 @@ const TestimonialCard: React.FC<Testimonial> = ({
                   <span key={i} className="block">
                     {line.split(' ').map((word, j) => {
                       let className = '';
-                      // Programming keywords
+                      // Highlight positive feedback and skills
                       if (
                         word.match(
-                          /^(function|const|let|var|return|if|else|for|while)$/
+                          /\b(excellent|outstanding|amazing|great|good|impressive|skilled|dedicated|professional|quick|responsive|reliable|thorough|committed|organized|collaborative|leadership|efficient|innovative|proficiency|expertise|talented|valuable|recommended|quality|exceeded|expectations|impressive|smart|fascinatingly|enjoyable|enlightening|successful|happy|kindness|friendly|patient|high-quality|couldn't be happier|highly recommend|top-quality|easy to work with|glad|lovely|dream|truth|bonus|heart)\b/i
                         )
                       ) {
-                        className = 'text-purple-400';
+                        className = 'text-Secondary font-semibold';
                       }
-                      // Technical skills and frameworks
+                      // Technical skills and frameworks - keep these highlighted
                       else if (
                         word.match(
                           /\b(React|Next\.js|Angular|MERN|Node|JavaScript|TypeScript|UI|UX|MongoDB|Express|API|frontend|backend|full-stack|responsive|CSS|HTML|Figma)\b/i
                         )
                       ) {
-                        className = 'text-Secondary font-semibold';
-                      }
-                      // Class names
-                      else if (word.match(/^[A-Z][a-zA-Z]*$/)) {
-                        className = 'text-yellow-300';
-                      }
-                      // Strings
-                      else if (word.match(/^".*"$|^'.*'$/)) {
-                        className = 'text-green-400';
-                      }
-                      // Numbers
-                      else if (word.match(/^\d+$/)) {
                         className = 'text-blue-400';
-                      }
-                      // Soft skills and positive attributes
-                      else if (
-                        word.match(
-                          /\b(professional|dedicated|skilled|expertise|proficiency|innovative|efficient|leadership|collaborative|organized|committed|reliable|responsive|quick|thorough)\b/i
-                        )
-                      ) {
-                        className = 'text-blue-300 font-medium';
                       }
                       return (
                         <span key={j} className={className}>

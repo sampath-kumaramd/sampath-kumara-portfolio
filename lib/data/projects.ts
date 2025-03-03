@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     name: 'AI Product Selector',
     description:
-      "This AI tool analyzes key metrics like last month's sales, market demand, popularity, and customer satisfaction to identify top-performing products in seconds. This allows sellers to stay ahead of trends, optimize their inventory, and boost customer satisfaction.",
+      "AnalyticAI's Product Selector is an AI-driven tool that simplifies product selection for Amazon sellers. It analyzes performance metrics like demand, popularity, competition, and sales to provide comprehensive market insights, streamlining the decision-making process. The tool helps sellers stay ahead of trends, optimize inventory, and boost customer satisfaction.",
     heroImage: '/projects/AI Product selector.png',
     images: [
       '/projects/AI-product-selector-1.png',
@@ -16,9 +16,13 @@ export const projects: Project[] = [
     ],
     skills: [
       { name: 'Next.js' },
+      { name: 'TypeScript' },
       { name: 'TailwindCSS' },
       { name: 'React Query' },
-      { name: 'Shade cn' },
+      { name: 'Shadcn UI' },
+      { name: 'Zustand' },
+      { name: 'React Hook Form' },
+      { name: 'Plotly.js' },
     ],
     hosted_link: 'https://www.productselector.analytic-ai.com/',
     client: 'Analytic AI',
@@ -30,21 +34,26 @@ export const projects: Project[] = [
     endDate: '2024-09-01',
     features: [
       {
-        title: 'Search and filter products',
+        title: 'AI-Powered Product Search',
         description:
-          'User can search and filter products by name, category, and price.',
+          'Search for products by keyword or ASIN with AI assistance.',
       },
       {
-        title: 'Sort products',
-        description: 'User can sort products by name, category, and price.',
+        title: 'Market Analysis',
+        description: 'Get detailed insights about product performance metrics.',
       },
       {
-        title: 'Pagination',
-        description: 'User can paginate through the products.',
+        title: 'Profit Analysis',
+        description:
+          'Calculate potential profits with FBA and FBM fulfillment options.',
       },
       {
-        title: 'Responsive design',
-        description: 'The application is responsive and works on all devices.',
+        title: 'Real-time Data Streaming',
+        description: 'Stream AI-generated insights and analysis in real-time.',
+      },
+      {
+        title: 'Responsive Design',
+        description: 'Optimized for both desktop and mobile devices.',
       },
     ],
   },
@@ -98,7 +107,7 @@ export const projects: Project[] = [
   {
     name: 'FIT Sixes 2024',
     description:
-      'This is a website for FIT Sixes 2024, a sports event organized by FIT, IT Faculty of University of Moratuwa. It is a website that allows users to register for the Cricket Tournament, view the schedule, and view the results.',
+      'FIT SIXES is a friendly six-a-side cricket tournament organized by the Faculty of Information Technology at the University of Moratuwa, Sri Lanka. The event brings together teams from the IT faculty and industry partners, featuring cricket matches, mini-games, fun activities, and an afterparty celebration. This website serves as the central platform for tournament information, registration, live scores, and more.',
     heroImage: '/projects/fit-sixes.png',
     images: [
       '/projects/fit-sixes-1.png',
@@ -110,84 +119,49 @@ export const projects: Project[] = [
     ],
     skills: [
       { name: 'Next.js' },
+      { name: 'TypeScript' },
       { name: 'TailwindCSS' },
-      { name: 'React Query' },
-      { name: 'Shade cn' },
+      { name: 'Shadcn UI' },
+      { name: 'React Hook Form' },
+      { name: 'Framer Motion' },
+      { name: 'Firebase' },
+      { name: 'React PDF' },
     ],
     hosted_link: 'https://fitsixes.com/',
-    client: 'IT Faculty Students Union , University of Moratuwa',
+    client: 'IT Faculty Students Union, University of Moratuwa',
     role: 'Frontend Developer',
     status: 'Completed',
     startDate: '2024-10-01',
     endDate: '2024-11-01',
     features: [
       {
-        title: 'Register for the tournament',
+        title: 'Live Scores',
+        description: 'Real-time match updates for all tournament games.',
+      },
+      {
+        title: 'Team Registration',
         description:
-          'User can register for the tournament by providing their details.',
+          'Online registration system for companies to join the tournament.',
       },
       {
-        title: 'View the schedule',
-        description: 'User can view the schedule of the tournament.',
+        title: 'Invoice Generation',
+        description: 'Automated invoice creation for registration fees.',
       },
       {
-        title: 'View the results',
-        description: 'User can view the results of the tournament.',
+        title: 'Authentication',
+        description: 'Secure login and registration system with JWT.',
       },
       {
-        title: 'Responsive design',
-        description: 'The application is responsive and works on all devices.',
-      },
-    ],
-  },
-  {
-    name: 'DOHM Landing Page',
-    description:
-      'This is a landing page for DOHM, a company that provides home maintenance services. It is a website that allows users to contact the company and view the services they offer.',
-    heroImage: '/projects/dohm.png',
-    images: [
-      '/projects/dohm-1.png',
-      '/projects/dohm-2.png',
-      '/projects/dohm-3.png',
-      '/projects/dohm-mobile-1.png',
-      '/projects/dohm-mobile-2.png',
-      '/projects/dohm-mobile-3.png',
-    ],
-    skills: [
-      { name: 'Next.js' },
-      { name: 'TailwindCSS' },
-      { name: 'React Query' },
-      { name: 'Shade cn' },
-    ],
-    hosted_link: 'https://dohm-v2.vercel.app/',
-    client: 'DOHM',
-    role: 'Frontend Developer',
-    status: 'Completed',
-    startDate: '2024-08-21',
-    endDate: '2024-08-30',
-    features: [
-      {
-        title: 'Contact the company',
-        description: 'User can contact the company by providing their details.',
-      },
-      {
-        title: 'View the services',
-        description: 'User can view the services offered by the company.',
-      },
-      {
-        title: 'View the services',
-        description: 'User can view the services offered by the company.',
-      },
-      {
-        title: 'Responsive design',
-        description: 'The application is responsive and works on all devices.',
+        title: 'Tournament Information',
+        description:
+          'Comprehensive details about rules, regulations, and event details.',
       },
     ],
   },
   {
     name: 'BIM - Landing Page',
     description:
-      'BIM is a global dating app connecting singles worldwide. It uses advanced matching algorithms, supports multiple languages, and ensures user safety through rigorous verification. Features include text, voice, and video communication, cultural exchange, and travel planning. BIM offers both free and premium plans, fostering a supportive community and meaningful cross-cultural connections.',
+      'BIM (Better International Match) is a global dating application that connects singles worldwide. This multilingual platform features support for English, French, Spanish, German, Italian, and Luxembourgish, with a pre-registration system allowing users to sign up before the official launch. The platform ensures user safety through rigorous verification and offers comprehensive communication features.',
     heroImage: '/projects/bim.png',
     images: [
       '/projects/bim-1.png',
@@ -202,7 +176,10 @@ export const projects: Project[] = [
       { name: 'I18n' },
       { name: 'Google Analytics' },
       { name: 'TailwindCSS' },
-      { name: 'Shade cn' },
+      { name: 'Shadcn UI' },
+      { name: 'Framer Motion' },
+      { name: 'React Hook Form' },
+      { name: 'Nodemailer' },
     ],
     hosted_link: 'https://bim-web.vercel.app/en',
     client: 'Vincent',
@@ -212,20 +189,25 @@ export const projects: Project[] = [
     endDate: '2024-08-12',
     features: [
       {
-        title: 'Contact the company',
-        description: 'User can contact the company by providing their details.',
+        title: 'Internationalization',
+        description: 'Full support for multiple languages with easy switching.',
       },
       {
-        title: 'View the services',
-        description: 'User can view the services offered by the company.',
+        title: 'Pre-registration System',
+        description: 'Collects user information and stores it in Google Drive.',
       },
       {
-        title: 'View the services',
-        description: 'User can view the services offered by the company.',
+        title: 'Contact Form',
+        description:
+          'Secure form with reCAPTCHA verification for user inquiries.',
       },
       {
-        title: 'Responsive design',
-        description: 'The application is responsive and works on all devices.',
+        title: 'Cookie Consent',
+        description: 'GDPR-compliant cookie consent management.',
+      },
+      {
+        title: 'Responsive Design',
+        description: 'Optimized for mobile, tablet, and desktop devices.',
       },
     ],
   },
@@ -277,7 +259,7 @@ export const projects: Project[] = [
   {
     name: 'Digital Instructions Market',
     description:
-      'Digital Instructions Market is a platform for selling digital instructions.',
+      'Digital Instructions Market is an Angular-based web application that serves as a marketplace for digital workflows and instruction guides. The platform allows users to discover, search, and access various industrial workflows and guides from different companies and industries.',
     heroImage: '/projects/DIM.png',
     images: [
       '/projects/DIM-1.png',
@@ -290,9 +272,10 @@ export const projects: Project[] = [
     skills: [
       { name: 'Angular' },
       { name: 'Angular Material' },
-      { name: 'Srapi' },
+      { name: 'Strapi' },
       { name: 'TailwindCSS' },
-      { name: 'Bootstrap' },
+      { name: 'Flowbite' },
+      { name: 'RxJS' },
     ],
     hosted_link: 'https://digital-instructions-market.vercel.app/home',
     client: 'Fadler',
@@ -302,15 +285,34 @@ export const projects: Project[] = [
     endDate: '2024-06-02',
     features: [
       {
-        title: 'Responsive design',
-        description: 'The application is responsive and works on all devices.',
+        title: 'Workflow Discovery',
+        description:
+          'Browse through a curated collection of digital instructions and workflows.',
+      },
+      {
+        title: 'Search Functionality',
+        description: 'Search across companies, names, and categories.',
+      },
+      {
+        title: 'Dark/Light Theme',
+        description:
+          'Toggle between dark and light themes with persistent user preference.',
+      },
+      {
+        title: 'Workflow Details',
+        description:
+          'View detailed information about workflows including FAQs.',
+      },
+      {
+        title: 'Category Filtering',
+        description: 'Browse workflows by specific industrial categories.',
       },
     ],
   },
   {
-    name: 'Product Selector',
+    name: 'Shopping Center',
     description:
-      'Product Selector is a tool to seach and filters products based on the metrics. and show the top products.',
+      'Shopping Center (Eu Amo Desconto) is a comprehensive destination for consumers seeking the best deals, coupons, and discounts across various products and services. The platform aims to make saving money more accessible and rewarding by providing verified and regularly updated offers from multiple marketplaces.',
     heroImage: '/projects/shopping-center.png',
     images: [
       '/projects/shopping-center-1.png',
@@ -321,11 +323,13 @@ export const projects: Project[] = [
       '/projects/shopping-center-mobile-3.png',
     ],
     skills: [
-      { name: 'Angular' },
-      { name: 'Angular Material' },
-      { name: 'Srapi' },
+      { name: 'Next.js' },
+      { name: 'TypeScript' },
       { name: 'TailwindCSS' },
-      { name: 'Bootstrap' },
+      { name: 'Radix UI' },
+      { name: 'Shadcn UI' },
+      { name: 'React Hook Form' },
+      { name: 'Embla Carousel' },
     ],
     hosted_link: 'https://shopping-center-snowy.vercel.app/',
     client: 'Antonio',
@@ -335,17 +339,27 @@ export const projects: Project[] = [
     endDate: '2024-05-02',
     features: [
       {
-        title: 'Search and filter products',
+        title: 'Curated Deals',
         description:
-          'User can search and filter products by name, category, and price.',
+          'Carefully selected offers across electronics, fashion, home decor, travel, food, and more.',
       },
       {
-        title: 'Sort products',
-        description: 'User can sort products by name, category, and price.',
+        title: 'Multiple Marketplace Integration',
+        description:
+          'Connect with Amazon, Americanas, Mercado Livre, and other popular marketplaces.',
       },
       {
-        title: 'Pagination',
-        description: 'User can paginate through the products.',
+        title: 'Product Filtering',
+        description:
+          'Filter products by price range, marketplace, and categories.',
+      },
+      {
+        title: 'Multiple View Options',
+        description: 'Toggle between grid and list views for products.',
+      },
+      {
+        title: 'Social Media Integration',
+        description: 'Connect via Telegram, WhatsApp, Facebook, and Instagram.',
       },
     ],
   },
