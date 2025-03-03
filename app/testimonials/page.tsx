@@ -15,9 +15,6 @@ import {
 } from '@/components/ui/carousel';
 import { Testimonial } from '@/types/testimonial';
 import { testimonials } from '@/lib/data/testimonial';
-import Meteors from '@/components/ui/meteors';
-import { Footer } from '@/components/footer';
-import Link from 'next/link';
 
 const TestimonialCard: React.FC<Testimonial> = ({
   content,
@@ -242,7 +239,7 @@ const ClientTestimonialsCarousel: React.FC = () => {
   }, [api]);
 
   return (
-    <section className="relative flex min-h-[90vh] flex-col justify-center bg-gray-950 dark:bg-gray-950 md:pt-0">
+    <section className="relative flex min-h-[90vh] flex-col justify-center md:pt-0">
       <div className="container mx-auto px-4">
         <h2 className="mb-16 text-center">
           <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
@@ -287,8 +284,8 @@ const ClientTestimonialsCarousel: React.FC = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden md:block" />
-          <CarouselNext className="hidden md:block" />
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
         </Carousel>
         <div className="mt-12 flex items-center justify-center gap-2">
           {[...Array(count)].map((_, i) => (

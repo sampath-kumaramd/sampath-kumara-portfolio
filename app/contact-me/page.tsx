@@ -26,7 +26,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { event } from '@/lib/analytics';
-import { Footer } from '@/components/footer';
 
 const formSchema = z.object({
   firstName: z.string().min(2, {
@@ -290,19 +289,6 @@ export default function ContactForm() {
           </motion.div>
         </div>
       </motion.div>
-
-      {/* VS Code Status Bar */}
-      <div className="fixed bottom-0 left-0 flex w-full items-center justify-between bg-[#007acc] px-4 py-1 text-xs text-white">
-        <div className="flex items-center">
-          <span className="mr-4">main*</span>
-          <span>UTF-8</span>
-        </div>
-        <div className="flex items-center">
-          <span className="mr-4">TypeScript React</span>
-          <span className="mr-4">Ln 1, Col 1</span>
-          <span>Spaces: 2</span>
-        </div>
-      </div>
     </div>
   );
 }
