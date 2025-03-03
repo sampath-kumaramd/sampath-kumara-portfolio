@@ -143,8 +143,8 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
   ];
 
   const bottomIcons = [
-    { icon: User, id: 'about', tooltip: 'About Me' },
-    { icon: Settings, id: 'settings', tooltip: 'Settings' },
+    { icon: User, id: 'about' },
+    { icon: Settings, id: 'settings' },
   ];
 
   const explorerItems: ExplorerItem[] = [
@@ -773,15 +773,11 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
                     activeSidebar === item.id &&
                       'border-l-2 border-[#007acc] bg-[#37373d]'
                   )}
-                  onClick={() => handleSidebarClick(item.id)}
                 >
                   <item.icon
                     size={24}
                     className="text-[#858585] group-hover:text-white"
                   />
-                </div>
-                <div className="absolute left-12 top-1/2 z-50 hidden -translate-y-1/2 whitespace-nowrap rounded bg-[#252526] px-2 py-1 text-xs group-hover:block">
-                  {item.tooltip}
                 </div>
               </div>
             ))}
@@ -929,7 +925,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
             </div>
             <div className="flex-1 overflow-auto">{children}</div>
             <div className="flex h-6 items-center justify-between border-t border-[#333333] bg-[#007acc] px-2 text-xs">
-              <div className="flex items-center gap-2">
+              <div className="hidden items-center gap-2 sm:flex">
                 <span>Launched</span>
                 <div className="flex items-center gap-1">
                   <span className="rounded bg-[#1e1e1e] px-1">0 ⚠️</span>
