@@ -30,7 +30,7 @@ export function LayoutSwitcher() {
       default:
         return {
           icon: <Layout className="h-[1.2rem] w-[1.2rem]" />,
-          label: 'Default Layout',
+          label: 'Normal Theme',
         };
     }
   };
@@ -62,7 +62,7 @@ export function LayoutSwitcher() {
                     className="hover:bg-primary/10"
                   >
                     <Layout className="mr-2 h-4 w-4" />
-                    Default Layout
+                    Normal Theme
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() => setLayout('vscode')}

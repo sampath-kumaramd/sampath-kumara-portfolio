@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type LayoutType = 'default' | 'vscode' | 'intellij';
+type LayoutType = 'default' | 'vscode';
 
 interface LayoutState {
   currentLayout: LayoutType;
@@ -11,7 +11,7 @@ interface LayoutState {
 export const useLayoutStore = create<LayoutState>()(
   persist(
     (set) => ({
-      currentLayout: 'default',
+      currentLayout: 'vscode',
       setLayout: (layout) => set({ currentLayout: layout }),
     }),
     {

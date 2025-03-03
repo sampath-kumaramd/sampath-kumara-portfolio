@@ -34,6 +34,7 @@ export default function RootLayout({
             window.isMobile = isMobileDevice();
           `}
         </Script>
+        <link rel="icon" href="/logo-white.png" />
       </head>
       <body className={inter.className}>
         <ThemeProvider

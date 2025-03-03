@@ -146,7 +146,10 @@ export default function SourceControl() {
               >
                 <div
                   className="flex cursor-pointer items-center justify-between p-3 hover:bg-[#2a2d2e]"
-                  onClick={() => toggleRepo(repo.name)}
+                  onClick={() => {
+                    toggleRepo(repo.name);
+                    viewRepoCode(repo.url, repo.name);
+                  }}
                 >
                   <div className="flex items-center">
                     {expandedRepo === repo.name ? (
