@@ -42,12 +42,11 @@ import {
 } from 'lucide-react';
 import SearchComponent from './search';
 import SourceControl from './source-control';
-import Extensions from './extensions';
-import RunDebug from './run-debug';
 import VSCodeGuide from './user-guide';
 import { projects } from '@/lib/data/projects';
 import { skillCategories } from '@/lib/data/skills';
 import { useTheme } from 'next-themes';
+import RunDebug from './run-debug';
 
 interface VSCodeLayoutProps {
   children: React.ReactNode;
@@ -99,6 +98,16 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
   const [showRepoIframe, setShowRepoIframe] = useState(false);
+  const [contextMenu, setContextMenu] = useState<{
+    visible: boolean;
+    x: number;
+    y: number;
+    item?: { path: string; label: string };
+  }>({
+    visible: false,
+    x: 0,
+    y: 0,
+  });
 
   const toggleFolder = (folderName: keyof typeof folderStates) => {
     setFolderStates((prev) => ({
@@ -113,6 +122,9 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
     if (id === 'explorer' && !folderStates.explorer) {
       toggleFolder('explorer');
     }
+    if (id === 'run') {
+      router.push('/vscode/playground/javascript');
+    }
   };
 
   const sidebarIcons = [
@@ -120,7 +132,6 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
     { icon: Search, id: 'search', tooltip: 'Search' },
     { icon: GitBranch, id: 'git', tooltip: 'Public Repositories' },
     { icon: Play, id: 'run', tooltip: 'Run and Debug' },
-    { icon: ExternalLink, id: 'extensions', tooltip: 'Tools' },
   ];
 
   const bottomIcons = [
@@ -496,6 +507,107 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
     }
   }, [pathname]); // Watch pathname changes instead of using router events
 
+  // Function to handle right-click on tabs
+  const handleTabRightClick = (
+    e: React.MouseEvent,
+    tab: { path: string; label: string }
+  ) => {
+    e.preventDefault(); // This should prevent the browser's context menu
+    e.stopPropagation(); // Stop event bubbling
+
+    setContextMenu({
+      visible: true,
+      x: e.clientX,
+      y: e.clientY,
+      item: tab,
+    });
+
+    return false; // Additional prevention
+  };
+
+  // Function to close context menu
+  const closeContextMenu = () => {
+    setContextMenu({ visible: false, x: 0, y: 0 });
+  };
+
+  // Close all tabs except the active one
+  const closeOtherTabs = () => {
+    if (contextMenu.item) {
+      const newTabs = openTabs.filter(
+        (tab) => tab.path === contextMenu.item?.path
+      );
+      setOpenTabs(newTabs);
+      setActiveTab(contextMenu.item.path);
+      router.push(contextMenu.item.path);
+    }
+    closeContextMenu();
+  };
+
+  // Close all tabs to the right of the selected tab
+  const closeTabsToRight = () => {
+    if (contextMenu.item) {
+      const tabIndex = openTabs.findIndex(
+        (tab) => tab.path === contextMenu.item?.path
+      );
+      if (tabIndex !== -1) {
+        const newTabs = openTabs.slice(0, tabIndex + 1);
+        setOpenTabs(newTabs);
+
+        // If active tab was closed, set the clicked tab as active
+        if (!newTabs.some((tab) => tab.path === activeTab)) {
+          setActiveTab(contextMenu.item.path);
+          router.push(contextMenu.item.path);
+        }
+      }
+    }
+    closeContextMenu();
+  };
+
+  // Close all tabs
+  const closeAllTabs = () => {
+    // Keep at least one tab open (home)
+    setOpenTabs([{ path: '/', label: 'welcome.tsx' }]);
+    setActiveTab('/');
+    router.push('/');
+    closeContextMenu();
+  };
+
+  // Add event listener to close context menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      if (contextMenu.visible) {
+        closeContextMenu();
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [contextMenu.visible]);
+
+  // Add this useEffect near your other useEffect hooks
+  useEffect(() => {
+    // Function to prevent default context menu on the entire app
+    const preventDefaultContextMenu = (e: MouseEvent) => {
+      // Only prevent default in our app areas, not everywhere
+      const target = e.target as HTMLElement;
+      if (target.closest('.tab-element')) {
+        // Add this class to your tabs
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    // Add the event listener
+    document.addEventListener('contextmenu', preventDefaultContextMenu);
+
+    // Clean up
+    return () => {
+      document.removeEventListener('contextmenu', preventDefaultContextMenu);
+    };
+  }, []);
+
   return (
     <div className="flex h-screen w-full flex-col overflow-hidden bg-[#1e1e1e] text-white">
       {/* Top Menu Bar */}
@@ -644,7 +756,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
 
         {/* Explorer Sidebar */}
         {activeSidebar === 'explorer' && folderStates.explorer && (
-          <div className="w-60 overflow-y-auto border-r border-[#333333] bg-[#252526]">
+          <div className="w-72 overflow-y-auto border-r border-[#333333] bg-[#252526]">
             <div className="p-2 text-xs font-medium uppercase text-[#bbbbbb]">
               EXPLORER
             </div>
@@ -682,32 +794,23 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
           </div>
         )}
         {activeSidebar === 'search' && (
-          <div className="w-60 overflow-y-auto border-r border-[#333333]">
+          <div className="w-72 overflow-y-auto border-r border-[#333333]">
             <SearchComponent />
           </div>
         )}
-
         {activeSidebar === 'git' && (
-          <div className="w-60 overflow-y-auto border-r border-[#333333]">
+          <div className="w-72 overflow-y-auto border-r border-[#333333]">
             <SourceControl />
           </div>
         )}
-
-        {activeSidebar === 'extensions' && (
-          <div className="w-72 overflow-y-auto border-r border-[#333333]">
-            <Extensions />
-          </div>
-        )}
-
         {activeSidebar === 'run' && (
-          <div className="w-60 overflow-y-auto border-r border-[#333333]">
+          <div className="w-72 overflow-y-auto border-r border-[#333333]">
             <RunDebug />
           </div>
         )}
-
-        {/* Main Content Area */}
         {(activeSidebar === 'explorer' ||
           activeSidebar === 'search' ||
+          activeSidebar === 'run' ||
           activeSidebar === 'git') && (
           <div className="flex flex-1 flex-col overflow-hidden bg-[#1e1e1e]">
             <div className="flex h-9 items-center overflow-x-auto border-b border-[#333333] bg-[#252526]">
@@ -718,7 +821,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
                     <div
                       key={tab.path}
                       className={cn(
-                        'flex h-full cursor-pointer items-center gap-2 border-t-2 border-transparent px-3 text-xs',
+                        'tab-element flex h-full cursor-pointer items-center gap-2 border-t-2 border-transparent px-3 text-xs',
                         tab.path === activeTab
                           ? 'border-t-[#007acc] bg-[#1e1e1e]'
                           : 'bg-[#2d2d2d] hover:bg-[#2a2a2a]'
@@ -727,6 +830,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
                         setActiveTab(tab.path);
                         router.push(tab.path);
                       }}
+                      onContextMenu={(e) => handleTabRightClick(e, tab)}
                     >
                       <TabIcon
                         size={14}
@@ -743,9 +847,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
                 })}
               </div>
             </div>
-
             <div className="flex-1 overflow-auto">{children}</div>
-
             <div className="flex h-6 items-center justify-between border-t border-[#333333] bg-[#007acc] px-2 text-xs">
               <div className="flex items-center gap-2">
                 <span>Launched</span>
@@ -764,6 +866,45 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
 
       {showGuide && (
         <VSCodeGuide isOpen={showGuide} onClose={() => setShowGuide(false)} />
+      )}
+
+      {contextMenu.visible && (
+        <div
+          className="fixed z-50 min-w-[180px] rounded border border-[#333333] bg-[#252526] py-1 shadow-lg"
+          style={{ left: contextMenu.x, top: contextMenu.y }}
+        >
+          <div
+            className="cursor-pointer px-4 py-1 text-xs text-[#bbbbbb] hover:bg-[#2a2d2e] hover:text-white"
+            onClick={() => {
+              if (contextMenu.item) {
+                closeTab(contextMenu.item.path, {
+                  stopPropagation: () => {},
+                } as React.MouseEvent);
+              }
+              closeContextMenu();
+            }}
+          >
+            Close
+          </div>
+          <div
+            className="cursor-pointer px-4 py-1 text-xs text-[#bbbbbb] hover:bg-[#2a2d2e] hover:text-white"
+            onClick={closeOtherTabs}
+          >
+            Close Others
+          </div>
+          <div
+            className="cursor-pointer px-4 py-1 text-xs text-[#bbbbbb] hover:bg-[#2a2d2e] hover:text-white"
+            onClick={closeTabsToRight}
+          >
+            Close to the Right
+          </div>
+          <div
+            className="cursor-pointer px-4 py-1 text-xs text-[#bbbbbb] hover:bg-[#2a2d2e] hover:text-white"
+            onClick={closeAllTabs}
+          >
+            Close All
+          </div>
+        </div>
       )}
     </div>
   );
