@@ -90,14 +90,63 @@ export default function RunDebug() {
               onClick={() => router.push('/vscode/playground/javascript')}
             >
               <Code size={14} className="text-[#75beff]" />
-              <span>JavaScript Playground</span>
+              <span>JavaScript </span>
+            </div>
+            <div
+              className="flex cursor-pointer items-center gap-2 px-2 py-1 text-xs hover:bg-[#2a2d2e]"
+              onClick={() => router.push('/vscode/playground/typescript')}
+            >
+              <Code size={14} className="text-[#75beff]" />
+              <span>TypeScript </span>
             </div>
             <div
               className="flex cursor-pointer items-center gap-2 px-2 py-1 text-xs hover:bg-[#2a2d2e]"
               onClick={() => router.push('/vscode/playground/python')}
             >
               <Code size={14} className="text-[#75beff]" />
-              <span>Python Playground</span>
+              <span>Python </span>
+            </div>
+            <div
+              className="flex cursor-pointer items-center gap-2 px-2 py-1 text-xs hover:bg-[#2a2d2e]"
+              onClick={() => router.push('/vscode/playground/java')}
+            >
+              <Code size={14} className="text-[#75beff]" />
+              <span>Java </span>
+            </div>
+            <div
+              className="flex cursor-pointer items-center gap-2 px-2 py-1 text-xs hover:bg-[#2a2d2e]"
+              onClick={() => router.push('/vscode/playground/cpp')}
+            >
+              <Code size={14} className="text-[#75beff]" />
+              <span>C++ </span>
+            </div>
+            <div
+              className="flex cursor-pointer items-center gap-2 px-2 py-1 text-xs hover:bg-[#2a2d2e]"
+              onClick={() => router.push('/vscode/playground/csharp')}
+            >
+              <Code size={14} className="text-[#75beff]" />
+              <span>C# </span>
+            </div>
+            <div
+              className="flex cursor-pointer items-center gap-2 px-2 py-1 text-xs hover:bg-[#2a2d2e]"
+              onClick={() => router.push('/vscode/playground/go')}
+            >
+              <Code size={14} className="text-[#75beff]" />
+              <span>Go </span>
+            </div>
+            <div
+              className="flex cursor-pointer items-center gap-2 px-2 py-1 text-xs hover:bg-[#2a2d2e]"
+              onClick={() => router.push('/vscode/playground/ruby')}
+            >
+              <Code size={14} className="text-[#75beff]" />
+              <span>Ruby </span>
+            </div>
+            <div
+              className="flex cursor-pointer items-center gap-2 px-2 py-1 text-xs hover:bg-[#2a2d2e]"
+              onClick={() => router.push('/vscode/playground/rust')}
+            >
+              <Code size={14} className="text-[#75beff]" />
+              <span>Rust </span>
             </div>
           </div>
         )}

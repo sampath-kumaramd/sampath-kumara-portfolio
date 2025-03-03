@@ -26,7 +26,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     setOutput('');
 
     try {
-      // For JavaScript code, we can use a safe evaluation approach
+      // For JavaScript/TypeScript code, we can use browser evaluation
       if (language === 'javascript' || language === 'typescript') {
         // Create a safe context for evaluation
         const consoleOutput: string[] = [];
@@ -75,11 +75,35 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
           setOutput(`Error: ${result.error}`);
         }
       } else {
-        // For other languages, we'd need a backend service
-        // This is a placeholder for demonstration
-        setOutput(
-          `Running ${language} code is not supported in the browser.\nThis would require a backend service.`
-        );
+        // For other languages, provide a more informative message
+        const supportedLanguages = [
+          'javascript',
+          'typescript',
+          'python',
+          'java',
+          'cpp',
+          'c++',
+          'csharp',
+          'c#',
+          'go',
+          'ruby',
+          'rust',
+        ];
+
+        if (supportedLanguages.includes(language)) {
+          setOutput(
+            `This is a demonstration of ${language} code.\n\n` +
+              `In a production environment, this would execute your ${language} code on a backend server.\n\n` +
+              `Currently, only JavaScript and TypeScript can be executed directly in the browser.\n\n` +
+              `Your code:\n\n${code}`
+          );
+        } else {
+          setOutput(
+            `Language "${language}" is not recognized.\n\n` +
+              `Supported languages for display: ${supportedLanguages.join(', ')}\n\n` +
+              `Only JavaScript and TypeScript can be executed directly in the browser.`
+          );
+        }
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
