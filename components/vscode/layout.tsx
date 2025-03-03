@@ -371,7 +371,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
       <div className="flex h-8 items-center justify-between border-b border-[#333333] bg-[#252526] px-2 text-xs">
         <div className="flex items-center">
           <div className="mr-2 flex h-full items-center">
-            <div className="h-4 w-4 text-[#007acc]"> S </div>
+            <div className="h-4 w-4 text-[#007acc]"> SK </div>
           </div>
           <div className="flex gap-4">
             {menuItems.map((item, index) => (
