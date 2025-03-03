@@ -259,6 +259,12 @@ const HeroSection = () => {
                 </motion.div>
               ))}
             </div>
+            <div className="mt-4 flex justify-center">
+              <p className="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                <VscSourceControl className="mr-1" /> Data sourced from GitHub
+                stats
+              </p>
+            </div>
           </motion.div>
         </div>
       </div>
