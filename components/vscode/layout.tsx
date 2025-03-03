@@ -134,7 +134,14 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
       isFolder: true,
       folderState: folderStates.aboutMe,
       setFolderState: () => toggleFolder('aboutMe'),
-      subItems: [{ icon: FileCode, label: 'page.tsx', href: '/about-me' }],
+      subItems: [
+        {
+          icon: FileCode,
+          label: 'page.tsx',
+          href: '/about-me',
+          isSingleFile: true,
+        },
+      ],
     },
 
     {
@@ -144,7 +151,14 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
       isFolder: true,
       folderState: folderStates.techStack,
       setFolderState: () => toggleFolder('techStack'),
-      subItems: [{ icon: FileCode, label: 'page.tsx', href: '/tech-stack' }],
+      subItems: [
+        {
+          icon: FileCode,
+          label: 'page.tsx',
+          href: '/tech-stack',
+          isSingleFile: true,
+        },
+      ],
     },
     {
       icon: Files,
@@ -153,7 +167,14 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
       isFolder: true,
       folderState: folderStates.projects,
       setFolderState: () => toggleFolder('projects'),
-      subItems: [{ icon: FileCode, label: 'page.tsx', href: '/projects' }],
+      subItems: [
+        {
+          icon: FileCode,
+          label: 'page.tsx',
+          href: '/projects',
+          isSingleFile: true,
+        },
+      ],
     },
     {
       icon: Files,
@@ -162,7 +183,14 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
       isFolder: true,
       folderState: folderStates.testimonials,
       setFolderState: () => toggleFolder('testimonials'),
-      subItems: [{ icon: FileCode, label: 'page.tsx', href: '/testimonials' }],
+      subItems: [
+        {
+          icon: FileCode,
+          label: 'page.tsx',
+          href: '/testimonials',
+          isSingleFile: true,
+        },
+      ],
     },
     {
       icon: Files,
@@ -171,7 +199,14 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
       isFolder: true,
       folderState: folderStates.contactUs,
       setFolderState: () => toggleFolder('contactUs'),
-      subItems: [{ icon: FileCode, label: 'page.tsx', href: '/contact-me' }],
+      subItems: [
+        {
+          icon: FileCode,
+          label: 'page.tsx',
+          href: '/contact-me',
+          isSingleFile: true,
+        },
+      ],
     },
     {
       label: 'readme',
