@@ -39,6 +39,7 @@ import {
   MessageSquare,
   Users,
   BookOpen,
+  Menu,
 } from 'lucide-react';
 import SearchComponent from './search';
 import SourceControl from './source-control';
@@ -108,6 +109,8 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
     x: 0,
     y: 0,
   });
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   const toggleFolder = (folderName: keyof typeof folderStates) => {
     setFolderStates((prev) => ({
@@ -124,6 +127,11 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
     }
     if (id === 'run') {
       router.push('/vscode/playground/javascript');
+    }
+
+    // Open mobile sidebar when clicking on sidebar items in mobile view
+    if (isMobile) {
+      setIsMobileSidebarOpen(true);
     }
   };
 
@@ -242,14 +250,6 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
       ],
     },
     {
-      label: 'Projects',
-      href: '#',
-      subItems: projects.slice(0, 5).map((project) => ({
-        label: project.name,
-        href: `/projects#${project.name.toLowerCase().replace(/\s+/g, '-')}`,
-      })),
-    },
-    {
       label: 'Skills',
       href: '#',
       subItems: skillCategories.slice(0, 6).map((category) => ({
@@ -278,18 +278,18 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
         },
       ],
     },
-    {
-      label: 'View',
-      href: '#',
-      subItems: [
-        // { label: 'VS Code Theme', href: '/vscode' },
-        // { label: 'Standard Theme', href: '/' },
-        // { label: 'Divider', href: '#', isDivider: true },
-        { label: 'Light Theme', href: '#', action: 'setLightTheme' },
-        { label: 'Dark Theme', href: '#', action: 'setDarkTheme' },
-        { label: 'System Theme', href: '#', action: 'setSystemTheme' },
-      ],
-    },
+    // {
+    //   label: 'View',
+    //   href: '#',
+    //   subItems: [
+    //     // { label: 'VS Code Theme', href: '/vscode' },
+    //     // { label: 'Standard Theme', href: '/' },
+    //     // { label: 'Divider', href: '#', isDivider: true },
+    //     { label: 'Light Theme', href: '#', action: 'setLightTheme' },
+    //     { label: 'Dark Theme', href: '#', action: 'setDarkTheme' },
+    //     { label: 'System Theme', href: '#', action: 'setSystemTheme' },
+    //   ],
+    // },
     {
       label: 'Help',
       href: '#',
@@ -330,6 +330,10 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
             }
             if (item.isSingleFile) {
               router.push(item.href);
+              // Close mobile sidebar after navigation
+              if (isMobile) {
+                setIsMobileSidebarOpen(false);
+              }
             }
           }}
           style={{ paddingLeft: `${depth * 8 + 8}px` }}
@@ -608,6 +612,24 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
     };
   }, []);
 
+  function useMediaQuery(query: string) {
+    const [matches, setMatches] = useState(false);
+
+    useEffect(() => {
+      const media = window.matchMedia(query);
+      if (media.matches !== matches) {
+        setMatches(media.matches);
+      }
+
+      const listener = () => setMatches(media.matches);
+      media.addEventListener('change', listener);
+
+      return () => media.removeEventListener('change', listener);
+    }, [matches, query]);
+
+    return matches;
+  }
+
   return (
     <div className="flex h-screen w-full flex-col overflow-hidden bg-[#1e1e1e] text-white">
       {/* Top Menu Bar */}
@@ -682,7 +704,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
             ))}
           </div>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="hidden items-center gap-4 md:flex">
           <div className="relative flex h-7 w-64 items-center rounded bg-[#3c3c3c] px-2">
             <Search size={14} className="mr-2 text-[#858585]" />
             <span className="text-[#858585]">New folder</span>
@@ -707,6 +729,16 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
       <div className="flex flex-1 overflow-hidden">
         {/* Activity Bar (left sidebar with icons) */}
         <div className="flex w-12 flex-col items-center justify-between border-r border-[#333333] bg-[#252526] py-2">
+          {/* Add a mobile menu toggle button at the top for small screens */}
+          {isMobile && (
+            <div
+              className="mb-4 flex h-10 w-10 cursor-pointer items-center justify-center rounded hover:bg-[#2a2d2e]"
+              onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
+            >
+              <Menu size={24} className="text-[#858585] hover:text-white" />
+            </div>
+          )}
+
           <div className="flex flex-col items-center gap-4">
             {sidebarIcons.map((item, index) => (
               <div key={index} className="group relative">
@@ -754,60 +786,106 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
           </div>
         </div>
 
-        {/* Explorer Sidebar */}
-        {activeSidebar === 'explorer' && folderStates.explorer && (
-          <div className="w-72 overflow-y-auto border-r border-[#333333] bg-[#252526]">
-            <div className="p-2 text-xs font-medium uppercase text-[#bbbbbb]">
-              EXPLORER
-            </div>
-
-            <div className="mt-2">
-              <div
-                className="flex cursor-pointer items-center px-2 py-1 text-xs font-medium text-[#bbbbbb] hover:bg-[#2a2d2e]"
-                onClick={() => toggleFolder('explorerFolder')}
-              >
-                {folderStates.explorerFolder ? (
-                  <ChevronDown size={16} className="mr-1" />
-                ) : (
-                  <ChevronRight size={16} className="mr-1" />
-                )}
-                <span>PORTFOLIO-WORKSPACE</span>
-              </div>
-
-              {folderStates.explorerFolder && (
-                <div className="ml-4 mt-1">
-                  {explorerItems.map((item, index) =>
-                    renderExplorerItem(item, index)
-                  )}
+        {/* Explorer Sidebar - Make it conditionally visible based on screen size */}
+        {((isMobile && isMobileSidebarOpen) || !isMobile) &&
+          activeSidebar === 'explorer' &&
+          folderStates.explorer && (
+            <div
+              className={`${isMobile ? 'absolute left-12 z-40 h-[calc(100vh-8rem)]' : ''} w-72 overflow-y-auto border-r border-[#333333] bg-[#252526]`}
+            >
+              {/* Existing explorer content */}
+              {isMobile && (
+                <div
+                  className="absolute right-2 top-2 cursor-pointer rounded-full p-1 hover:bg-[#3c3c3c]"
+                  onClick={() => setIsMobileSidebarOpen(false)}
+                >
+                  <X size={16} className="text-[#bbbbbb]" />
                 </div>
               )}
-            </div>
+              <div className="p-2 text-xs font-medium uppercase text-[#bbbbbb]">
+                EXPLORER
+              </div>
 
-            <div className="mt-4">
-              <div className="px-2 py-1 text-xs font-medium text-[#bbbbbb]">
-                <span>OUTLINE</span>
+              <div className="mt-2">
+                <div
+                  className="flex cursor-pointer items-center px-2 py-1 text-xs font-medium text-[#bbbbbb] hover:bg-[#2a2d2e]"
+                  onClick={() => toggleFolder('explorerFolder')}
+                >
+                  {folderStates.explorerFolder ? (
+                    <ChevronDown size={16} className="mr-1" />
+                  ) : (
+                    <ChevronRight size={16} className="mr-1" />
+                  )}
+                  <span>PORTFOLIO-WORKSPACE</span>
+                </div>
+
+                {folderStates.explorerFolder && (
+                  <div className="ml-4 mt-1">
+                    {explorerItems.map((item, index) =>
+                      renderExplorerItem(item, index)
+                    )}
+                  </div>
+                )}
               </div>
-              <div className="mt-2 px-4 text-xs text-[#bbbbbb]">
-                <span>No symbols found</span>
+
+              <div className="mt-4">
+                <div className="px-2 py-1 text-xs font-medium text-[#bbbbbb]">
+                  <span>OUTLINE</span>
+                </div>
+                <div className="mt-2 px-4 text-xs text-[#bbbbbb]">
+                  <span>No symbols found</span>
+                </div>
               </div>
             </div>
-          </div>
-        )}
-        {activeSidebar === 'search' && (
-          <div className="w-72 overflow-y-auto border-r border-[#333333]">
-            <SearchComponent />
-          </div>
-        )}
-        {activeSidebar === 'git' && (
-          <div className="w-72 overflow-y-auto border-r border-[#333333]">
-            <SourceControl />
-          </div>
-        )}
-        {activeSidebar === 'run' && (
-          <div className="w-72 overflow-y-auto border-r border-[#333333]">
-            <RunDebug />
-          </div>
-        )}
+          )}
+        {((isMobile && isMobileSidebarOpen) || !isMobile) &&
+          activeSidebar === 'search' && (
+            <div
+              className={`${isMobile ? 'absolute left-12 z-40 h-[calc(100vh-8rem)]' : ''} w-72 overflow-y-auto border-r border-[#333333]`}
+            >
+              {isMobile && (
+                <div
+                  className="absolute right-2 top-2 cursor-pointer rounded-full p-1 hover:bg-[#3c3c3c]"
+                  onClick={() => setIsMobileSidebarOpen(false)}
+                >
+                  <X size={16} className="text-[#bbbbbb]" />
+                </div>
+              )}
+              <SearchComponent />
+            </div>
+          )}
+        {((isMobile && isMobileSidebarOpen) || !isMobile) &&
+          activeSidebar === 'git' && (
+            <div
+              className={`${isMobile ? 'absolute left-12 z-40 h-[calc(100vh-8rem)]' : ''} w-72 overflow-y-auto border-r border-[#333333]`}
+            >
+              {isMobile && (
+                <div
+                  className="absolute right-2 top-2 cursor-pointer rounded-full p-1 hover:bg-[#3c3c3c]"
+                  onClick={() => setIsMobileSidebarOpen(false)}
+                >
+                  <X size={16} className="text-[#bbbbbb]" />
+                </div>
+              )}
+              <SourceControl />
+            </div>
+          )}
+        {((isMobile && isMobileSidebarOpen) || !isMobile) &&
+          activeSidebar === 'run' && (
+            <div
+              className={`${isMobile ? 'absolute left-12 z-40 h-[calc(100vh-8rem)]' : ''} w-72 overflow-y-auto border-r border-[#333333]`}
+            >
+              {isMobile && (
+                <div
+                  className="absolute right-2 top-2 cursor-pointer rounded-full p-1 hover:bg-[#3c3c3c]"
+                  onClick={() => setIsMobileSidebarOpen(false)}
+                >
+                  <X size={16} className="text-[#bbbbbb]" />
+                </div>
+              )}
+              <RunDebug />
+            </div>
+          )}
         {(activeSidebar === 'explorer' ||
           activeSidebar === 'search' ||
           activeSidebar === 'run' ||
@@ -836,7 +914,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
                         size={14}
                         className={getFileIconColor(tab.label)}
                       />
-                      <span>{tab.label}</span>
+                      <span className="truncate">{tab.label}</span>
                       <X
                         size={14}
                         className="ml-2 cursor-pointer text-[#858585] hover:text-white"

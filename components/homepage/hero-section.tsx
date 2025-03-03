@@ -80,7 +80,7 @@ const HeroSection = () => {
       animate="visible"
       variants={containerVariants}
     >
-      <div className="ml-72 mt-8 w-full max-w-[calc(100%-18rem)] px-4">
+      <div className="mt-8 w-full px-4">
         {/* VS Code Tab Bar */}
         <div className="flex border-b border-[#252526] bg-[#1e1e1e]">
           <div className="flex items-center bg-[#1e1e1e] px-4 py-1 text-sm text-white">
@@ -131,89 +131,101 @@ const HeroSection = () => {
 
             <div className="col-span-1 space-y-4 md:col-span-1 lg:col-span-2">
               <motion.div
-                className="rounded-lg border border-gray-200 bg-white/5 p-6 shadow-lg backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/30"
+                className="overflow-x-auto rounded-lg border border-gray-200 bg-white/5 p-4 shadow-lg backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/30 sm:p-6"
                 variants={itemVariants}
               >
                 <div className="mb-4 flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <div className="h-3 w-3 rounded-full bg-red-500"></div>
-                    <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-                    <div className="h-3 w-3 rounded-full bg-green-500"></div>
+                    <div className="h-2 w-2 rounded-full bg-red-500 sm:h-3 sm:w-3"></div>
+                    <div className="h-2 w-2 rounded-full bg-yellow-500 sm:h-3 sm:w-3"></div>
+                    <div className="h-2 w-2 rounded-full bg-green-500 sm:h-3 sm:w-3"></div>
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">
                     developer.tsx
                   </div>
                 </div>
 
-                <div className="font-mono text-sm">
-                  <div className="flex">
-                    <span className="mr-4 text-gray-500">1</span>
+                <div className="font-mono text-xs sm:text-sm">
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">1</span>
                     <span className="text-blue-500">const</span>
                     <span className="text-white"> Developer = () </span>
                     <span className="text-blue-500">{'=> {'}</span>
                   </div>
-                  <div className="flex">
-                    <span className="mr-4 text-gray-500">2</span>
-                    <span className="ml-4 text-blue-500">return</span>
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">2</span>
+                    <span className="ml-2 text-blue-500 sm:ml-4">return</span>
                     <span className="text-white"> (</span>
                   </div>
-                  <div className="flex">
-                    <span className="mr-4 text-gray-500">3</span>
-                    <span className="ml-8 text-green-500">{'<Profile>'}</span>
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">3</span>
+                    <span className="ml-4 text-green-500 sm:ml-8">
+                      {'<Profile>'}
+                    </span>
                   </div>
-                  <div className="flex">
-                    <span className="mr-4 text-gray-500">4</span>
-                    <span className="ml-12 text-green-500">{'<name>'}</span>
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">4</span>
+                    <span className="ml-6 text-green-500 sm:ml-12">
+                      {'<name>'}
+                    </span>
                     <span className="text-yellow-300">Sampath Kumara</span>
                     <span className="text-green-500">{'</name>'}</span>
                   </div>
-                  <div className="flex">
-                    <span className="mr-4 text-gray-500">5</span>
-                    <span className="ml-12 text-green-500">{'<skills>'}</span>
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">5</span>
+                    <span className="ml-6 text-green-500 sm:ml-12">
+                      {'<skills>'}
+                    </span>
                     <span className="text-white">
                       Full Stack, React, Node.js
                     </span>
                     <span className="text-green-500">{'</skills>'}</span>
                   </div>
-                  <div className="flex">
-                    <span className="mr-4 text-gray-500">6</span>
-                    <span className="ml-12 text-green-500">{'<passion>'}</span>
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">6</span>
+                    <span className="ml-6 text-green-500 sm:ml-12">
+                      {'<passion>'}
+                    </span>
                     <span className="text-white">
                       Building amazing experiences
                     </span>
                     <span className="text-green-500">{'</passion>'}</span>
                   </div>
-                  <div className="flex">
-                    <span className="mr-4 text-gray-500">7</span>
-                    <span className="ml-8 text-green-500">{'</Profile>'}</span>
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">7</span>
+                    <span className="ml-4 text-green-500 sm:ml-8">
+                      {'</Profile>'}
+                    </span>
                   </div>
-                  <div className="flex">
-                    <span className="mr-4 text-gray-500">8</span>
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">8</span>
                     <span className="text-white">);</span>
                   </div>
-                  <div className="flex">
-                    <span className="mr-4 text-gray-500">9</span>
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">9</span>
                     <span className="text-blue-500">{'}'}</span>
                   </div>
                 </div>
               </motion.div>
 
               <motion.div
-                className="rounded-lg border border-gray-200 bg-black/90 p-4 shadow-lg backdrop-blur-sm dark:border-gray-800"
+                className="overflow-x-auto rounded-lg border border-gray-200 bg-black/90 p-3 shadow-lg backdrop-blur-sm dark:border-gray-800 sm:p-4"
                 variants={itemVariants}
               >
                 <div className="mb-2 flex items-center space-x-2">
                   <div className="text-xs text-gray-400">TERMINAL</div>
                 </div>
-                <div className="font-mono text-sm text-green-400">
-                  <div>$ npm run build</div>
-                  <div className="mt-1">
+                <div className="font-mono text-xs text-green-400 sm:text-sm">
+                  <div className="whitespace-nowrap">$ npm run build</div>
+                  <div className="mt-1 whitespace-nowrap">
                     Creating optimized production build...
                   </div>
-                  <div className="mt-1">✓ Compiled successfully</div>
-                  <div className="mt-1 flex items-center">
+                  <div className="mt-1 whitespace-nowrap">
+                    ✓ Compiled successfully
+                  </div>
+                  <div className="mt-1 flex items-center whitespace-nowrap">
                     <span className="mr-1">$</span>
-                    <span className="h-4 w-2 animate-pulse bg-green-400"></span>
+                    <span className="h-3 w-1.5 animate-pulse bg-green-400 sm:h-4 sm:w-2"></span>
                   </div>
                 </div>
               </motion.div>
