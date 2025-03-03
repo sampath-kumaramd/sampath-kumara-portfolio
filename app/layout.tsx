@@ -1,3 +1,5 @@
+'use client';
+
 import type { Metadata } from 'next';
 import { JetBrains_Mono } from 'next/font/google';
 import './globals.css';
@@ -11,6 +13,7 @@ import { MobileAdvisory } from '@/components/mobile-advisory';
 import AnimatedCursor from 'react-animated-cursor';
 import { siteConfig } from './metadata.config';
 import VSCodeLayout from '@/components/vscode/layout';
+import { useEffect, useState } from 'react';
 
 const inter = JetBrains_Mono({
   subsets: ['latin'],
@@ -18,57 +21,28 @@ const inter = JetBrains_Mono({
   variable: '--font-jetbrainsMono',
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.siteUrl),
-  title: {
-    default: siteConfig.title,
-    template: `%s | ${siteConfig.title}`,
-  },
-  description: siteConfig.description,
-  keywords: siteConfig.keywords,
-  authors: [{ name: siteConfig.author }],
-  creator: siteConfig.author,
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: siteConfig.siteUrl,
-    title: siteConfig.title,
-    description: siteConfig.description,
-    siteName: siteConfig.title,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.title,
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: siteConfig.title,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: siteConfig.twitter,
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Run on mount
+    checkMobile();
+
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -98,30 +72,32 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AnimatedCursor
-            innerSize={15}
-            outerSize={15}
-            color="80, 186, 191"
-            outerAlpha={0.2}
-            innerScale={0.7}
-            outerScale={5}
-            clickables={[
-              'a',
-              'input[type="text"]',
-              'input[type="email"]',
-              'input[type="number"]',
-              'input[type="submit"]',
-              'input[type="image"]',
-              'label[for]',
-              'select',
-              'textarea',
-              'button',
-              '.link',
-              {
-                target: '.custom',
-              },
-            ]}
-          />
+          {!isMobile && (
+            <AnimatedCursor
+              innerSize={15}
+              outerSize={15}
+              color="80, 186, 191"
+              outerAlpha={0.2}
+              innerScale={0.7}
+              outerScale={5}
+              clickables={[
+                'a',
+                'input[type="text"]',
+                'input[type="email"]',
+                'input[type="number"]',
+                'input[type="submit"]',
+                'input[type="image"]',
+                'label[for]',
+                'select',
+                'textarea',
+                'button',
+                '.link',
+                {
+                  target: '.custom',
+                },
+              ]}
+            />
+          )}
           <VSCodeLayout>{children}</VSCodeLayout>
           <Toaster />
           <CookieConsent />
