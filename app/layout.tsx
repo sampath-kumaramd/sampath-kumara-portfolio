@@ -10,6 +10,7 @@ import AnimatedCursor from 'react-animated-cursor';
 import Script from 'next/script';
 import LayoutWrapper from '@/components/layout-wrapper';
 import { LayoutSwitcher } from '@/components/layout-switcher';
+import { ClientOnlyAnimatedCursor } from '@/components/client-only-animated-cursor';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -43,30 +44,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AnimatedCursor
-            innerSize={15}
-            outerSize={15}
-            color="80, 186, 191"
-            outerAlpha={0.2}
-            innerScale={0.7}
-            outerScale={5}
-            clickables={[
-              'a',
-              'input[type="text"]',
-              'input[type="email"]',
-              'input[type="number"]',
-              'input[type="submit"]',
-              'input[type="image"]',
-              'label[for]',
-              'select',
-              'textarea',
-              'button',
-              '.link',
-              {
-                target: '.custom',
-              },
-            ]}
-          />
+          <ClientOnlyAnimatedCursor />
           <LayoutWrapper>{children}</LayoutWrapper>
           <LayoutSwitcher />
           <Toaster />
