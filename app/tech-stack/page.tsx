@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { skills } from '@/lib/data/skills';
 import { skillCategories } from '@/lib/data/skills';
 import { SkillCategory } from '@/types/skills';
+import { useSearchParams } from 'next/navigation';
 
 const SkillsSection: React.FC = () => {
+  const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] =
     useState<SkillCategory>('All');
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
@@ -16,6 +18,21 @@ const SkillsSection: React.FC = () => {
       ? true
       : skill.category.includes(selectedCategory)
   );
+
+  useEffect(() => {
+    const category = searchParams.get('category');
+    if (
+      category &&
+      (category === 'All' ||
+        category === 'Frontend' ||
+        category === 'Backend' ||
+        category === 'Database' ||
+        category === 'DevOps' ||
+        category === 'Tools')
+    ) {
+      setSelectedCategory(category as any);
+    }
+  }, [searchParams]);
 
   return (
     <div className="space-y-8">

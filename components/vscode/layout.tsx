@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -44,6 +44,10 @@ import SearchComponent from './search';
 import SourceControl from './source-control';
 import Extensions from './extensions';
 import RunDebug from './run-debug';
+import VSCodeGuide from './user-guide';
+import { projects } from '@/lib/data/projects';
+import { skillCategories } from '@/lib/data/skills';
+import { useTheme } from 'next-themes';
 
 interface VSCodeLayoutProps {
   children: React.ReactNode;
@@ -63,6 +67,7 @@ interface ExplorerItem {
 
 export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
   const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
   const [folderStates, setFolderStates] = useState({
     sidebar: false,
     explorer: true,
@@ -90,6 +95,9 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
   ]);
   const [activeTab, setActiveTab] = useState('/');
   const router = useRouter();
+  const [showGuide, setShowGuide] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
   const toggleFolder = (folderName: keyof typeof folderStates) => {
     setFolderStates((prev) => ({
       ...prev,
@@ -173,14 +181,79 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
   ];
 
   const menuItems = [
-    { label: 'File', href: '#' },
-    { label: 'Edit', href: '#' },
-    { label: 'Selection', href: '#' },
-    { label: 'View', href: '#' },
-    { label: 'Go', href: '#' },
-    { label: 'Run', href: '#' },
-    { label: 'Terminal', href: '#' },
-    { label: 'Help', href: '#' },
+    {
+      label: 'Portfolio',
+      href: '#',
+      subItems: [
+        { label: 'Home', href: '/' },
+        { label: 'About Me', href: '/about-me' },
+        { label: 'Tech Stack', href: '/tech-stack' },
+        { label: 'Projects', href: '/projects' },
+        { label: 'Testimonials', href: '/testimonials' },
+        { label: 'Contact', href: '/contact-me' },
+      ],
+    },
+    {
+      label: 'Projects',
+      href: '#',
+      subItems: projects.slice(0, 5).map((project) => ({
+        label: project.name,
+        href: `/projects#${project.name.toLowerCase().replace(/\s+/g, '-')}`,
+      })),
+    },
+    {
+      label: 'Skills',
+      href: '#',
+      subItems: skillCategories.slice(0, 6).map((category) => ({
+        label: category,
+        href: `/tech-stack?category=${category}`,
+      })),
+    },
+    {
+      label: 'Contact',
+      href: '#',
+      subItems: [
+        {
+          label: 'Email',
+          href: 'mailto:mdskumara.info@gmail.com',
+          action: 'newTab',
+        },
+        {
+          label: 'LinkedIn',
+          href: 'https://www.linkedin.com/in/sampathkumaramd',
+          action: 'newTab',
+        },
+        {
+          label: 'GitHub',
+          href: 'https://github.com/sampath-kumaramd',
+          action: 'newTab',
+        },
+      ],
+    },
+    {
+      label: 'View',
+      href: '#',
+      subItems: [
+        // { label: 'VS Code Theme', href: '/vscode' },
+        // { label: 'Standard Theme', href: '/' },
+        // { label: 'Divider', href: '#', isDivider: true },
+        { label: 'Light Theme', href: '#', action: 'setLightTheme' },
+        { label: 'Dark Theme', href: '#', action: 'setDarkTheme' },
+        { label: 'System Theme', href: '#', action: 'setSystemTheme' },
+      ],
+    },
+    {
+      label: 'Help',
+      href: '#',
+      subItems: [
+        { label: 'About This Site', href: '/vscode/readme' },
+        { label: 'Navigation Guide', href: '#', action: 'showGuide' },
+        {
+          label: 'Source Code',
+          href: 'https://github.com/sampath-kumaramd/portfolio',
+        },
+      ],
+    },
   ];
 
   const renderExplorerItem = (
@@ -365,6 +438,15 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
     }
   }, [pathname]);
 
+  const toggleDropdown = (label: string, e: React.MouseEvent) => {
+    e.stopPropagation(); // Stop event from bubbling up
+    if (openDropdown === label) {
+      setOpenDropdown(null);
+    } else {
+      setOpenDropdown(label);
+    }
+  };
+
   return (
     <div className="flex h-screen w-full flex-col overflow-hidden bg-[#1e1e1e] text-white">
       {/* Top Menu Bar */}
@@ -375,11 +457,67 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
           </div>
           <div className="flex gap-4">
             {menuItems.map((item, index) => (
-              <Link href={item.href} key={index}>
-                <span className="cursor-pointer px-1 hover:bg-[#2a2d2e]">
-                  {item.label}
-                </span>
-              </Link>
+              <div key={index} className="menu-dropdown relative">
+                <div
+                  className="cursor-pointer px-1 hover:bg-[#2a2d2e]"
+                  onClick={(e) => toggleDropdown(item.label, e)}
+                >
+                  <span>{item.label}</span>
+                </div>
+
+                {openDropdown === item.label && item.subItems && (
+                  <div className="absolute left-0 top-full z-50 min-w-[180px] rounded border border-[#333333] bg-[#252526] py-1 shadow-lg">
+                    {item.subItems.map((subItem, subIndex) => (
+                      <Link
+                        href={subItem.href}
+                        key={subIndex}
+                        target={
+                          subItem.action === 'newTab' ? '_blank' : undefined
+                        }
+                        onClick={(e) => {
+                          if (subItem.action === 'showGuide') {
+                            e.preventDefault();
+                            setShowGuide(true);
+                          } else if (subItem.action === 'setLightTheme') {
+                            e.preventDefault();
+                            setTheme('light');
+                          } else if (subItem.action === 'setDarkTheme') {
+                            e.preventDefault();
+                            setTheme('dark');
+                          } else if (subItem.action === 'setSystemTheme') {
+                            e.preventDefault();
+                            setTheme('system');
+                          }
+                          // Don't close dropdown immediately to prevent event conflicts
+                          setTimeout(() => setOpenDropdown(null), 100);
+                        }}
+                      >
+                        <div
+                          className={cn(
+                            'cursor-pointer px-4 py-1 text-xs text-[#bbbbbb] hover:bg-[#2a2d2e] hover:text-white',
+                            // subItem.isDivider ? "border-b border-[#333333] pb-1 mb-1" : "",
+                            theme === 'light' &&
+                              subItem.action === 'setLightTheme'
+                              ? 'text-[#007acc]'
+                              : '',
+                            theme === 'dark' &&
+                              subItem.action === 'setDarkTheme'
+                              ? 'text-[#007acc]'
+                              : '',
+                            theme === 'system' &&
+                              subItem.action === 'setSystemTheme'
+                              ? 'text-[#007acc]'
+                              : ''
+                          )}
+                        >
+                          {/* {subItem.isDivider ? "" : subItem.label} */}
+                          {subItem.label}
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -572,6 +710,10 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
           </div>
         )}
       </div>
+
+      {showGuide && (
+        <VSCodeGuide isOpen={showGuide} onClose={() => setShowGuide(false)} />
+      )}
     </div>
   );
 }
