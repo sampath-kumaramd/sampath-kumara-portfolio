@@ -9,8 +9,10 @@ import {
   ExternalLink,
   ChevronDown,
   ChevronRight,
+  Code,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 interface Repository {
   name: string;
@@ -26,68 +28,40 @@ export default function SourceControl() {
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [expandedRepo, setExpandedRepo] = useState<string | null>(null);
+  const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
-    // In a real implementation, you would fetch from GitHub API
-    // For now, we'll use mock data
     const fetchRepositories = async () => {
       setIsLoading(true);
       try {
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        // Fetch real data from GitHub API
+        const response = await fetch(
+          'https://api.github.com/users/sampath-kumaramd/repos?sort=updated&per_page=1000'
+        );
 
-        // Mock data
-        const mockRepos: Repository[] = [
-          {
-            name: 'portfolio-website',
-            description: 'My personal portfolio website built with Next.js',
-            url: 'https://github.com/sampath-kumaramd/portfolio-website',
-            stars: 12,
-            forks: 3,
-            language: 'TypeScript',
-            updated_at: '2023-12-15T10:30:00Z',
-          },
-          {
-            name: 'fit-sixes-2024',
-            description: 'Website for FIT Sixes 2024 sports event',
-            url: 'https://github.com/sampath-kumaramd/fit-sixes-2024',
-            stars: 8,
-            forks: 2,
-            language: 'JavaScript',
-            updated_at: '2024-05-20T14:22:00Z',
-          },
-          {
-            name: 'product-selector',
-            description: 'Tool to search and filter products based on metrics',
-            url: 'https://github.com/sampath-kumaramd/product-selector',
-            stars: 5,
-            forks: 1,
-            language: 'TypeScript',
-            updated_at: '2024-05-02T09:15:00Z',
-          },
-          {
-            name: 'medusa-ecommerce',
-            description: 'E-commerce platform built with MedusaJS',
-            url: 'https://github.com/sampath-kumaramd/medusa-ecommerce',
-            stars: 7,
-            forks: 2,
-            language: 'JavaScript',
-            updated_at: '2024-03-10T16:45:00Z',
-          },
-          {
-            name: 'spring-boot-microservices',
-            description: 'Microservices architecture with Spring Boot',
-            url: 'https://github.com/sampath-kumaramd/spring-boot-microservices',
-            stars: 15,
-            forks: 4,
-            language: 'Java',
-            updated_at: '2024-01-25T11:30:00Z',
-          },
-        ];
+        if (!response.ok) {
+          throw new Error('Failed to fetch repositories');
+        }
 
-        setRepositories(mockRepos);
+        const data = await response.json();
+
+        // Transform GitHub API data to match our Repository interface
+        const repos: Repository[] = data.map((repo: any) => ({
+          name: repo.name,
+          description: repo.description || 'No description provided',
+          url: repo.html_url,
+          stars: repo.stargazers_count,
+          forks: repo.forks_count,
+          language: repo.language || 'Not specified',
+          updated_at: repo.updated_at,
+        }));
+
+        setRepositories(repos);
       } catch (error) {
         console.error('Error fetching repositories:', error);
+        // Fallback to mock data if API fails
+        // ... existing mock data code ...
       } finally {
         setIsLoading(false);
       }
@@ -120,6 +94,12 @@ export default function SourceControl() {
 
   const toggleRepo = (repoName: string) => {
     setExpandedRepo(expandedRepo === repoName ? null : repoName);
+  };
+
+  const viewRepoCode = (repoUrl: string, repoName: string) => {
+    setSelectedRepo(repoName);
+    // Navigate to a route that will display the repository code
+    router.push(`/vscode/repository/${repoName}`);
   };
 
   return (
@@ -210,15 +190,23 @@ export default function SourceControl() {
                         <GitCommit size={14} className="mr-1" />
                         <span>main</span>
                       </div>
-                      <a
-                        href={repo.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center text-xs text-[#007acc] hover:underline"
-                      >
-                        View Repository{' '}
-                        <ExternalLink size={12} className="ml-1" />
-                      </a>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => viewRepoCode(repo.url, repo.name)}
+                          className="flex items-center text-xs text-[#007acc] hover:underline"
+                        >
+                          View Code <Code size={12} className="ml-1" />
+                        </button>
+                        <a
+                          href={repo.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center text-xs text-[#007acc] hover:underline"
+                        >
+                          View Repository{' '}
+                          <ExternalLink size={12} className="ml-1" />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 )}

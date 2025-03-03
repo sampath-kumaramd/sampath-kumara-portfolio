@@ -97,6 +97,8 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
   const router = useRouter();
   const [showGuide, setShowGuide] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
+  const [showRepoIframe, setShowRepoIframe] = useState(false);
 
   const toggleFolder = (folderName: keyof typeof folderStates) => {
     setFolderStates((prev) => ({
@@ -116,9 +118,9 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
   const sidebarIcons = [
     { icon: Files, id: 'explorer', tooltip: 'Explorer' },
     { icon: Search, id: 'search', tooltip: 'Search' },
-    { icon: GitBranch, id: 'git', tooltip: 'Source Control' },
+    { icon: GitBranch, id: 'git', tooltip: 'Public Repositories' },
     { icon: Play, id: 'run', tooltip: 'Run and Debug' },
-    { icon: ExternalLink, id: 'extensions', tooltip: 'Extensions' },
+    { icon: ExternalLink, id: 'extensions', tooltip: 'Tools' },
   ];
 
   const bottomIcons = [
@@ -482,6 +484,18 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
     }
   };
 
+  // Listen for repository selection from the SourceControl component
+  useEffect(() => {
+    // Check pathname changes directly instead of using router events
+    if (pathname.includes('/vscode/repository/')) {
+      const repoName = pathname.split('/').pop() || null;
+      setSelectedRepo(repoName);
+      setShowRepoIframe(true);
+    } else {
+      setShowRepoIframe(false);
+    }
+  }, [pathname]); // Watch pathname changes instead of using router events
+
   return (
     <div className="flex h-screen w-full flex-col overflow-hidden bg-[#1e1e1e] text-white">
       {/* Top Menu Bar */}
@@ -692,7 +706,9 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
         )}
 
         {/* Main Content Area */}
-        {(activeSidebar === 'explorer' || activeSidebar === 'search') && (
+        {(activeSidebar === 'explorer' ||
+          activeSidebar === 'search' ||
+          activeSidebar === 'git') && (
           <div className="flex flex-1 flex-col overflow-hidden bg-[#1e1e1e]">
             <div className="flex h-9 items-center overflow-x-auto border-b border-[#333333] bg-[#252526]">
               <div className="flex h-full items-center">
