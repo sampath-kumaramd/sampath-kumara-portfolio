@@ -262,19 +262,6 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* VS Code Status Bar */}
-      <div className="fixed bottom-0 left-0 flex w-full items-center justify-between bg-[#007acc] px-4 py-1 text-xs text-white">
-        <div className="flex items-center">
-          <span className="mr-4">main*</span>
-          <span>UTF-8</span>
-        </div>
-        <div className="flex items-center">
-          <span className="mr-4">TypeScript React</span>
-          <span className="mr-4">Ln 1, Col 1</span>
-          <span>Spaces: 2</span>
-        </div>
-      </div>
     </motion.div>
   );
 };
