@@ -2,7 +2,16 @@
 
 import React from 'react';
 import { useParams } from 'next/navigation';
-import { FileCode, FileJson, FileText } from 'lucide-react';
+import {
+  FileCode,
+  FileJson,
+  FileText,
+  ExternalLink,
+  Github,
+  Mail,
+  Code,
+} from 'lucide-react';
+import Link from 'next/link';
 
 export default function VSCodeSlugPage() {
   const params = useParams();
@@ -11,258 +20,200 @@ export default function VSCodeSlugPage() {
   // Function to determine what content to show based on the slug
   const renderContent = () => {
     switch (slug) {
-      case 'package-json':
+      case 'readme':
         return (
-          <div className="p-4">
-            <div className="mb-4 flex items-center gap-2">
-              <FileJson size={20} className="text-[#CBCB41]" />
-              <h2 className="text-lg font-semibold">package.json</h2>
-            </div>
-            <pre className="overflow-auto rounded bg-[#1e1e1e] p-4 text-sm">
-              {`{
-  "name": "portfolio",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "framer-motion": "^10.16.4",
-    "lucide-react": "^0.292.0",
-    "next": "14.0.3",
-    "react": "^18",
-    "react-dom": "^18",
-    "tailwind-merge": "^2.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10.0.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.3",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
-    "typescript": "^5"
-  }
-}`}
-            </pre>
-          </div>
-        );
+          <div className="mx-auto max-w-4xl p-4">
+            <h2 className="mb-4 text-2xl font-semibold text-[#007acc]">
+              Welcome to My VS Code-Themed Portfolio
+            </h2>
 
-      case 'next-config':
-        return (
-          <div className="p-4">
-            <div className="mb-4 flex items-center gap-2">
-              <FileText size={20} className="text-[#519ABA]" />
-              <h2 className="text-lg font-semibold">next.config.js</h2>
-            </div>
-            <pre className="overflow-auto rounded bg-[#1e1e1e] p-4 text-sm">
-              {`/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
-
-module.exports = nextConfig`}
-            </pre>
-          </div>
-        );
-
-      case 'tailwind-config':
-        return (
-          <div className="p-4">
-            <div className="mb-4 flex items-center gap-2">
-              <FileText size={20} className="text-[#519ABA]" />
-              <h2 className="text-lg font-semibold">tailwind.config.js</h2>
-            </div>
-            <pre className="overflow-auto rounded bg-[#1e1e1e] p-4 text-sm">
-              {`/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}`}
-            </pre>
-          </div>
-        );
-
-      case 'tsconfig-json':
-        return (
-          <div className="p-4">
-            <div className="mb-4 flex items-center gap-2">
-              <FileJson size={20} className="text-[#CBCB41]" />
-              <h2 className="text-lg font-semibold">tsconfig.json</h2>
-            </div>
-            <pre className="overflow-auto rounded bg-[#1e1e1e] p-4 text-sm">
-              {`{
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": ["./*"]
-    }
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
-}`}
-            </pre>
-          </div>
-        );
-
-      case 'components':
-        return (
-          <div className="p-4">
-            <div className="mb-4 flex items-center gap-2">
-              <FileCode size={20} className="text-[#4EC9B0]" />
-              <h2 className="text-lg font-semibold">Components Directory</h2>
-            </div>
-            <p className="mb-4 text-[#bbbbbb]">
-              This directory contains all the reusable components used
-              throughout the application.
+            <p className="mb-6 text-[#bbbbbb]">
+              This website is designed to mimic the VS Code interface, providing
+              a unique and interactive way to explore my work and skills as a
+              developer.
             </p>
-            <ul className="list-disc pl-6 text-[#bbbbbb]">
-              <li>UI components</li>
-              <li>Layout components</li>
-              <li>Feature components</li>
-            </ul>
-          </div>
-        );
 
-      case 'lib':
-        return (
-          <div className="p-4">
-            <div className="mb-4 flex items-center gap-2">
-              <FileCode size={20} className="text-[#4EC9B0]" />
-              <h2 className="text-lg font-semibold">Lib Directory</h2>
+            <h3 className="mb-3 mt-8 text-xl font-semibold text-white">
+              Navigation Guide
+            </h3>
+
+            <div className="space-y-6 text-[#bbbbbb]">
+              <div className="rounded border border-[#333333] bg-[#252526] p-4">
+                <h4 className="mb-2 flex items-center text-lg font-medium text-white">
+                  <Code className="mr-2 h-5 w-5 text-[#007acc]" />
+                  Sidebar Navigation
+                </h4>
+                <p className="mb-2">
+                  Use the sidebar icons on the left to navigate between
+                  different sections:
+                </p>
+                <ul className="list-disc space-y-2 pl-6">
+                  <li>
+                    <strong>Explorer</strong> - Browse through the main sections
+                    of my portfolio
+                  </li>
+                  <li>
+                    <strong>Search</strong> - Find specific content across the
+                    site
+                  </li>
+                  <li>
+                    <strong>Source Control</strong> - View my GitHub
+                    repositories
+                  </li>
+                  <li>
+                    <strong>Extensions</strong> - Explore my tech stack and
+                    skills
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded border border-[#333333] bg-[#252526] p-4">
+                <h4 className="mb-2 flex items-center text-lg font-medium text-white">
+                  <FileText className="mr-2 h-5 w-5 text-[#007acc]" />
+                  File Explorer
+                </h4>
+                <p className="mb-2">
+                  In the Explorer view, you&apos;ll find folders organized like
+                  a project structure:
+                </p>
+                <ul className="list-disc space-y-2 pl-6">
+                  <li>
+                    <strong>About Me</strong> - Learn about my background and
+                    experience
+                  </li>
+                  <li>
+                    <strong>Projects</strong> - Browse through my portfolio of
+                    work
+                  </li>
+                  <li>
+                    <strong>Resume</strong> - View my professional experience
+                    and skills
+                  </li>
+                  <li>
+                    <strong>Contact</strong> - Get in touch with me
+                  </li>
+                </ul>
+                <p className="mt-2">
+                  Click on any file to open it in the editor area.
+                </p>
+              </div>
+
+              <div className="rounded border border-[#333333] bg-[#252526] p-4">
+                <h4 className="mb-2 flex items-center text-lg font-medium text-white">
+                  <FileCode className="mr-2 h-5 w-5 text-[#007acc]" />
+                  Editor Tabs
+                </h4>
+                <p>
+                  As you navigate through the site, files will open as tabs in
+                  the editor area. You can switch between open tabs by clicking
+                  on them, or close tabs using the × icon.
+                </p>
+              </div>
+
+              <div className="rounded border border-[#333333] bg-[#252526] p-4">
+                <h4 className="mb-2 flex items-center text-lg font-medium text-white">
+                  <FileJson className="mr-2 h-5 w-5 text-[#007acc]" />
+                  Mobile Navigation
+                </h4>
+                <p>
+                  On mobile devices, use the menu icon in the top right to
+                  access navigation options. The interface adapts to smaller
+                  screens while maintaining the VS Code aesthetic.
+                </p>
+              </div>
             </div>
-            <p className="mb-4 text-[#bbbbbb]">
-              This directory contains utility functions and shared code.
-            </p>
-            <ul className="list-disc pl-6 text-[#bbbbbb]">
-              <li>utils.ts - Utility functions</li>
-              <li>data.ts - Static data and constants</li>
-            </ul>
-          </div>
-        );
 
-      case 'layout':
-        return (
-          <div className="p-4">
-            <div className="mb-4 flex items-center gap-2">
-              <FileCode size={20} className="text-[#4EC9B0]" />
-              <h2 className="text-lg font-semibold">app/layout.tsx</h2>
+            <h3 className="mb-3 mt-8 text-xl font-semibold text-white">
+              Quick Links
+            </h3>
+
+            <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <Link
+                href="/about-me"
+                className="flex items-center rounded border border-[#333333] bg-[#252526] p-3 transition-colors hover:bg-[#2a2d2e]"
+              >
+                <div className="mr-3 rounded-full bg-[#007acc]/20 p-2">
+                  <FileText className="h-5 w-5 text-[#007acc]" />
+                </div>
+                <span className="text-[#bbbbbb]">About Me</span>
+              </Link>
+
+              <Link
+                href="/projects"
+                className="flex items-center rounded border border-[#333333] bg-[#252526] p-3 transition-colors hover:bg-[#2a2d2e]"
+              >
+                <div className="mr-3 rounded-full bg-[#007acc]/20 p-2">
+                  <Code className="h-5 w-5 text-[#007acc]" />
+                </div>
+                <span className="text-[#bbbbbb]">Projects</span>
+              </Link>
+
+              <Link
+                href="/resume"
+                className="flex items-center rounded border border-[#333333] bg-[#252526] p-3 transition-colors hover:bg-[#2a2d2e]"
+              >
+                <div className="mr-3 rounded-full bg-[#007acc]/20 p-2">
+                  <FileCode className="h-5 w-5 text-[#007acc]" />
+                </div>
+                <span className="text-[#bbbbbb]">Resume</span>
+              </Link>
+
+              <Link
+                href="/contact-me"
+                className="flex items-center rounded border border-[#333333] bg-[#252526] p-3 transition-colors hover:bg-[#2a2d2e]"
+              >
+                <div className="mr-3 rounded-full bg-[#007acc]/20 p-2">
+                  <Mail className="h-5 w-5 text-[#007acc]" />
+                </div>
+                <span className="text-[#bbbbbb]">Contact Me</span>
+              </Link>
             </div>
-            <pre className="overflow-auto rounded bg-[#1e1e1e] p-4 text-sm">
-              {`import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'My Portfolio',
-  description: 'A showcase of my work and skills',
-}
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        {children}
-      </body>
-    </html>
-  )
-}`}
-            </pre>
-          </div>
-        );
-
-      case 'global-css':
-        return (
-          <div className="p-4">
-            <div className="mb-4 flex items-center gap-2">
-              <FileText size={20} className="text-[#CE9178]" />
-              <h2 className="text-lg font-semibold">app/globals.css</h2>
+            <div className="mt-8 rounded border border-[#333333] bg-[#252526] p-4">
+              <h4 className="mb-2 text-lg font-medium text-white">
+                Need Help?
+              </h4>
+              <p className="text-[#bbbbbb]">
+                Look for the help button in the bottom right corner of the
+                screen for a guided tour of the interface.
+              </p>
             </div>
-            <pre className="overflow-auto rounded bg-[#1e1e1e] p-4 text-sm">
-              {`@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-:root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
-}
+            <div className="mt-8 flex items-center justify-between">
+              <div className="text-[#bbbbbb]">
+                <p>Thanks for visiting my portfolio!</p>
+                <p className="mt-1 text-sm text-[#858585]">
+                  © {new Date().getFullYear()} Sampath Kumara
+                </p>
+              </div>
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-  min-height: 100vh;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-`}
-            </pre>
-          </div>
-        );
-
-      case 'public':
-        return (
-          <div className="p-4">
-            <div className="mb-4 flex items-center gap-2">
-              <FileCode size={20} className="text-[#4EC9B0]" />
-              <h2 className="text-lg font-semibold">Public Directory</h2>
+              <div className="flex space-x-4">
+                <a
+                  href="https://github.com/sampath-kumaramd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#bbbbbb] hover:text-white"
+                >
+                  <Github className="h-5 w-5" />
+                </a>
+                <a
+                  href="mailto:mdskumara.info@gmail.com"
+                  className="text-[#bbbbbb] hover:text-white"
+                >
+                  <Mail className="h-5 w-5" />
+                </a>
+                <a
+                  href="http://www.sampathkumara.me"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#bbbbbb] hover:text-white"
+                >
+                  <ExternalLink className="h-5 w-5" />
+                </a>
+              </div>
             </div>
-            <p className="mb-4 text-[#bbbbbb]">
-              This directory contains static assets that are served directly.
-            </p>
-            <ul className="list-disc pl-6 text-[#bbbbbb]">
-              <li>images/ - Image assets</li>
-              <li>favicon.ico - Site favicon</li>
-            </ul>
           </div>
         );
-
       default:
         return (
           <div className="p-4">

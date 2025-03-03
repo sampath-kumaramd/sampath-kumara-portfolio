@@ -1,8 +1,9 @@
 'use client';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ContributionGraph } from '@/components/github/contribution-graph';
 import { motion } from 'framer-motion';
+import { useSearchParams } from 'next/navigation';
 
 type Education = {
   duration: string;
@@ -29,10 +30,24 @@ type Project = {
 };
 
 const AboutMe: React.FC = () => {
+  const searchParams = useSearchParams();
   const [showCode, setShowCode] = useState(false);
   const [activeTab, setActiveTab] = useState<
     'summary' | 'experience' | 'education' | 'projects'
   >('summary');
+
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (
+      tab &&
+      (tab === 'summary' ||
+        tab === 'experience' ||
+        tab === 'education' ||
+        tab === 'projects')
+    ) {
+      setActiveTab(tab as any);
+    }
+  }, [searchParams]);
 
   const education: Education[] = [
     {

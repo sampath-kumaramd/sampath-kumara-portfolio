@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import Script from 'next/script';
 import { GA_MEASUREMENT_ID } from '@/lib/analytics';
 import { CookieConsent } from '@/components/cookie-consent';
+import { UserGuide } from '@/components/user-guide';
 import AnimatedCursor from 'react-animated-cursor';
 import { siteConfig } from './metadata.config';
 import VSCodeLayout from '@/components/vscode/layout';
@@ -123,6 +124,7 @@ export default function RootLayout({
           <VSCodeLayout>{children}</VSCodeLayout>
           <Toaster />
           <CookieConsent />
+          <UserGuide />
         </ThemeProvider>
       </body>
     </html>

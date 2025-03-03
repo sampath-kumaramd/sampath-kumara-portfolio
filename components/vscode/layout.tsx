@@ -38,14 +38,19 @@ import {
   GraduationCap,
   MessageSquare,
   Users,
+  BookOpen,
 } from 'lucide-react';
+import SearchComponent from './search';
+import SourceControl from './source-control';
+import Extensions from './extensions';
+import RunDebug from './run-debug';
 
 interface VSCodeLayoutProps {
   children: React.ReactNode;
 }
 
 interface ExplorerItem {
-  icon: any;
+  icon?: any;
   label: string;
   href: string;
   isFolder?: boolean;
@@ -68,11 +73,6 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
     projects: false,
     testimonials: false,
     aboutMe: false,
-    components: false,
-    lib: false,
-    public: false,
-    images: false,
-    ui: false,
     vscode: false,
     hero: false,
     projectCard: false,
@@ -81,6 +81,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
     education: false,
     techStack: false,
     volunteering: false,
+    readme: false,
   });
 
   const [activeSidebar, setActiveSidebar] = useState('explorer');
@@ -117,165 +118,56 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
     { icon: Settings, id: 'settings', tooltip: 'Settings' },
   ];
 
-  const explorerItems = [
+  const explorerItems: ExplorerItem[] = [
     {
       icon: Files,
-      label: 'app',
-      href: '/',
+      label: 'about-me',
+      href: '/about-me',
       isFolder: true,
-      folderState: folderStates.app,
-      setFolderState: () => toggleFolder('app'),
-      subItems: [
-        {
-          icon: Files,
-          label: 'about-me',
-          href: '/about-me',
-          isFolder: true,
-          folderState: folderStates.aboutMe,
-          setFolderState: () => toggleFolder('aboutMe'),
-          subItems: [{ icon: FileCode, label: 'page.tsx', href: '/about-me' }],
-        },
+      folderState: folderStates.aboutMe,
+      setFolderState: () => toggleFolder('aboutMe'),
+      subItems: [{ icon: FileCode, label: 'page.tsx', href: '/about-me' }],
+    },
 
-        {
-          icon: Files,
-          label: 'tech-stack',
-          href: '/tech-stack',
-          isFolder: true,
-          folderState: folderStates.techStack,
-          setFolderState: () => toggleFolder('techStack'),
-          subItems: [
-            { icon: FileCode, label: 'page.tsx', href: '/tech-stack' },
-          ],
-        },
-        {
-          icon: Files,
-          label: 'projects',
-          href: '/projects',
-          isFolder: true,
-          folderState: folderStates.projects,
-          setFolderState: () => toggleFolder('projects'),
-          subItems: [{ icon: FileCode, label: 'page.tsx', href: '/projects' }],
-        },
-        {
-          icon: Files,
-          label: 'testimonials',
-          href: '/testimonials',
-          isFolder: true,
-          folderState: folderStates.testimonials,
-          setFolderState: () => toggleFolder('testimonials'),
-          subItems: [
-            { icon: FileCode, label: 'page.tsx', href: '/testimonials' },
-          ],
-        },
-        {
-          icon: Files,
-          label: 'contact-me',
-          href: '/contact-me',
-          isFolder: true,
-          folderState: folderStates.contactUs,
-          setFolderState: () => toggleFolder('contactUs'),
-          subItems: [
-            { icon: FileCode, label: 'page.tsx', href: '/contact-me' },
-          ],
-        },
-
-        { icon: FileCode, label: 'page.tsx', href: '/', isSingleFile: true },
-        {
-          icon: FileCode,
-          label: 'layout.tsx',
-          href: '/vscode/layout',
-          isSingleFile: true,
-        },
-        {
-          icon: FileCode,
-          label: 'globals.css',
-          href: '/vscode/global-css',
-          isSingleFile: true,
-        },
-      ],
+    {
+      icon: Files,
+      label: 'tech-stack',
+      href: '/tech-stack',
+      isFolder: true,
+      folderState: folderStates.techStack,
+      setFolderState: () => toggleFolder('techStack'),
+      subItems: [{ icon: FileCode, label: 'page.tsx', href: '/tech-stack' }],
     },
     {
       icon: Files,
-      label: 'components',
-      href: '/vscode/components',
+      label: 'projects',
+      href: '/projects',
       isFolder: true,
-      folderState: folderStates.components,
-      setFolderState: () => toggleFolder('components'),
-      subItems: [
-        {
-          icon: FileCode,
-          label: 'ui',
-          href: '#',
-          isFolder: true,
-          folderState: folderStates.ui,
-          setFolderState: () => toggleFolder('ui'),
-        },
-        {
-          icon: FileCode,
-          label: 'vscode',
-          href: '#',
-          isFolder: true,
-          folderState: folderStates.vscode,
-          setFolderState: () => toggleFolder('vscode'),
-        },
-        { icon: FileCode, label: 'hero.tsx', href: '#' },
-        { icon: FileCode, label: 'project-card.tsx', href: '#' },
-        { icon: FileCode, label: 'contact-form.tsx', href: '#' },
-      ],
+      folderState: folderStates.projects,
+      setFolderState: () => toggleFolder('projects'),
+      subItems: [{ icon: FileCode, label: 'page.tsx', href: '/projects' }],
     },
     {
       icon: Files,
-      label: 'lib',
-      href: '/vscode/lib',
+      label: 'testimonials',
+      href: '/testimonials',
       isFolder: true,
-      folderState: folderStates.lib,
-      setFolderState: () => toggleFolder('lib'),
-      subItems: [
-        { icon: FileCode, label: 'utils.ts', href: '#' },
-        { icon: FileCode, label: 'data.ts', href: '#' },
-      ],
+      folderState: folderStates.testimonials,
+      setFolderState: () => toggleFolder('testimonials'),
+      subItems: [{ icon: FileCode, label: 'page.tsx', href: '/testimonials' }],
     },
     {
       icon: Files,
-      label: 'public',
-      href: '/vscode/public',
+      label: 'contact-me',
+      href: '/contact-me',
       isFolder: true,
-      folderState: folderStates.public,
-      setFolderState: () => toggleFolder('public'),
-      subItems: [
-        {
-          icon: Files,
-          label: 'images',
-          href: '#',
-          isFolder: true,
-          folderState: folderStates.images,
-          setFolderState: () => toggleFolder('images'),
-        },
-        { icon: FileCode, label: 'favicon.ico', href: '#' },
-      ],
+      folderState: folderStates.contactUs,
+      setFolderState: () => toggleFolder('contactUs'),
+      subItems: [{ icon: FileCode, label: 'page.tsx', href: '/contact-me' }],
     },
     {
-      icon: FileCode,
-      label: 'package.json',
-      href: '/vscode/package-json',
-      isSingleFile: true,
-    },
-    {
-      icon: FileCode,
-      label: 'next.config.js',
-      href: '/vscode/next-config',
-      isSingleFile: true,
-    },
-    {
-      icon: FileCode,
-      label: 'tailwind.config.js',
-      href: '/vscode/tailwind-config',
-      isSingleFile: true,
-    },
-    {
-      icon: FileCode,
-      label: 'tsconfig.json',
-      href: '/vscode/tsconfig-json',
+      label: 'readme',
+      href: '/vscode/readme',
       isSingleFile: true,
     },
   ];
@@ -372,6 +264,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
     if (filename === 'tech-stack') return Cpu;
     if (filename === 'volunteering') return Users;
     if (filename === 'images') return Image;
+    if (filename === 'readme') return BookOpen;
     return File;
   };
 
@@ -384,6 +277,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
     if (filename.endsWith('.css')) return 'text-[#519ABA]';
     if (filename === 'page.tsx') return 'text-[#4EC9B0]';
     if (filename === 'layout.tsx') return 'text-[#4EC9B0]';
+    if (filename === 'readme') return 'text-[#4EC9B0]';
     return 'text-[#bbbbbb]';
   };
 
@@ -477,7 +371,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
       <div className="flex h-8 items-center justify-between border-b border-[#333333] bg-[#252526] px-2 text-xs">
         <div className="flex items-center">
           <div className="mr-2 flex h-full items-center">
-            <div className="h-4 w-4 bg-[#007acc]"></div>
+            <div className="h-4 w-4 text-[#007acc]"> S </div>
           </div>
           <div className="flex gap-4">
             {menuItems.map((item, index) => (
@@ -600,61 +494,83 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
             </div>
           </div>
         )}
+        {activeSidebar === 'search' && (
+          <div className="w-60 overflow-y-auto border-r border-[#333333]">
+            <SearchComponent />
+          </div>
+        )}
+
+        {activeSidebar === 'git' && (
+          <div className="w-60 overflow-y-auto border-r border-[#333333]">
+            <SourceControl />
+          </div>
+        )}
+
+        {activeSidebar === 'extensions' && (
+          <div className="w-72 overflow-y-auto border-r border-[#333333]">
+            <Extensions />
+          </div>
+        )}
+
+        {activeSidebar === 'run' && (
+          <div className="w-60 overflow-y-auto border-r border-[#333333]">
+            <RunDebug />
+          </div>
+        )}
 
         {/* Main Content Area */}
-        <div className="flex flex-1 flex-col overflow-hidden bg-[#1e1e1e]">
-          {/* Tab Bar */}
-          <div className="flex h-9 items-center overflow-x-auto border-b border-[#333333] bg-[#252526]">
-            <div className="flex h-full items-center">
-              {openTabs.map((tab) => {
-                const TabIcon = getTabIcon(tab.path);
-                return (
-                  <div
-                    key={tab.path}
-                    className={cn(
-                      'flex h-full cursor-pointer items-center gap-2 border-t-2 border-transparent px-3 text-xs',
-                      tab.path === activeTab
-                        ? 'border-t-[#007acc] bg-[#1e1e1e]'
-                        : 'bg-[#2d2d2d] hover:bg-[#2a2a2a]'
-                    )}
-                    onClick={() => {
-                      setActiveTab(tab.path);
-                      router.push(tab.path);
-                    }}
-                  >
-                    <TabIcon
-                      size={14}
-                      className={getFileIconColor(tab.label)}
-                    />
-                    <span>{tab.label}</span>
-                    <X
-                      size={14}
-                      className="ml-2 cursor-pointer text-[#858585] hover:text-white"
-                      onClick={(e) => closeTab(tab.path, e)}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Content */}
-          <div className="flex-1 overflow-auto">{children}</div>
-
-          {/* Status Bar */}
-          <div className="flex h-6 items-center justify-between border-t border-[#333333] bg-[#007acc] px-2 text-xs">
-            <div className="flex items-center gap-2">
-              <span>Launched</span>
-              <div className="flex items-center gap-1">
-                <span className="rounded bg-[#1e1e1e] px-1">0 ⚠️</span>
-                <span className="rounded bg-[#1e1e1e] px-1">0 ❌</span>
+        {(activeSidebar === 'explorer' || activeSidebar === 'search') && (
+          <div className="flex flex-1 flex-col overflow-hidden bg-[#1e1e1e]">
+            <div className="flex h-9 items-center overflow-x-auto border-b border-[#333333] bg-[#252526]">
+              <div className="flex h-full items-center">
+                {openTabs.map((tab) => {
+                  const TabIcon = getTabIcon(tab.path);
+                  return (
+                    <div
+                      key={tab.path}
+                      className={cn(
+                        'flex h-full cursor-pointer items-center gap-2 border-t-2 border-transparent px-3 text-xs',
+                        tab.path === activeTab
+                          ? 'border-t-[#007acc] bg-[#1e1e1e]'
+                          : 'bg-[#2d2d2d] hover:bg-[#2a2a2a]'
+                      )}
+                      onClick={() => {
+                        setActiveTab(tab.path);
+                        router.push(tab.path);
+                      }}
+                    >
+                      <TabIcon
+                        size={14}
+                        className={getFileIconColor(tab.label)}
+                      />
+                      <span>{tab.label}</span>
+                      <X
+                        size={14}
+                        className="ml-2 cursor-pointer text-[#858585] hover:text-white"
+                        onClick={(e) => closeTab(tab.path, e)}
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <span>Go Live</span>
+
+            <div className="flex-1 overflow-auto">{children}</div>
+
+            <div className="flex h-6 items-center justify-between border-t border-[#333333] bg-[#007acc] px-2 text-xs">
+              <div className="flex items-center gap-2">
+                <span>Launched</span>
+                <div className="flex items-center gap-1">
+                  <span className="rounded bg-[#1e1e1e] px-1">0 ⚠️</span>
+                  <span className="rounded bg-[#1e1e1e] px-1">0 ❌</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <span>Go Live</span>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
