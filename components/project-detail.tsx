@@ -25,7 +25,7 @@ const ProjectDetail = ({
   onClose: () => void;
   vsCodeColors: any;
 }) => {
-  const [activeImageIndex, setActiveImageIndex] = useState(1);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
   const slideVariants = {

@@ -31,7 +31,7 @@ export const projects: Project[] = [
     role: 'Frontend Developer',
     status: 'Ongoing',
     startDate: '2024-09-01',
-    endDate: '2024-09-01',
+    endDate: new Date().toISOString(),
     features: [
       {
         title: 'AI-Powered Product Search',
@@ -54,6 +54,59 @@ export const projects: Project[] = [
       {
         title: 'Responsive Design',
         description: 'Optimized for both desktop and mobile devices.',
+      },
+    ],
+  },
+  {
+    name: 'AI Cloud Academy',
+    description:
+      'A modern Next.js application for an educational platform focused on AI and cloud development courses.',
+    heroImage: '/projects/AI-cloud-academy.png',
+    images: [
+      '/projects/AI-cloud-academy-1.png',
+      '/projects/AI-cloud-academy-2.png',
+      '/projects/AI-cloud-academy-3.png',
+      '/projects/AI-cloud-academy-mobile-1.png',
+      '/projects/AI-cloud-academy-mobile-2.png',
+      '/projects/AI-cloud-academy-mobile-3.png',
+    ],
+    skills: [
+      { name: 'Next.js' },
+      { name: 'TypeScript' },
+      { name: 'TailwindCSS' },
+      { name: 'Radix UI' },
+      { name: 'Framer Motion' },
+    ],
+    hosted_link: 'https://ai-cloud-academy.vercel.app/',
+    client: 'AI Cloud Academy',
+    role: 'Frontend Developer',
+    status: 'Completed',
+    startDate: '2024-09-01',
+    endDate: '2024-09-10',
+    features: [
+      {
+        title: 'Responsive Design',
+        description: 'The application is responsive and works on all devices.',
+      },
+      {
+        title: 'Interactive UI Elements',
+        description: 'Smooth animations and interactive elements.',
+      },
+      {
+        title: 'Course Catalog',
+        description: 'Detailed course information with course details.',
+      },
+      {
+        title: 'Crash Courses',
+        description: 'Quick learning with crash courses.',
+      },
+      {
+        title: 'Project Showcases',
+        description: 'Showcase of projects built by the students.',
+      },
+      {
+        title: 'Testimonials',
+        description: 'Testimonials from students.',
       },
     ],
   },
@@ -82,6 +135,7 @@ export const projects: Project[] = [
     status: 'Completed',
     startDate: '2023-07-09',
     endDate: '2024-11-01',
+    hosted_link: 'https://www.mentor-cards.com/home-page',
     features: [
       {
         title: 'Digital Flash Cards',
@@ -101,6 +155,59 @@ export const projects: Project[] = [
         title: 'Community Learning',
         description:
           'Users can share tips and contribute to collective learning and development.',
+      },
+    ],
+  },
+  {
+    name: 'BIM - Landing Page',
+    description:
+      'BIM (Better International Match) is a global dating application that connects singles worldwide. This multilingual platform features support for English, French, Spanish, German, Italian, and Luxembourgish, with a pre-registration system allowing users to sign up before the official launch. The platform ensures user safety through rigorous verification and offers comprehensive communication features.',
+    heroImage: '/projects/bim.png',
+    images: [
+      '/projects/bim-1.png',
+      '/projects/bim-2.png',
+      '/projects/bim-3.png',
+      '/projects/bim-mobile-1.png',
+      '/projects/bim-mobile-2.png',
+      '/projects/bim-mobile-3.png',
+    ],
+    skills: [
+      { name: 'Next.js' },
+      { name: 'I18n' },
+      { name: 'Google Analytics' },
+      { name: 'TailwindCSS' },
+      { name: 'Shadcn UI' },
+      { name: 'Framer Motion' },
+      { name: 'React Hook Form' },
+      { name: 'Nodemailer' },
+    ],
+    hosted_link: 'https://bim-web.vercel.app/en',
+    client: 'Vincent',
+    role: 'Frontend Developer',
+    status: 'Completed',
+    startDate: '2024-07-09',
+    endDate: '2024-08-12',
+    features: [
+      {
+        title: 'Internationalization',
+        description: 'Full support for multiple languages with easy switching.',
+      },
+      {
+        title: 'Pre-registration System',
+        description: 'Collects user information and stores it in Google Drive.',
+      },
+      {
+        title: 'Contact Form',
+        description:
+          'Secure form with reCAPTCHA verification for user inquiries.',
+      },
+      {
+        title: 'Cookie Consent',
+        description: 'GDPR-compliant cookie consent management.',
+      },
+      {
+        title: 'Responsive Design',
+        description: 'Optimized for mobile, tablet, and desktop devices.',
       },
     ],
   },
@@ -158,59 +265,7 @@ export const projects: Project[] = [
       },
     ],
   },
-  {
-    name: 'BIM - Landing Page',
-    description:
-      'BIM (Better International Match) is a global dating application that connects singles worldwide. This multilingual platform features support for English, French, Spanish, German, Italian, and Luxembourgish, with a pre-registration system allowing users to sign up before the official launch. The platform ensures user safety through rigorous verification and offers comprehensive communication features.',
-    heroImage: '/projects/bim.png',
-    images: [
-      '/projects/bim-1.png',
-      '/projects/bim-2.png',
-      '/projects/bim-3.png',
-      '/projects/bim-mobile-1.png',
-      '/projects/bim-mobile-2.png',
-      '/projects/bim-mobile-3.png',
-    ],
-    skills: [
-      { name: 'Next.js' },
-      { name: 'I18n' },
-      { name: 'Google Analytics' },
-      { name: 'TailwindCSS' },
-      { name: 'Shadcn UI' },
-      { name: 'Framer Motion' },
-      { name: 'React Hook Form' },
-      { name: 'Nodemailer' },
-    ],
-    hosted_link: 'https://bim-web.vercel.app/en',
-    client: 'Vincent',
-    role: 'Frontend Developer',
-    status: 'Completed',
-    startDate: '2024-07-09',
-    endDate: '2024-08-12',
-    features: [
-      {
-        title: 'Internationalization',
-        description: 'Full support for multiple languages with easy switching.',
-      },
-      {
-        title: 'Pre-registration System',
-        description: 'Collects user information and stores it in Google Drive.',
-      },
-      {
-        title: 'Contact Form',
-        description:
-          'Secure form with reCAPTCHA verification for user inquiries.',
-      },
-      {
-        title: 'Cookie Consent',
-        description: 'GDPR-compliant cookie consent management.',
-      },
-      {
-        title: 'Responsive Design',
-        description: 'Optimized for mobile, tablet, and desktop devices.',
-      },
-    ],
-  },
+
   {
     name: 'Aizenit - Landing Page',
     description:

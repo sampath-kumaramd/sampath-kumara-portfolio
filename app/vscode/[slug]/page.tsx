@@ -169,7 +169,7 @@ export default function VSCodeSlugPage() {
               </Link>
             </div>
 
-            <div className="mt-8 rounded border border-[#333333] bg-[#252526] p-4">
+            {/* <div className="mt-8 rounded border border-[#333333] bg-[#252526] p-4">
               <h4 className="mb-2 text-lg font-medium text-white">
                 Need Help?
               </h4>
@@ -177,7 +177,7 @@ export default function VSCodeSlugPage() {
                 Look for the help button in the bottom right corner of the
                 screen for a guided tour of the interface.
               </p>
-            </div>
+            </div> */}
 
             <div className="mt-8 flex items-center justify-between">
               <div className="text-[#bbbbbb]">
@@ -202,14 +202,14 @@ export default function VSCodeSlugPage() {
                 >
                   <Mail className="h-5 w-5" />
                 </a>
-                <a
+                {/* <a
                   href="http://www.sampathkumara.me"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#bbbbbb] hover:text-white"
                 >
                   <ExternalLink className="h-5 w-5" />
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

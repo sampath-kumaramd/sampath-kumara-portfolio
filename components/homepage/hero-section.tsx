@@ -75,7 +75,7 @@ const HeroSection = () => {
 
   return (
     <motion.div
-      className="mb-2 mt-20 flex flex-col items-start justify-start px-0 py-0 dark:bg-[#1e1e1e] md:mt-0 md:min-h-[89.5vh]"
+      className="mb-2 flex flex-col items-start justify-start px-0 py-0 dark:bg-[#1e1e1e] sm:mt-20 md:mt-0 md:min-h-[89.5vh]"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -115,7 +115,7 @@ const HeroSection = () => {
                 Full Stack Developer specializing in building exceptional
                 digital experiences
                 <br className="hidden sm:block" /> with expertise in React,
-                Next.js, Angular, and Node.js.
+                Next.js, Angular, Spring boot and Node.js.
                 <br className="hidden sm:block" /> I transform complex problems
                 into elegant, efficient solutions
                 <br className="hidden sm:block" /> with a focus on performance,
@@ -168,8 +168,8 @@ const HeroSection = () => {
                   <div className="flex whitespace-nowrap">
                     <span className="mr-2 text-gray-500 sm:mr-4">4</span>
                     <span className="ml-4 text-yellow-300 sm:ml-8">
-                      &apos;Node.js&apos;, &apos;Angular&apos;,
-                      &apos;TailwindCSS&apos;,
+                      &apos;Node.js&apos;, &apos;Spring Boot&apos;,
+                      &apos;Angular&apos;, &apos;TailwindCSS&apos;,
                     </span>
                   </div>
                   <div className="flex whitespace-nowrap">

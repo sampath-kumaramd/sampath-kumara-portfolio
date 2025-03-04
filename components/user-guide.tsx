@@ -136,9 +136,23 @@ export function UserGuide() {
     <AnimatePresence>
       <motion.div
         initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        animate={{
+          y: 0,
+          opacity: 1,
+          boxShadow: [
+            '0 0 0 rgba(0, 122, 204, 0)',
+            '0 0 20px rgba(0, 122, 204, 0.5)',
+            '0 0 0 rgba(0, 122, 204, 0)',
+          ],
+        }}
+        transition={{
+          boxShadow: {
+            repeat: Infinity,
+            duration: 2,
+          },
+        }}
         exit={{ y: 100, opacity: 0 }}
-        className="fixed bottom-20 right-4 z-50 max-w-sm rounded-lg border border-[#333333] bg-[#1e1e1e]/95 p-4 shadow-lg backdrop-blur-sm"
+        className="fixed bottom-20 right-4 z-50 max-w-sm rounded-lg border border-[#333333] bg-[#1e1e1e]/70 p-4 shadow-lg backdrop-blur-xl"
       >
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
@@ -202,7 +216,7 @@ export function UserGuide() {
                   <Button
                     size="sm"
                     variant="outline"
-                    className="whitespace-nowrap border-[#333333] bg-[#252526] text-[#bbbbbb] hover:bg-[#2a2d2e] hover:text-white"
+                    className="whitespace-nowrap border-[#333333] bg-[#007acc] text-white hover:bg-[#007acc]/90 hover:text-white"
                   >
                     <span className="flex items-center">
                       <BookOpen className="mr-1 h-3 w-3" /> View Full Guide
@@ -210,19 +224,17 @@ export function UserGuide() {
                   </Button>
                 </Link>
               )}
-              <Button
-                size="sm"
-                onClick={handleNext}
-                className="whitespace-nowrap bg-[#007acc] text-white hover:bg-[#007acc]/90"
-              >
-                {currentStep < steps.length - 1 ? (
+              {currentStep < steps.length - 1 && (
+                <Button
+                  size="sm"
+                  onClick={handleNext}
+                  className="whitespace-nowrap bg-[#007acc] text-white hover:bg-[#007acc]/90"
+                >
                   <span className="flex items-center">
                     Next <ArrowRight className="ml-1 h-3 w-3" />
                   </span>
-                ) : (
-                  'Got it!'
-                )}
-              </Button>
+                </Button>
+              )}
             </div>
           </div>
         </div>

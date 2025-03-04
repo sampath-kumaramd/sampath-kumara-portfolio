@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { ContributionGraph } from '@/components/github/contribution-graph';
 import { motion } from 'framer-motion';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 
 type Education = {
   duration: string;
@@ -150,7 +151,7 @@ const AboutMe: React.FC = () => {
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
+                            className="h-6 w-6"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -179,7 +180,7 @@ const AboutMe: React.FC = () => {
                           </svg>
                         </a>
                         <a
-                          href="https://www.linkedin.com/in/sampath-kumaramd/"
+                          href="https://www.linkedin.com/in/sampathkumaramd/"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-blue-700 hover:text-blue-900"
@@ -191,27 +192,6 @@ const AboutMe: React.FC = () => {
                             viewBox="0 0 24 24"
                           >
                             <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
-                          </svg>
-                        </a>
-                        <a
-                          href="http://www.sampathkumara.me"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-green-600 hover:text-green-800"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                            />
                           </svg>
                         </a>
                       </div>
@@ -240,19 +220,19 @@ const AboutMe: React.FC = () => {
                       </h3>
                       <div className="flex flex-wrap gap-2">
                         {[
+                          'JavaScript',
+                          'TypeScript',
                           'Next.js',
                           'React',
                           'Angular',
-                          'TypeScript',
+                          'Node.js',
+                          'Spring Boot',
                           'TailwindCSS',
                           'Shadcn UI',
-                          'Node.js',
                           'React Query',
-                          'Framer Motion',
                           'React Hook Form',
+                          'Framer Motion',
                           'GraphQL',
-                          'Spring Boot',
-                          'Tailwind CSS',
                           'MongoDB',
                           'MySQL',
                         ].map((skill) => (
@@ -397,7 +377,17 @@ const AboutMe: React.FC = () => {
 
                   <div className="mt-4 border border-[#333333] bg-[#252526] p-4">
                     <h4 className="text-md font-medium text-white">
-                      Supermarket System - Code Base
+                      Supermarket System -{' '}
+                      <Link
+                        href={
+                          'https://github.com/sampath-kumaramd/supermarket-system'
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#007acc]"
+                      >
+                        Code Base
+                      </Link>
                     </h4>
                     <p className="mt-2 text-[#bbbbbb]">
                       Architected Scalable online supermarket platform built
