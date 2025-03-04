@@ -120,14 +120,14 @@ export function UserGuide() {
       additionalInfo:
         'The mobile experience preserves the VS Code aesthetic while making navigation touch-friendly.',
     },
-    {
-      title: 'Settings & Theme',
-      description:
-        'You can customize your experience using the settings menu. Change between light and dark themes or adjust other preferences just like in VS Code.',
-      icon: <Settings className="h-5 w-5 text-[#007acc]" />,
-      additionalInfo:
-        'Look for theme options in the View menu or use keyboard shortcuts for a personalized experience.',
-    },
+    // {
+    //   title: 'Settings & Theme',
+    //   description:
+    //     'You can customize your experience using the settings menu. Change between light and dark themes or adjust other preferences just like in VS Code.',
+    //   icon: <Settings className="h-5 w-5 text-[#007acc]" />,
+    //   additionalInfo:
+    //     'Look for theme options in the View menu or use keyboard shortcuts for a personalized experience.',
+    // },
   ];
 
   if (!isVisible) return null;
