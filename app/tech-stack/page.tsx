@@ -54,7 +54,7 @@ const SkillsSection: React.FC = () => {
           ))}
         </nav>
       </div>
-      <div className="w-full overflow-x-hidden px-4 md:overflow-y-auto">
+      <div className="w-full overflow-x-hidden md:overflow-y-auto">
         <motion.div
           layout
           className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"

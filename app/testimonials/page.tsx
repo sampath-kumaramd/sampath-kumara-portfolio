@@ -222,7 +222,7 @@ const ClientTestimonialsCarousel: React.FC = () => {
     <section className="relative flex min-h-[90vh] flex-col justify-center md:pt-0">
       <div className="container mx-auto px-4">
         <h2 className="mb-16 text-center">
-          <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
+          <span className="text-4xl font-bold text-blue-400 sm:text-5xl">
             {`// What people say about me`}
           </span>
           <span className="font-mono mt-6 block text-lg font-normal text-gray-400">

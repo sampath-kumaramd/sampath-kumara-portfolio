@@ -21,7 +21,7 @@ export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 // Initialize analytics based on consent
 export const enableAnalytics = () => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     // Enable analytics tracking
     window.gtag('consent', 'update', {
       analytics_storage: 'granted',
@@ -31,7 +31,7 @@ export const enableAnalytics = () => {
 
 // Disable analytics
 export const disableAnalytics = () => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     window.gtag('consent', 'update', {
       analytics_storage: 'denied',
     });

@@ -127,15 +127,6 @@ export default function ContactForm() {
         className="container mx-auto my-16 px-4 pt-20 md:my-16 md:px-8"
       >
         {/* VS Code Tab Bar */}
-        <div className="flex border-b border-[#252526] bg-[#1e1e1e]">
-          <div className="flex items-center bg-[#1e1e1e] px-4 py-1 text-sm text-white">
-            <span className="mr-2">contact-me.tsx</span>
-            <span className="ml-2 cursor-pointer text-gray-400 hover:text-white">
-              ×
-            </span>
-          </div>
-        </div>
-
         <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-16">
           <motion.div
             initial={{ x: -50, opacity: 0 }}

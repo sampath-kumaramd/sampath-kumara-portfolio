@@ -38,7 +38,7 @@ const ProjectShowcase = () => {
   return (
     <>
       <div
-        className="min-h-screen"
+        className="min-h-screen p-4"
         style={{
           backgroundColor: vsCodeColors.background,
           color: vsCodeColors.foreground,
@@ -53,7 +53,7 @@ const ProjectShowcase = () => {
           }}
         >
           <div
-            className="flex items-center px-4 py-1 text-sm"
+            className="flex items-center py-1 text-sm"
             style={{
               backgroundColor: vsCodeColors.tabActive,
               color: vsCodeColors.foreground,
@@ -65,28 +65,16 @@ const ProjectShowcase = () => {
               ×
             </span>
           </div>
-          <div
-            className="flex items-center px-4 py-1 text-sm opacity-70"
-            style={{
-              backgroundColor: vsCodeColors.tabInactive,
-              color: vsCodeColors.foreground,
-            }}
-          >
-            <span className="mr-2">README.md</span>
-            <span className="ml-2 cursor-pointer opacity-60 hover:opacity-100">
-              ×
-            </span>
-          </div>
         </div>
 
-        <div className="mx-auto max-w-7xl px-4 py-20">
+        <div className="pt-4">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl font-bold"
             style={{ color: vsCodeColors.accent }}
           >
-            Some of my work
+            Selected Works
           </motion.h1>
 
           <motion.div
@@ -96,7 +84,16 @@ const ProjectShowcase = () => {
             className="mb-16 text-xl"
             style={{ color: vsCodeColors.secondaryText }}
           >
-            These are some of the projects I&apos;ve worked on.
+            These are some of my projects. You can find more on my
+            <a
+              href="https://github.com/sampath-kumaramd"
+              target="_blank"
+              className="text-blue-400"
+            >
+              {' '}
+              GitHub
+            </a>
+            .
           </motion.div>
 
           <div className="space-y-32">

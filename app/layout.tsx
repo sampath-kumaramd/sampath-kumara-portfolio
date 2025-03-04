@@ -11,6 +11,7 @@ import Script from 'next/script';
 import LayoutWrapper from '@/components/layout-wrapper';
 import { LayoutSwitcher } from '@/components/layout-switcher';
 import { ClientOnlyAnimatedCursor } from '@/components/client-only-animated-cursor';
+import { GA_MEASUREMENT_ID } from '@/lib/analytics';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -36,6 +37,28 @@ export default function RootLayout({
           `}
         </Script>
         <link rel="icon" href="/logo-white.png" />
+
+        {/* Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            // Default to denied until consent is given
+            gtag('consent', 'default', {
+              'analytics_storage': 'denied'
+            });
+            
+            gtag('config', '${GA_MEASUREMENT_ID}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
       </head>
       <body className={inter.className}>
         <ThemeProvider
