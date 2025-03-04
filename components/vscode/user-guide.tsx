@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { X, ChevronRight, ChevronLeft } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { X, ChevronRight, ChevronLeft, MousePointer } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface GuideStep {
   title: string;
   description: string;
   target?: string; // CSS selector for highlighting
+  icon?: React.ReactNode;
 }
 
 export default function VSCodeGuide({
@@ -18,12 +19,14 @@ export default function VSCodeGuide({
   onClose: () => void;
 }) {
   const [currentStep, setCurrentStep] = useState(0);
+  const [targetElement, setTargetElement] = useState<DOMRect | null>(null);
 
   const steps: GuideStep[] = [
     {
       title: 'Welcome to my VS Code Portfolio',
       description:
         'This portfolio is designed to mimic VS Code. Let me show you around!',
+      icon: <MousePointer className="h-5 w-5 text-[#007acc]" />,
     },
     {
       title: 'Navigation',
@@ -49,7 +52,45 @@ export default function VSCodeGuide({
         'Just like in VS Code, you can have multiple tabs open at once.',
       target: '.tabs-section',
     },
+    {
+      title: 'Projects',
+      description:
+        "Check out my projects section to see what I've been working on, including web applications, landing pages, and more.",
+      target: '.projects-section',
+    },
+    {
+      title: 'Contact',
+      description:
+        'Feel free to reach out to me through the contact section if you have any questions or opportunities.',
+      target: '.contact-section',
+    },
   ];
+
+  // Find and highlight target element
+  useEffect(() => {
+    const currentTarget = steps[currentStep].target;
+    if (currentTarget) {
+      const element = document.querySelector(currentTarget);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        setTargetElement(rect);
+
+        // Scroll element into view if needed
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        setTargetElement(null);
+      }
+    } else {
+      setTargetElement(null);
+    }
+  }, [currentStep, steps, isOpen]);
+
+  // Save guide state to localStorage
+  useEffect(() => {
+    if (isOpen) {
+      localStorage.setItem('hasSeenGuide', 'true');
+    }
+  }, [isOpen]);
 
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
@@ -65,20 +106,41 @@ export default function VSCodeGuide({
     }
   };
 
-  // Close on escape key
+  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowRight') nextStep();
+      if (e.key === 'ArrowLeft') prevStep();
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  }, [onClose, currentStep]);
 
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50">
+      {/* Target highlight */}
+      <AnimatePresence>
+        {targetElement && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="pointer-events-none absolute border-2 border-[#007acc] bg-[#007acc]/10"
+            style={{
+              left: targetElement.left,
+              top: targetElement.top,
+              width: targetElement.width,
+              height: targetElement.height,
+              zIndex: 101,
+            }}
+          />
+        )}
+      </AnimatePresence>
+
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -92,11 +154,35 @@ export default function VSCodeGuide({
           <X size={18} />
         </button>
 
-        <h3 className="mb-2 text-xl font-semibold text-[#007acc]">
-          {steps[currentStep].title}
-        </h3>
+        <button
+          onClick={onClose}
+          className="absolute left-4 top-4 text-xs text-[#bbbbbb] hover:text-white"
+        >
+          Skip tutorial
+        </button>
+
+        <div className="mb-4 mt-6 flex items-center">
+          {steps[currentStep].icon || (
+            <MousePointer size={20} className="mr-2 text-[#007acc]" />
+          )}
+          <h3 className="ml-2 text-xl font-semibold text-[#007acc]">
+            {steps[currentStep].title}
+          </h3>
+        </div>
 
         <p className="mb-6 text-[#bbbbbb]">{steps[currentStep].description}</p>
+
+        {/* Progress bar */}
+        <div className="mb-4 flex w-full gap-1">
+          {steps.map((_, index) => (
+            <div
+              key={index}
+              className={`h-1 flex-1 rounded-full ${
+                index <= currentStep ? 'bg-[#007acc]' : 'bg-[#3a3d3e]'
+              }`}
+            />
+          ))}
+        </div>
 
         <div className="flex items-center justify-between">
           <button

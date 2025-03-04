@@ -826,14 +826,14 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
                 )}
               </div>
 
-              <div className="mt-4">
+              {/* <div className="mt-4">
                 <div className="px-2 py-1 text-xs font-medium text-[#bbbbbb]">
                   <span>OUTLINE</span>
                 </div>
                 <div className="mt-2 px-4 text-xs text-[#bbbbbb]">
                   <span>No symbols found</span>
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
         {((isMobile && isMobileSidebarOpen) || !isMobile) &&

@@ -9,10 +9,17 @@ import {
   Sidebar,
   Files,
   Menu,
+  BookOpen,
+  ExternalLink,
+  Code,
+  Layers,
+  Search,
+  Settings,
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { useCookieConsent } from '@/lib/store/cookieConsent';
 import { event } from '@/lib/analytics';
+import Link from 'next/link';
 
 export function UserGuide() {
   const [isVisible, setIsVisible] = useState(false);
@@ -50,30 +57,76 @@ export function UserGuide() {
     });
   };
 
+  const handleBack = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+      event({
+        action: 'user_guide_step',
+        category: 'engagement',
+        label: `back_to_step_${currentStep}`,
+      });
+    }
+  };
+
+  const handleReadmeClick = () => {
+    event({
+      action: 'user_guide',
+      category: 'engagement',
+      label: 'view_readme',
+    });
+    setHasSeenGuide(true);
+    setIsVisible(false);
+  };
+
   const steps = [
     {
       title: 'Welcome to my VS Code-themed Portfolio!',
       description:
-        'This site is designed to look like VS Code. Let me show you how to navigate.',
+        'This site is designed to look and function like Visual Studio Code, providing an interactive developer experience. Navigate through my portfolio as if you were browsing a code project!',
       icon: <MousePointer className="h-5 w-5 text-[#007acc]" />,
     },
     {
       title: 'Sidebar Navigation',
       description:
-        'Use the sidebar icons on the left to navigate between different sections like Explorer, Search, and more.',
+        'The left sidebar contains icons similar to VS Code. Click on Explorer to browse files, Search to find content, and Source Control to see my GitHub projects. Each icon opens a different panel with unique content.',
       icon: <Sidebar className="h-5 w-5 text-[#007acc]" />,
+      additionalIcons: [
+        <Files key="files" className="h-4 w-4 text-[#858585]" />,
+        <Search key="search" className="h-4 w-4 text-[#858585]" />,
+        <Code key="code" className="h-4 w-4 text-[#858585]" />,
+      ],
     },
     {
       title: 'File Explorer',
       description:
-        'Click on the Files icon to see all sections of my portfolio organized like a project structure.',
+        "In the Explorer view, you'll find folders organized like a project structure. Click on folders to expand them and files to open content. My portfolio sections are organized as directories and files.",
       icon: <Files className="h-5 w-5 text-[#007acc]" />,
+      additionalInfo:
+        'Try clicking on folders like "About Me", "Projects", or "Resume" to see their contents.',
+    },
+    {
+      title: 'Tabs & Editor',
+      description:
+        'As you navigate through the site, files will open as tabs in the editor area. You can have multiple tabs open simultaneously and switch between them, just like in VS Code.',
+      icon: <Layers className="h-5 w-5 text-[#007acc]" />,
+      additionalInfo:
+        'Click on the "×" icon on a tab to close it, or click on different tabs to switch between open files.',
     },
     {
       title: 'Mobile Navigation',
       description:
-        'On mobile, use the menu icon in the top right to access navigation options.',
+        'On mobile devices, the interface adapts to smaller screens. Use the menu icon in the top right to access navigation options and the sidebar content.',
       icon: <Menu className="h-5 w-5 text-[#007acc]" />,
+      additionalInfo:
+        'The mobile experience preserves the VS Code aesthetic while making navigation touch-friendly.',
+    },
+    {
+      title: 'Settings & Theme',
+      description:
+        'You can customize your experience using the settings menu. Change between light and dark themes or adjust other preferences just like in VS Code.',
+      icon: <Settings className="h-5 w-5 text-[#007acc]" />,
+      additionalInfo:
+        'Look for theme options in the View menu or use keyboard shortcuts for a personalized experience.',
     },
   ];
 
@@ -104,6 +157,23 @@ export function UserGuide() {
           </div>
           <div className="text-sm">
             <p className="text-[#bbbbbb]">{steps[currentStep].description}</p>
+            {steps[currentStep].additionalInfo && (
+              <p className="mt-2 text-[#858585]">
+                {steps[currentStep].additionalInfo}
+              </p>
+            )}
+            {steps[currentStep].additionalIcons && (
+              <div className="mt-2 flex items-center gap-3">
+                {steps[currentStep].additionalIcons.map((icon, i) => (
+                  <div
+                    key={i}
+                    className="flex h-6 w-6 items-center justify-center rounded bg-[#252526]"
+                  >
+                    {icon}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="flex justify-between">
             <div className="flex space-x-1">
@@ -114,19 +184,46 @@ export function UserGuide() {
                 />
               ))}
             </div>
-            <Button
-              size="sm"
-              onClick={handleNext}
-              className="whitespace-nowrap bg-[#007acc] text-white hover:bg-[#007acc]/90"
-            >
-              {currentStep < steps.length - 1 ? (
-                <span className="flex items-center">
-                  Next <ArrowRight className="ml-1 h-3 w-3" />
-                </span>
-              ) : (
-                'Got it!'
+            <div className="flex gap-2">
+              {currentStep > 0 && (
+                <Button
+                  size="sm"
+                  onClick={handleBack}
+                  variant="outline"
+                  className="whitespace-nowrap border-[#333333] bg-[#252526] text-[#bbbbbb] hover:bg-[#2a2d2e] hover:text-white"
+                >
+                  <span className="flex items-center">
+                    <ArrowRight className="mr-1 h-3 w-3 rotate-180" /> Back
+                  </span>
+                </Button>
               )}
-            </Button>
+              {currentStep === steps.length - 1 && (
+                <Link href="/vscode/readme" onClick={handleReadmeClick}>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="whitespace-nowrap border-[#333333] bg-[#252526] text-[#bbbbbb] hover:bg-[#2a2d2e] hover:text-white"
+                  >
+                    <span className="flex items-center">
+                      <BookOpen className="mr-1 h-3 w-3" /> View Full Guide
+                    </span>
+                  </Button>
+                </Link>
+              )}
+              <Button
+                size="sm"
+                onClick={handleNext}
+                className="whitespace-nowrap bg-[#007acc] text-white hover:bg-[#007acc]/90"
+              >
+                {currentStep < steps.length - 1 ? (
+                  <span className="flex items-center">
+                    Next <ArrowRight className="ml-1 h-3 w-3" />
+                  </span>
+                ) : (
+                  'Got it!'
+                )}
+              </Button>
+            </div>
           </div>
         </div>
       </motion.div>
