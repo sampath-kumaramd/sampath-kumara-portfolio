@@ -223,10 +223,10 @@ const ClientTestimonialsCarousel: React.FC = () => {
       <div className="container mx-auto px-4">
         <h2 className="mb-16 text-center">
           <span className="text-4xl font-bold text-blue-400 sm:text-5xl">
-            {`// What people say about me`}
+            {`// Client Testimonials`}
           </span>
           <span className="font-mono mt-6 block text-lg font-normal text-gray-400">
-            {`// Discover why people love working with me`}
+            {`// Real feedback from professionals I've collaborated with`}
           </span>
         </h2>
         <Carousel

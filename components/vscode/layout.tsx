@@ -712,18 +712,9 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
             <span className="text-[#858585]">New folder</span>
           </div>
           <div className="flex gap-4">
-            <Minimize2
-              size={16}
-              className="cursor-pointer text-[#858585] hover:text-white"
-            />
-            <Square
-              size={16}
-              className="cursor-pointer text-[#858585] hover:text-white"
-            />
-            <X
-              size={16}
-              className="cursor-pointer text-[#858585] hover:text-white"
-            />
+            <Minimize2 size={16} className="text-[#858585] hover:text-white" />
+            <Square size={16} className="text-[#858585] hover:text-white" />
+            <X size={16} className="text-[#858585] hover:text-white" />
           </div>
         </div>
       </div>
@@ -769,7 +760,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
               <div key={index} className="group relative">
                 <div
                   className={cn(
-                    'flex h-10 w-10 cursor-pointer items-center justify-center rounded hover:bg-[#2a2d2e]',
+                    'flex h-10 w-10 items-center justify-center rounded hover:bg-[#2a2d2e]',
                     activeSidebar === item.id &&
                       'border-l-2 border-[#007acc] bg-[#37373d]'
                   )}

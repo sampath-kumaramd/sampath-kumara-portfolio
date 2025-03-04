@@ -124,7 +124,7 @@ export default function ContactForm() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
-        className="container mx-auto my-16 px-4 pt-20 md:my-16 md:px-8"
+        className="my-16 px-4 pt-20 md:my-16"
       >
         {/* VS Code Tab Bar */}
         <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-16">

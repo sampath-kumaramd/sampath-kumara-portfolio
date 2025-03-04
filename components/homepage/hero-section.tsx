@@ -82,14 +82,6 @@ const HeroSection = () => {
     >
       <div className="mt-8 w-full px-4">
         {/* VS Code Tab Bar */}
-        <div className="flex border-b border-[#252526] bg-[#1e1e1e]">
-          <div className="flex items-center bg-[#1e1e1e] px-4 py-1 text-sm text-white">
-            <span className="mr-2">home.tsx</span>
-            <span className="ml-2 cursor-pointer text-gray-400 hover:text-white">
-              ×
-            </span>
-          </div>
-        </div>
 
         {/* Main Content */}
         <div className="w-full">
@@ -103,10 +95,9 @@ const HeroSection = () => {
                 texts={[
                   'Full Stack Developer',
                   'Software Engineer',
+                  'UI/UX Enthusiast',
                   'Problem Solver',
-                  'Leader',
-                  'Team Player',
-                  'Volunteer',
+                  'Tech Innovator',
                   'Open Source Contributor',
                 ]}
               />
@@ -121,11 +112,14 @@ const HeroSection = () => {
                 </BoxReveal>
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-300 sm:text-base">
-                Dedicated to creating impactful digital experiences{' '}
-                <br className="hidden sm:block" /> through clean code and
-                thoughtful design.
-                <br className="hidden sm:block" /> Every project is an
-                opportunity to innovate and excel.
+                Full Stack Developer specializing in building exceptional
+                digital experiences
+                <br className="hidden sm:block" /> with expertise in React,
+                Next.js, Angular, and Node.js.
+                <br className="hidden sm:block" /> I transform complex problems
+                into elegant, efficient solutions
+                <br className="hidden sm:block" /> with a focus on performance,
+                scalability, and user experience.
               </div>
             </div>
 
@@ -148,62 +142,91 @@ const HeroSection = () => {
                 <div className="font-mono text-xs sm:text-sm">
                   <div className="flex whitespace-nowrap">
                     <span className="mr-2 text-gray-500 sm:mr-4">1</span>
-                    <span className="text-blue-500">const</span>
-                    <span className="text-white"> Developer = () </span>
-                    <span className="text-blue-500">{'=> {'}</span>
+                    <span className="text-blue-500">&nbsp;const&nbsp;</span>
+                    <span className="text-white">
+                      {' '}
+                      Developer: React.FC = () &nbsp;
+                    </span>
+                    <span className="text-blue-500">
+                      {`=>`} {`{`}
+                    </span>
                   </div>
                   <div className="flex whitespace-nowrap">
                     <span className="mr-2 text-gray-500 sm:mr-4">2</span>
-                    <span className="ml-2 text-blue-500 sm:ml-4">return</span>
-                    <span className="text-white"> (</span>
+                    <span className="ml-2 text-blue-500 sm:ml-4">
+                      const&nbsp;
+                    </span>
+                    <span className="text-white"> skills = [</span>
                   </div>
                   <div className="flex whitespace-nowrap">
                     <span className="mr-2 text-gray-500 sm:mr-4">3</span>
-                    <span className="ml-4 text-green-500 sm:ml-8">
-                      {'<Profile>'}
+                    <span className="ml-4 text-yellow-300 sm:ml-8">
+                      &apos;React&apos;, &apos;Next.js&apos;,
+                      &apos;TypeScript&apos;,
                     </span>
                   </div>
                   <div className="flex whitespace-nowrap">
                     <span className="mr-2 text-gray-500 sm:mr-4">4</span>
-                    <span className="ml-6 text-green-500 sm:ml-12">
-                      {'<name>'}
+                    <span className="ml-4 text-yellow-300 sm:ml-8">
+                      &apos;Node.js&apos;, &apos;Angular&apos;,
+                      &apos;TailwindCSS&apos;,
                     </span>
-                    <span className="text-yellow-300">Sampath Kumara</span>
-                    <span className="text-green-500">{'</name>'}</span>
                   </div>
                   <div className="flex whitespace-nowrap">
                     <span className="mr-2 text-gray-500 sm:mr-4">5</span>
-                    <span className="ml-6 text-green-500 sm:ml-12">
-                      {'<skills>'}
-                    </span>
-                    <span className="text-white">
-                      Full Stack, React, Node.js
-                    </span>
-                    <span className="text-green-500">{'</skills>'}</span>
+                    <span className="ml-2 text-white sm:ml-4">];</span>
                   </div>
                   <div className="flex whitespace-nowrap">
                     <span className="mr-2 text-gray-500 sm:mr-4">6</span>
-                    <span className="ml-6 text-green-500 sm:ml-12">
-                      {'<passion>'}
-                    </span>
-                    <span className="text-white">
-                      Building amazing experiences
-                    </span>
-                    <span className="text-green-500">{'</passion>'}</span>
+                    <span className="text-white"></span>
                   </div>
                   <div className="flex whitespace-nowrap">
                     <span className="mr-2 text-gray-500 sm:mr-4">7</span>
-                    <span className="ml-4 text-green-500 sm:ml-8">
-                      {'</Profile>'}
+                    <span className="ml-2 text-blue-500 sm:ml-4">
+                      return &nbsp;
                     </span>
+                    <span className="text-white"> ( </span>
                   </div>
                   <div className="flex whitespace-nowrap">
                     <span className="mr-2 text-gray-500 sm:mr-4">8</span>
-                    <span className="text-white">);</span>
+                    <span className="ml-4 text-green-500 sm:ml-8">
+                      {`<Developer>`}
+                    </span>
                   </div>
                   <div className="flex whitespace-nowrap">
                     <span className="mr-2 text-gray-500 sm:mr-4">9</span>
-                    <span className="text-blue-500">{'}'}</span>
+                    <span className="ml-6 text-green-500 sm:ml-12">
+                      {`<expertise>`}
+                    </span>
+                    <span className="text-white"> Full Stack Development </span>
+                    <span className="text-green-500">{`</expertise>`}</span>
+                  </div>
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">10</span>
+                    <span className="ml-6 text-green-500 sm:ml-12">
+                      {`<focus>`}
+                    </span>
+                    <span className="text-white"> Scalable Solutions </span>
+                    <span className="text-green-500">{`</focus>`}</span>
+                  </div>
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">11</span>
+                    <span className="ml-4 text-green-500 sm:ml-8">
+                      {`</Developer>`}
+                    </span>
+                  </div>
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">12</span>
+                    <span className="text-blue-500"> {`};`}</span>
+                  </div>
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">13</span>
+                    <span className="text-white"></span>
+                  </div>
+                  <div className="flex whitespace-nowrap">
+                    <span className="mr-2 text-gray-500 sm:mr-4">14</span>
+                    <span className="text-blue-500">export default</span>
+                    <span className="text-white"> Developer;</span>
                   </div>
                 </div>
               </motion.div>
@@ -216,12 +239,16 @@ const HeroSection = () => {
                   <div className="text-xs text-gray-400">TERMINAL</div>
                 </div>
                 <div className="font-mono text-xs text-green-400 sm:text-sm">
-                  <div className="whitespace-nowrap">$ npm run build</div>
+                  <div className="whitespace-nowrap">$ npm run dev</div>
                   <div className="mt-1 whitespace-nowrap">
-                    Creating optimized production build...
+                    Starting development server...
+                  </div>
+                  <div className="mt-1 whitespace-nowrap">✓ Ready in 1.2s</div>
+                  <div className="mt-1 whitespace-nowrap">
+                    ✓ Compiled client and server successfully
                   </div>
                   <div className="mt-1 whitespace-nowrap">
-                    ✓ Compiled successfully
+                    ○ Waiting for file changes
                   </div>
                   <div className="mt-1 flex items-center whitespace-nowrap">
                     <span className="mr-1">$</span>

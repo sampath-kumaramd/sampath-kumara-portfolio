@@ -12,6 +12,7 @@ import LayoutWrapper from '@/components/layout-wrapper';
 import { LayoutSwitcher } from '@/components/layout-switcher';
 import { ClientOnlyAnimatedCursor } from '@/components/client-only-animated-cursor';
 import { GA_MEASUREMENT_ID } from '@/lib/analytics';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -74,6 +75,7 @@ export default function RootLayout({
           <CookieConsent />
           <UserGuide />
           <MobileAdvisory />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

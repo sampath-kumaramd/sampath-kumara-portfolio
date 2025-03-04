@@ -22,17 +22,31 @@ const ProjectShowcase = () => {
   const { theme } = useTheme();
 
   // Determine VS Code theme colors based on system/user preference
-  const isDark = theme === 'dark' || theme === 'system';
+  // const isDark = theme === 'dark' || theme === 'system';
+  // const vsCodeColors = {
+  //   background: isDark ? '#1e1e1e' : '#ffffff',
+  //   foreground: isDark ? '#d4d4d4' : '#333333',
+  //   accent: isDark ? '#007acc' : '#0078d7',
+  //   border: isDark ? '#252526' : '#e0e0e0',
+  //   cardBg: isDark ? '#252526' : '#f3f3f3',
+  //   secondaryText: isDark ? '#bbbbbb' : '#6e6e6e',
+  //   tabBar: isDark ? '#252526' : '#f3f3f3',
+  //   tabActive: isDark ? '#1e1e1e' : '#ffffff',
+  //   tabInactive: isDark ? '#2d2d2d' : '#ececec',
+  // };
+
   const vsCodeColors = {
-    background: isDark ? '#1e1e1e' : '#ffffff',
-    foreground: isDark ? '#d4d4d4' : '#333333',
-    accent: isDark ? '#007acc' : '#0078d7',
-    border: isDark ? '#252526' : '#e0e0e0',
-    cardBg: isDark ? '#252526' : '#f3f3f3',
-    secondaryText: isDark ? '#bbbbbb' : '#6e6e6e',
-    tabBar: isDark ? '#252526' : '#f3f3f3',
-    tabActive: isDark ? '#1e1e1e' : '#ffffff',
-    tabInactive: isDark ? '#2d2d2d' : '#ececec',
+    background: '#1e1e1e',
+    foreground: '#d4d4d4',
+    accent: '#007acc',
+    border: '#252526',
+    cardBg: '#252526',
+    secondaryText: '#bbbbbb',
+    tabBar: '#252526',
+    tabActive: '#1e1e1e',
+    tabInactive: '#2d2d2d',
+    buttonBackground: '#007acc',
+    buttonHover: '#007acc',
   };
 
   return (
@@ -44,29 +58,6 @@ const ProjectShowcase = () => {
           color: vsCodeColors.foreground,
         }}
       >
-        {/* VS Code Tab Bar */}
-        <div
-          className="flex border-b"
-          style={{
-            borderColor: vsCodeColors.border,
-            backgroundColor: vsCodeColors.tabBar,
-          }}
-        >
-          <div
-            className="flex items-center py-1 text-sm"
-            style={{
-              backgroundColor: vsCodeColors.tabActive,
-              color: vsCodeColors.foreground,
-            }}
-          >
-            <FileCode className="mr-2 h-4 w-4" />
-            <span className="mr-2">projects.tsx</span>
-            <span className="ml-2 cursor-pointer opacity-60 hover:opacity-100">
-              ×
-            </span>
-          </div>
-        </div>
-
         <div className="pt-4">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -164,7 +155,7 @@ const ProjectShowcase = () => {
                             key={skill.name}
                             className="rounded-sm px-3 py-1 text-xs font-medium"
                             style={{
-                              backgroundColor: isDark ? '#2a2d2e' : '#e6e6e6',
+                              backgroundColor: vsCodeColors.buttonBackground,
                               color: vsCodeColors.secondaryText,
                             }}
                           >
@@ -192,7 +183,7 @@ const ProjectShowcase = () => {
                             rel="noopener noreferrer"
                             className="rounded-full p-2 text-white transition-transform hover:scale-110 hover:opacity-90"
                             style={{
-                              backgroundColor: isDark ? '#333333' : '#e0e0e0',
+                              backgroundColor: vsCodeColors.buttonBackground,
                               color: vsCodeColors.foreground,
                             }}
                           >
