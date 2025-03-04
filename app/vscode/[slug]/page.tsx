@@ -149,13 +149,13 @@ export default function VSCodeSlugPage() {
               </Link>
 
               <Link
-                href="/resume"
+                href="/testimonials"
                 className="flex items-center rounded border border-[#333333] bg-[#252526] p-3 transition-colors hover:bg-[#2a2d2e]"
               >
                 <div className="mr-3 rounded-full bg-[#007acc]/20 p-2">
                   <FileCode className="h-5 w-5 text-[#007acc]" />
                 </div>
-                <span className="text-[#bbbbbb]">Resume</span>
+                <span className="text-[#bbbbbb]">Testimonials</span>
               </Link>
 
               <Link
